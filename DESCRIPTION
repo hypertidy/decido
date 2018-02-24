@@ -1,0 +1,14 @@
+Package: earcut.hpp
+Version: 0.0.0.9000
+Title: Minimal Rcpp Binding of Mapbox Earcut.hpp
+Description: What the package does (one paragraph).
+Authors@R: person("Michael", "Sumner", email = "mdsumner@gmail.com", role = c("aut", "cre"))
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp
+RoxygenNote: 6.0.1
