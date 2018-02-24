@@ -43,7 +43,7 @@ IntegerVector earcut(NumericVector x, NumericVector y,
   Polygons polyrings;
   for (int ipoint = 0; ipoint < vcount; ipoint++) {
     Point pt = {x[ipoint], y[ipoint]};
-    poly.push_back({pt});
+    poly.push_back(pt);
     if (numholes[0] > 0) {
       if (ipoint == holes[ipoint]) {
         polyrings.push_back(poly);
