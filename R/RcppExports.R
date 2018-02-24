@@ -14,6 +14,6 @@
 #' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 #' earcut(x, y)
 earcut <- function(x, y) {
-    .Call(`_earcut_cpp_earcut`, x, y)
+    .Call(`_decido_earcut`, x, y)
 }
 

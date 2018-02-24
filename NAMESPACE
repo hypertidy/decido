@@ -2,4 +2,4 @@
 
 export(earcut)
 importFrom(Rcpp,sourceCpp)
-useDynLib('earcut.cpp', .registration = TRUE)
+useDynLib('decido', .registration = TRUE)

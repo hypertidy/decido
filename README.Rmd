@@ -12,9 +12,9 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# earcut.cpp
+# decido
 
-The goal of earcut.cpp is to demonstrate a minimal R binding to the 
+The goal of decido is to demonstrate a minimal R binding to the 
 Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp). 
 
 This is to augment the JS version available in [rearcut](https://github.com/hypertidy/rearcut.git) (also an R wrapper
@@ -22,10 +22,10 @@ of the JS version by Mapbox).
 
 ## Installation
 
-You can install earcut.cpp from with:
+You can install decido from with:
 
 ``` r
-devtools::install_github("mdsumner/earcut.cpp")
+devtools::install_github("hypertidy/decido")
 ```
 
 ## Development
@@ -44,7 +44,7 @@ output is a vector of triplet indices defining each triangle.
 
 
 ```{r example}
-library(earcut.cpp)
+library(decido)
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 earcut(x, y)
@@ -70,13 +70,12 @@ apply(matrix(indices, nrow = 3), 2, function(ind) polygon(xy[ind + 1, ]))
 
 Compare timing of C++ versus JS implementations. 
 
-(This is not verified ...). 
 
 ```R
- rbenchmark::benchmark(rearcut::earcut(cbind(ring$x, ring$y)), earcut.cpp::earcut(ring$x, ring$y))
+ rbenchmark::benchmark(rearcut::earcut(cbind(ring$x, ring$y)), decido::earcut(ring$x, ring$y))
                                     test replications elapsed relative
-2     earcut.cpp::earcut(ring$x, ring$y)          100   0.064    1.000
-1 rearcut::earcut(cbind(ring$x, ring$y))          100   4.147   64.797
+#2     decido::earcut(ring$x, ring$y)          100   0.064    1.000
+#1 rearcut::earcut(cbind(ring$x, ring$y))          100   4.147   64.797
 ```
 ## Beware!
 

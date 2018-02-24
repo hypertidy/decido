@@ -7,7 +7,7 @@ using namespace Rcpp;
 
 // earcut
 IntegerVector earcut(NumericVector x, NumericVector y);
-RcppExport SEXP _earcut_cpp_earcut(SEXP xSEXP, SEXP ySEXP) {
+RcppExport SEXP _decido_earcut(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;

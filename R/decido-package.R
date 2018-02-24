@@ -2,6 +2,6 @@
 "_PACKAGE"
 
 
-#' @useDynLib 'earcut.cpp', .registration = TRUE
+#' @useDynLib 'decido', .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 NULL
