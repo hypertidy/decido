@@ -1,13 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Travis-CI Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/hypertidy/decido) [![Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/hypertidy/decido) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/mdsumner/decido?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/decido) [![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://codecov.io/github/hypertidy/decido?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tidync)](https://cran.r-project.org/package=tidync)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Travis-CI Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/hypertidy/decido) [![Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/hypertidy/decido) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/decido) [![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://codecov.io/github/hypertidy/decido?branch=master) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/tidync)](https://cran.r-project.org/package=tidync)
 
 decido
 ======
 
-The goal of decido is to demonstrate a minimal R binding to the Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp).
+The goal of decido is to provide an R binding to the Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp) for constrained polygon triangulation. Triangulation by ear-clipping (or ear-cutting) is path-based, simple features compliant POLYGON analogues are the basic input.
 
 This is to augment the JS version available in [rearcut](https://github.com/hypertidy/rearcut.git) (also an R wrapper of the JS version by Mapbox).
+
+In comparison to ear-clipping, other libraries Triangle and CGAL provide edge-based "mostly Delanay" triangulation. Triangle is available in the R package RTriangle (and sfdct).
 
 Installation
 ------------
