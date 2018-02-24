@@ -4,12 +4,16 @@
 \alias{earcut}
 \title{earcut}
 \usage{
-earcut(x, y)
+earcut(x, y, holes = -1L, numholes = 0L)
 }
 \arguments{
-\item{x}{-ordinate}
+\item{x}{x-coordinate}
 
-\item{y}{-ordinate}
+\item{y}{y-coordinate}
+
+\item{holes}{index of starting position of each hole in x,y}
+
+\item{numholes}{the number of holes}
 }
 \description{
 earcut description
@@ -21,4 +25,13 @@ earcut details
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 earcut(x, y)
+## hole starts at 9
+x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69, 0, 0.2,
+      0.5, 0.5, 0.3, 0.2, 0.2)
+y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
+      0.2, 0.4, 0.6, 0.4, 0.2)
+ind <- earcut(x, y, holes = 8, numholes = 1)
+plot(x, y, asp = 1)
+xy <- cbind(x, y)
+apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
 }

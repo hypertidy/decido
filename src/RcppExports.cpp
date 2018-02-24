@@ -6,14 +6,16 @@
 using namespace Rcpp;
 
 // earcut
-IntegerVector earcut(NumericVector x, NumericVector y);
-RcppExport SEXP _decido_earcut(SEXP xSEXP, SEXP ySEXP) {
+IntegerVector earcut(NumericVector x, NumericVector y, IntegerVector holes, IntegerVector numholes);
+RcppExport SEXP _decido_earcut(SEXP xSEXP, SEXP ySEXP, SEXP holesSEXP, SEXP numholesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(earcut(x, y));
+    Rcpp::traits::input_parameter< IntegerVector >::type holes(holesSEXP);
+    Rcpp::traits::input_parameter< IntegerVector >::type numholes(numholesSEXP);
+    rcpp_result_gen = Rcpp::wrap(earcut(x, y, holes, numholes));
     return rcpp_result_gen;
 END_RCPP
 }

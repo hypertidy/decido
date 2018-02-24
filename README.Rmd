@@ -4,6 +4,14 @@ output: github_document
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Travis-CI Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/hypertidy/decido)
+[![Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/hypertidy/decido) 
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&svg=true)](https://ci.appveyor.com/project/hypertidy/decido) 
+[![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://codecov.io/github/hypertidy/decido?branch=master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/tidync)](https://cran.r-project.org/package=tidync)
+
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -32,10 +40,12 @@ devtools::install_github("hypertidy/decido")
 
 Immediate needs: 
 
-* allow input of holes
+* clean up ability to specify holes
 * wrap around complex types of multiple polygons, etc. 
 * tests!
 
+
+See [rearcut](https://github.com/hypertidy/rearcut.git) for some approaches to the hole encoding. It's not hard, just rife with options. At the moment it seems best to stick close to how the JS earcut encodes them, and this translates very simply in C++. 
 
 ## Example
 
@@ -55,6 +65,21 @@ polygon(x, y, lwd = 10)
 apply(matrix(earcut(x, y), nrow = 3), 2, function(ind) polygon(cbind(x, y)[ind + 1, ], col = "firebrick"))
 ```
 
+Support for holes is provided by two required arguments `numholes`
+and `holes`. The holes are the starting index of each hole, here in C++ 0-based convention. 
+
+```{r}
+## hole starts at 9
+x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69, 0, 0.2,
+      0.5, 0.5, 0.3, 0.2, 0.2)
+y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
+      0.2, 0.4, 0.6, 0.4, 0.2)
+ind <- earcut(x, y, holes = 8, numholes = 1)
+plot(x, y, asp = 1)
+
+xy <- cbind(x, y)
+apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
+```
 
 ```{r}
 library(oz)
@@ -79,5 +104,10 @@ Compare timing of C++ versus JS implementations.
 ```
 ## Beware!
 
-Only single ring polygons are supported currently. No checking is done
-on input coordinates, so use at your own risk!  
+This is in active development and the functions will change. 
+
+No checking is done on input coordinates, so use at your own risk!  
+
+
+ Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+  By participating in this project you agree to abide by its terms.

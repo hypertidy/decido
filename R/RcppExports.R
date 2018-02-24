@@ -6,14 +6,25 @@
 #' earcut description
 #'
 #' earcut details
-#' @param x -ordinate
-#' @param y -ordinate
+#' @param x x-coordinate
+#' @param y y-coordinate
+#' @param holes index of starting position of each hole in x,y
+#' @param numholes the number of holes
 #' @export
 #' @examples
 #' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 #' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 #' earcut(x, y)
-earcut <- function(x, y) {
-    .Call(`_decido_earcut`, x, y)
+#' ## hole starts at 9
+#' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69, 0, 0.2,
+#'       0.5, 0.5, 0.3, 0.2, 0.2)
+#' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
+#'       0.2, 0.4, 0.6, 0.4, 0.2)
+#' ind <- earcut(x, y, holes = 8, numholes = 1)
+#' plot(x, y, asp = 1)
+#' xy <- cbind(x, y)
+#' apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
+earcut <- function(x, y, holes = -1L, numholes = 0L) {
+    .Call(`_decido_earcut`, x, y, holes, numholes)
 }
 
