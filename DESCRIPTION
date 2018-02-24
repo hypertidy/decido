@@ -15,3 +15,5 @@ RoxygenNote: 6.0.1
 Suggests: 
     covr,
     testthat
+SystemRequirements: C++11
+
