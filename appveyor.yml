@@ -15,11 +15,11 @@ cache:
 
 # Adapt as necessary starting from here
 
-USE_RTOOLS: true
 
 environment:
   global:
     WARNINGS_ARE_ERRORS: 1
+    USE_RTOOLS: true
 
   matrix:
   - R_VERSION: release
