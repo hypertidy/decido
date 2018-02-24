@@ -18,11 +18,13 @@ matrix:
           env:
            - BUILD_NAME=trusty_release
            - DETAILS="release build"
+           - USE_CXX11=yes
         - os: osx
           r: release
           env:
            - BUILD_NAME=osx_release
            - DETAILS="release build"
+           - USE_CXX11=yes
 
 
 after_success:
