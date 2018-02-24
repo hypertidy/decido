@@ -8,14 +8,14 @@
 */
 
 /* .Call calls */
-extern SEXP _dopey_cpp_dopey(SEXP, SEXP);
+extern SEXP _earcut_cpp_earcut(SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_dopey_cpp_dopey", (DL_FUNC) &_dopey_cpp_dopey, 2},
+    {"_earcut_cpp_earcut", (DL_FUNC) &_earcut_cpp_earcut, 2},
     {NULL, NULL, 0}
 };
 
-void R_init_dopey_cpp(DllInfo *dll)
+void R_init_earcut_cpp(DllInfo *dll)
 {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);

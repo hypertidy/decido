@@ -2,6 +2,6 @@
 "_PACKAGE"
 
 
-#' @useDynLib 'dopey.cpp', .registration = TRUE
+#' @useDynLib 'earcut.cpp', .registration = TRUE
 #' @importFrom Rcpp sourceCpp
 NULL

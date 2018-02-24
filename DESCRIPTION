@@ -1,4 +1,4 @@
-Package: earcut.hpp
+Package: earcut.cpp
 Version: 0.0.0.9000
 Title: Minimal Rcpp Binding of Mapbox Earcut.hpp
 Description: What the package does (one paragraph).

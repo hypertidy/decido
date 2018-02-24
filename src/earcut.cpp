@@ -2,21 +2,20 @@
 using namespace Rcpp;
 #include "earcut.hpp"
 
-//' dopey
+//' earcut
 //'
-//' dopey description
+//' earcut description
 //'
-//' dopey details
+//' earcut details
 //' @param x -ordinate
 //' @param y -ordinate
 //' @export
 //' @examples
-//' dopey(1, 2)
 //' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 //' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
-//' dopey(x, y)
+//' earcut(x, y)
 // [[Rcpp::export]]
-IntegerVector dopey(NumericVector x, NumericVector y) {
+IntegerVector earcut(NumericVector x, NumericVector y) {
   using Coord = double;
   // The index type. Defaults to uint32_t, but you can also pass uint16_t if you know that your
   // data won't have more than 65536 vertices.

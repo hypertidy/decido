@@ -1,4 +1,6 @@
-^dopey\.cpp\.Rproj$
+^earcut\.cpp\.Rproj$
 ^\.Rproj\.user$
 ^reg\.R$
 ^data-raw$
+^README\.Rmd$
+^docs$

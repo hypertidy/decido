@@ -5,15 +5,15 @@
 
 using namespace Rcpp;
 
-// dopey
-IntegerVector dopey(NumericVector x, NumericVector y);
-RcppExport SEXP _dopey_cpp_dopey(SEXP xSEXP, SEXP ySEXP) {
+// earcut
+IntegerVector earcut(NumericVector x, NumericVector y);
+RcppExport SEXP _earcut_cpp_earcut(SEXP xSEXP, SEXP ySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< NumericVector >::type x(xSEXP);
     Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
-    rcpp_result_gen = Rcpp::wrap(dopey(x, y));
+    rcpp_result_gen = Rcpp::wrap(earcut(x, y));
     return rcpp_result_gen;
 END_RCPP
 }
