@@ -61,6 +61,20 @@ apply(matrix(indices, nrow = 3), 2, function(ind) polygon(xy[ind + 1, ]))
 
     #> NULL
 
+Performance
+-----------
+
+Compare timing of C++ versus JS implementations.
+
+(This is not verified ...).
+
+``` r
+ rbenchmark::benchmark(rearcut::earcut(cbind(ring$x, ring$y)), earcut.cpp::earcut(ring$x, ring$y))
+                                    test replications elapsed relative
+2     earcut.cpp::earcut(ring$x, ring$y)          100   0.064    1.000
+1 rearcut::earcut(cbind(ring$x, ring$y))          100   4.147   64.797
+```
+
 Beware!
 -------
 
