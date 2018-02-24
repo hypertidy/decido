@@ -2,7 +2,7 @@
 
 language: R
 warnings_are_errors: true
-sudo: false
+sudo: true
 cache: packages
 
 #addons:
