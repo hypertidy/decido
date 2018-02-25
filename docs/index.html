@@ -63,7 +63,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#decido" class="anchor"></a>decido</h1></div>
 <p>The goal of decido is to provide an R binding to the Mapbox library <a href="https://github.com/mapbox/earcut.hpp">earcut.hpp</a> for constrained polygon triangulation.</p>
-<p>Ear cutting (or ear clipping) applies constrained triangulation by successively ‘cutting’ triangles from a polygon defined by path/s. Holes are supported by introducing a bridge segment between polygon paths. The earcut library works with single-island-with-holes form polygons, analogous to the POLYGON type in simple features.</p>
+<p>Ear cutting (or ear clipping) applies constrained triangulation by successively ‘cutting’ triangles from a polygon defined by path/s. Holes are supported, the earcut library works with single-island-with-holes form polygons, analogous to the POLYGON type in simple features.</p>
 <p>This augments the Javascript version available in <a href="https://github.com/hypertidy/rearcut.git">rearcut</a> (also an R wrapper of the JS version by Mapbox). No comparison or testing has yet been done to compare these implementations.</p>
 <p>In comparison to path-based ear-clipping, other libraries ‘Triangle’ and ‘CGAL’ provide edge-based <em>mostly Delaunay</em> triangulation. The Triangle library is available in the R package <a href="https://CRAN.r-project.org/package=RTriangle">RTriangle</a>. Experimental implementations binding CGAL are in <a href="https://github.com/s-u/rcgal">rcgal</a> and <a href="https://github.com/hypertidy/laridae">laridae</a>.</p>
 <div id="installation" class="section level2">
@@ -136,6 +136,7 @@ xy &lt;-<span class="st"> </span><span class="kw">cbind</span>(ring<span class="
 <a href="#beware" class="anchor"></a>Beware!</h2>
 <p>This is in active development and the functions will change.</p>
 <p>No checking is done on input coordinates, so use at your own risk!</p>
+<hr>
 <p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>

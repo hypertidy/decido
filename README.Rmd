@@ -1,5 +1,7 @@
 ---
 output: github_document
+editor_options: 
+  chunk_output_type: console
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -26,8 +28,7 @@ The goal of decido is to provide an R binding to the
 Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp) for constrained polygon triangulation.  
 
 Ear cutting (or ear clipping) applies constrained triangulation by 
-successively 'cutting' triangles from a polygon defined by path/s. Holes are supported by 
-introducing a bridge segment between polygon paths. The earcut library works with 
+successively 'cutting' triangles from a polygon defined by path/s. Holes are supported, the earcut library works with 
 single-island-with-holes form polygons, analogous to the POLYGON type in simple features. 
 
 This augments the Javascript version available in [rearcut](https://github.com/hypertidy/rearcut.git) (also an R wrapper of the JS version by Mapbox). No comparison or testing has yet been done to compare these implementations. 
@@ -114,6 +115,10 @@ Compare timing of C++ versus JS implementations.
 This is in active development and the functions will change. 
 
 No checking is done on input coordinates, so use at your own risk!  
+
+
+[^1]:  Well, I'm not sure on the details yet ... it's not that simple since many bridges will cross a polygon boundary. The more I learn about this the more I think monotone polygons are a key intermediary type that is needed.
+
 
 ---
 
