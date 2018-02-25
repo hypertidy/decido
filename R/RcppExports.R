@@ -20,7 +20,18 @@
 #'       0.5, 0.5, 0.3, 0.2, 0.2)
 #' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
 #'       0.2, 0.4, 0.6, 0.4, 0.2)
-#' ind <- earcut(x, y, holes = 8, numholes = 1)
+#' ind <- earcut(x, y, holes = 9, numholes = 1)
+#' plot(x, y, asp = 1)
+#' xy <- cbind(x, y)
+#' apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
+#' ## add another hole
+#' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69, 0, 0.2,
+#'       0.5, 0.5, 0.3, 0.2, 0.2,
+#'       0.15, 0.23, 0.2)
+#' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
+#'       0.2, 0.4, 0.6, 0.4, 0.2,
+#'       0.65, 0.65, 0.81)
+#' ind <- earcut(x, y, holes = c(9, 14), numholes = 2)
 #' plot(x, y, asp = 1)
 #' xy <- cbind(x, y)
 #' apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))

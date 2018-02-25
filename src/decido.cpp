@@ -1,6 +1,7 @@
 #include <Rcpp.h>
+#include <array>
 using namespace Rcpp;
-#include "earcut_hpp.cpp"
+#include "earcut.h"
 
 //' earcut
 //'
@@ -21,7 +22,18 @@ using namespace Rcpp;
 //'       0.5, 0.5, 0.3, 0.2, 0.2)
 //' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
 //'       0.2, 0.4, 0.6, 0.4, 0.2)
-//' ind <- earcut(x, y, holes = 8, numholes = 1)
+//' ind <- earcut(x, y, holes = 9, numholes = 1)
+//' plot(x, y, asp = 1)
+//' xy <- cbind(x, y)
+//' apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
+//' ## add another hole
+//' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69, 0, 0.2,
+//'       0.5, 0.5, 0.3, 0.2, 0.2,
+//'       0.15, 0.23, 0.2)
+//' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
+//'       0.2, 0.4, 0.6, 0.4, 0.2,
+//'       0.65, 0.65, 0.81)
+//' ind <- earcut(x, y, holes = c(9, 14), numholes = 2)
 //' plot(x, y, asp = 1)
 //' xy <- cbind(x, y)
 //' apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
@@ -43,6 +55,8 @@ IntegerVector earcut(NumericVector x, NumericVector y,
   Polygons polyrings;
   for (int ipoint = 0; ipoint < vcount; ipoint++) {
     pt = {x[ipoint], y[ipoint]};
+    // thanks @virgesmith!!!
+    //https://github.com/hypertidy/decido/issues/3#issuecomment-368255556
     poly.push_back(pt);
     if (numholes[0] > 0) {
       if (ipoint == holes[ipoint]) {
@@ -62,10 +76,6 @@ IntegerVector earcut(NumericVector x, NumericVector y,
   for (int j = 0; j < out.length(); j++){
     out[j] = indices[j];
   }
-//  int pcnt =  polyrings.size();
-//  int psize = poly.size();
-//  out[0] = pcnt;
-//  out[1] = psize;
   return out;
 }
 
