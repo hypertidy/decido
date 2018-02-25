@@ -23,12 +23,16 @@ knitr::opts_chunk$set(
 # decido
 
 The goal of decido is to provide an R binding to the 
-Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp) for constrained polygon triangulation.  Triangulation by ear-clipping (or ear-cutting) is path-based, simple features compliant POLYGON analogues are the basic input. 
+Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp) for constrained polygon triangulation.  
 
-This is to augment the JS version available in [rearcut](https://github.com/hypertidy/rearcut.git) (also an R wrapper
-of the JS version by Mapbox). 
+Ear cutting (or ear clipping) applies constrained triangulation by 
+successively 'cutting' triangles from a polygon defined by path/s. Holes are supported by 
+introducing a bridge segment between polygon paths. The earcut library works with 
+single-island-with-holes form polygons, analogous to the POLYGON type in simple features. 
 
-In comparison to ear-clipping, other libraries Triangle and CGAL provide edge-based "mostly Delanay" triangulation. Triangle is available in the R package RTriangle (and sfdct). 
+This augments the Javascript version available in [rearcut](https://github.com/hypertidy/rearcut.git) (also an R wrapper of the JS version by Mapbox). No comparison or testing has yet been done to compare these implementations. 
+
+In comparison to path-based ear-clipping, other libraries 'Triangle' and 'CGAL' provide edge-based *mostly Delaunay* triangulation. The Triangle library is available in the R package [RTriangle](https://CRAN.r-project.org/package=RTriangle). Experimental implementations binding CGAL are in [rcgal](https://github.com/s-u/rcgal) and [laridae](https://github.com/hypertidy/laridae). 
 
 ## Installation
 
@@ -81,6 +85,7 @@ plot(x, y, asp = 1)
 
 xy <- cbind(x, y)
 apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
+
 ```
 
 ```{r}
@@ -110,6 +115,6 @@ This is in active development and the functions will change.
 
 No checking is done on input coordinates, so use at your own risk!  
 
+---
 
- Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
-  By participating in this project you agree to abide by its terms.
+Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).  By participating in this project you agree to abide by its terms.
