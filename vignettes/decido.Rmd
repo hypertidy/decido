@@ -19,6 +19,8 @@ knitr::opts_chunk$set(
 )
 ```
 
+WIP
+
 ## Example
 
 This is a basic example of triangulating a single-ring polygon. The
@@ -36,7 +38,7 @@ plot_ears(cbind(x, y), ind)
 ```
 
 Support for holes is provided by two required arguments `numholes`
-and `holes`. The holes are the starting index of each hole, here in C++ 0-based convention. 
+and `holes`. The holes are the starting index of each hole, here in R 1-based convention. 
 
 ```{r}
 example(earcut, echo = TRUE)
@@ -49,6 +51,24 @@ ring <- oz_ring$lines[[6]]
 indices <- earcut(ring$x, ring$y)
 plot_ears(cbind(ring$x, ring$y), indices)
 ```
+
+
+## Variants
+
+The actual triangulation obtained depends on where the polygons start. This is complicated, because of the sheer number of possible variants, combinations of starting points among the island and its holes. 
+
+Important "edge" cases are degeneracies, holes touching the island or each other, duplicated edges, intersecting edges, zero-length edges, holes actually external to islands, already existing triangles, and existing quadrilaterals (amongst others). We aren't going to explore those here, and we are reasonably confident that Mapbox has been presented with a rich enough pool of variant polygons to make its library pretty robust. There's no uniquely "correct" here either, different systems and standards will apply different rules and allow or choose differently. 
+
+
+```{r}
+vecrot <- function(x, k) {
+  if (k < 0 || k > length(x)) warning("k out of bounds of 'x' index")
+  k <- k %% length(x)
+  ## from DescTools::VecRot
+  rep(x, times = 2)[(length(x) - k + 1):(2 * length(x) - k)]
+}
+```
+
 
 ## Performance
 

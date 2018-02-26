@@ -85,7 +85,9 @@
     </div>
 
     
-    <p>Plot the triangles for earcut.</p>
+    <p>Plot the triangles produced by <a href='earcut.html'>earcut</a>, or plot the polygon paths
+using the same interface as earcut uses. This allows for easy
+comparison and checking of what the results should be.</p>
     
 
     <pre class="usage"><span class='fu'>plot_ears</span>(<span class='no'>xy</span>, <span class='no'>idx</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
@@ -113,17 +115,46 @@
     </tr>
     <tr>
       <th>holes</th>
-      <td><p>index of starting position of holes (see `earcut`)</p></td>
+      <td><p>index of starting position of holes (see <a href='earcut.html'>earcut</a>)</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
+    <p>For both functions the first input is
+a matrix of x,y coordinates.</p>
+<p>For plot_ears the second input is
+the index output of earcut. The index is treated in sets of 3 values, with
+individual calls to polypath to draw a polygon for each triangle.</p>
+<p>For plot_holes the second input is the <code>holes</code> argument that would
+be used for earcut. This is used to split the coordinates at these positions,
+inserting <code>NA</code> values as per the mechanism used by <a href='http://www.rdocumentation.org/packages/graphics/topics/polypath'>graphics::polypath</a> to
+break coordinates into separate polygon rings. (There's no winding rule here
+plot_rules is hard-coded to always use the evenodd rule, so that winding
+order may be ignored).</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p>earcut</p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## after ?polypath</span>
+<span class='no'>x</span> <span class='kw'>&lt;-</span> <span class='fu'>cbind</span>(<span class='fu'>c</span>(<span class='fl'>.1</span>, <span class='fl'>.1</span>, <span class='fl'>.9</span>, <span class='fl'>.9</span>,   <span class='fl'>.2</span>, <span class='fl'>.2</span>, <span class='fl'>.8</span>, <span class='fl'>.8</span>),
+           <span class='fu'>c</span>(<span class='fl'>.1</span>, <span class='fl'>.9</span>, <span class='fl'>.9</span>, <span class='fl'>.1</span>,   <span class='fl'>.2</span>, <span class='fl'>.8</span>, <span class='fl'>.8</span>, <span class='fl'>.2</span>))
+<span class='fu'>plot_holes</span>(<span class='no'>x</span>, <span class='kw'>holes</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>col</span> <span class='kw'>=</span> <span class='st'>"grey"</span>)</div><div class='output co'>#&gt; <span class='error'>Error in plot.new(): figure margins too large</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-                </ul>
+      
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

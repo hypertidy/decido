@@ -19,8 +19,34 @@ plot_holes(xy, holes = 0, add = FALSE, ...)
 
 \item{...}{arguments to polypath}
 
-\item{holes}{index of starting position of holes (see `earcut`)}
+\item{holes}{index of starting position of holes (see \link{earcut})}
 }
 \description{
-Plot the triangles for earcut.
+Plot the triangles produced by \link{earcut}, or plot the polygon paths
+using the same interface as earcut uses. This allows for easy
+comparison and checking of what the results should be.
+}
+\details{
+For both functions the first input is
+a matrix of x,y coordinates.
+
+For \link{plot_ears} the second input is
+the index output of earcut. The index is treated in sets of 3 values, with
+individual calls to \link{polypath} to draw a polygon for each triangle.
+
+For \link{plot_holes} the second input is the \code{holes} argument that would
+be used for earcut. This is used to split the coordinates at these positions,
+inserting \code{NA} values as per the mechanism used by \link[graphics:polypath]{graphics::polypath} to
+break coordinates into separate polygon rings. (There's no winding rule here
+plot_rules is hard-coded to always use the evenodd rule, so that winding
+order may be ignored).
+}
+\examples{
+## after ?polypath
+x <- cbind(c(.1, .1, .9, .9,   .2, .2, .8, .8),
+           c(.1, .9, .9, .1,   .2, .8, .8, .2))
+plot_holes(x, holes = 5, col = "grey")
+}
+\seealso{
+earcut
 }

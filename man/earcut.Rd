@@ -2,7 +2,7 @@
 % Please edit documentation in R/earcut.R
 \name{earcut}
 \alias{earcut}
-\title{earcut}
+\title{Constrained polygon triangulation}
 \usage{
 earcut(x, y, holes = 0, ...)
 }
@@ -11,15 +11,25 @@ earcut(x, y, holes = 0, ...)
 
 \item{y}{y-coordinate}
 
-\item{holes}{index of starting position of each hole in x,y, leave set to `0` if no holes}
+\item{holes}{index of starting position of each hole in x,y, leave set to \code{0} if no holes}
 
 \item{...}{unused}
 }
+\value{
+integer vector of triangle index, in sets of three
+}
 \description{
-earcut description
+Produce a triangulation index into x,y coordinates of a polygon
+that may include holes. Holes are specified by input argument \code{holes}
+which marks the starting index of each hole, if any.
 }
 \details{
-earcut details
+Ear cutting (or ear clipping) applies constrained triangulation by
+successively 'cutting' triangles from a polygon defined by path/s. Holes are supported, the earcut library works with
+single-island-with-holes polygons, analogous to the POLYGON type in simple features.
+
+To understand the specification of holes, see the examples with comment
+starting "1) Notice how the hole begins ..." in relation to the example code.
 }
 \examples{
 ## single ring polygon
@@ -35,6 +45,11 @@ y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
      0.2, 0.2, 0.4, 0.6, 0.4)
 ind <- earcut(x, y, holes = 8)
 plot_ears(cbind(x, y), ind)
+
+## 1) Notice how the hole begins at index 8,
+## hence holes = 8 above, and holes = c(8, 13) below
+plot_ears(cbind(x, y), ind, col = "grey", border = NA)
+text(x, y, labels = seq_along(x), pos = 2)
 
 ## add another hole
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
@@ -62,4 +77,7 @@ plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")
 ind <- decido::earcut(x, y, holes = 5)
 plot_ears(cbind(x, y), ind, col = "grey")
 plot_holes(cbind(x, y), holes = 5, col = "grey")
+}
+\seealso{
+plot_ears
 }

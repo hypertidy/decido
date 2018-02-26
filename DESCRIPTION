@@ -27,3 +27,4 @@ Suggests:
     rmarkdown
 SystemRequirements: C++11
 VignetteBuilder: knitr
+Roxygen: list(markdown = TRUE)

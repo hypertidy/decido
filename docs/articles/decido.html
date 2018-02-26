@@ -65,6 +65,7 @@
     
     
 <div class="contents">
+<p>WIP</p>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
@@ -78,7 +79,7 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind)</code></pre></div>
 <p><img src="decido_files/figure-html/example-1.png" width="672"></p>
-<p>Support for holes is provided by two required arguments <code>numholes</code> and <code>holes</code>. The holes are the starting index of each hole, here in C++ 0-based convention.</p>
+<p>Support for holes is provided by two required arguments <code>numholes</code> and <code>holes</code>. The holes are the starting index of each hole, here in R 1-based convention.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(earcut, <span class="dt">echo =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt; earcut&gt; ## single ring polygon</span>
@@ -104,6 +105,13 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 #&gt; earcut&gt; plot_ears(cbind(x, y), ind)</code></pre>
 <p><img src="decido_files/figure-html/unnamed-chunk-1-2.png" width="672"></p>
 <pre><code>#&gt; 
+#&gt; earcut&gt; ## 1) Notice how the hole begins at index 8,
+#&gt; earcut&gt; ## hence holes = 8 above, and holes = c(8, 13) below
+#&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey", border = NA)</code></pre>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-3.png" width="672"></p>
+<pre><code>#&gt; 
+#&gt; earcut&gt; text(x, y, labels = seq_along(x), pos = 2)
+#&gt; 
 #&gt; earcut&gt; ## add another hole
 #&gt; earcut&gt; x &lt;- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
 #&gt; earcut+      0.2, 0.5, 0.5, 0.3, 0.2,
@@ -116,7 +124,7 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 #&gt; earcut&gt; ind &lt;- earcut(x, y, holes = c(8, 13))
 #&gt; 
 #&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-3.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-4.png" width="672"></p>
 <pre><code>#&gt; 
 #&gt; earcut&gt; # simpler shape with more than one hole
 #&gt; earcut&gt; # the two inside holes are open to each other
@@ -134,24 +142,36 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 #&gt; earcut&gt; ind &lt;- decido::earcut(x, y, holes = c(5, 9))
 #&gt; 
 #&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-4.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-5.png" width="672"></p>
 <pre><code>#&gt; 
 #&gt; earcut&gt; plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-5.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-6.png" width="672"></p>
 <pre><code>#&gt; 
 #&gt; earcut&gt; ind &lt;- decido::earcut(x, y, holes = 5)
 #&gt; 
 #&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-6.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-7.png" width="672"></p>
 <pre><code>#&gt; 
 #&gt; earcut&gt; plot_holes(cbind(x, y), holes = 5, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-7.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-8.png" width="672"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(oz)
 oz_ring &lt;-<span class="st"> </span>oz<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/oz/topics/oz">ozRegion</a></span>(<span class="dt">states =</span> <span class="ot">FALSE</span>)
 ring &lt;-<span class="st"> </span>oz_ring<span class="op">$</span>lines[[<span class="dv">6</span>]]
 indices &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y)
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y), indices)</code></pre></div>
 <p><img src="decido_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+</div>
+<div id="variants" class="section level2">
+<h2 class="hasAnchor">
+<a href="#variants" class="anchor"></a>Variants</h2>
+<p>The actual triangulation obtained depends on where the polygons start. This is complicated, because of the sheer number of possible variants, combinations of starting points among the island and its holes.</p>
+<p>Important “edge” cases are degeneracies, holes touching the island or each other, duplicated edges, intersecting edges, zero-length edges, holes actually external to islands, already existing triangles, and existing quadrilaterals (amongst others). We aren’t going to explore those here, and we are reasonably confident that Mapbox has been presented with a rich enough pool of variant polygons to make its library pretty robust. There’s no uniquely “correct” here either, different systems and standards will apply different rules and allow or choose differently.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vecrot &lt;-<span class="st"> </span><span class="cf">function</span>(x, k) {
+  <span class="cf">if</span> (k <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">||</span><span class="st"> </span>k <span class="op">&gt;</span><span class="st"> </span><span class="kw">length</span>(x)) <span class="kw">warning</span>(<span class="st">"k out of bounds of 'x' index"</span>)
+  k &lt;-<span class="st"> </span>k <span class="op">%%</span><span class="st"> </span><span class="kw">length</span>(x)
+  ## from DescTools::VecRot
+  <span class="kw">rep</span>(x, <span class="dt">times =</span> <span class="dv">2</span>)[(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span>k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">:</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span>k)]
+}</code></pre></div>
 </div>
 <div id="performance" class="section level2">
 <h2 class="hasAnchor">
@@ -171,6 +191,7 @@ indices &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ear
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#example">Example</a></li>
+      <li><a href="#variants">Variants</a></li>
       <li><a href="#performance">Performance</a></li>
       </ul>
 </div>
