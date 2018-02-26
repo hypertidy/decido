@@ -10,3 +10,4 @@
 ^CODE_OF_CONDUCT\.md$
 ^src/LICENSE$
 ^LICENSE\.md$
+^cran-comments\.md$
