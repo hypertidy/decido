@@ -3,42 +3,9 @@
 using namespace Rcpp;
 #include "earcut.h"
 
-//' earcut
-//'
-//' earcut description
-//'
-//' earcut details
-//' @param x x-coordinate
-//' @param y y-coordinate
-//' @param holes index of starting position of each hole in x,y
-//' @param numholes the number of holes
-//' @export
-//' @examples
-//' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
-//' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
-//' earcut(x, y)
-//' ## hole starts at 9
-//' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69, 0, 0.2,
-//'       0.5, 0.5, 0.3, 0.2, 0.2)
-//' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
-//'       0.2, 0.4, 0.6, 0.4, 0.2)
-//' ind <- earcut(x, y, holes = 9, numholes = 1)
-//' plot(x, y, asp = 1)
-//' xy <- cbind(x, y)
-//' apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
-//' ## add another hole
-//' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69, 0, 0.2,
-//'       0.5, 0.5, 0.3, 0.2, 0.2,
-//'       0.15, 0.23, 0.2)
-//' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0, 0, 0.2,
-//'       0.2, 0.4, 0.6, 0.4, 0.2,
-//'       0.65, 0.65, 0.81)
-//' ind <- earcut(x, y, holes = c(9, 14), numholes = 2)
-//' plot(x, y, asp = 1)
-//' xy <- cbind(x, y)
-//' apply(matrix(ind, 3), 2, function(i) polygon(xy[i + 1, ]))
+
 // [[Rcpp::export]]
-IntegerVector earcut(NumericVector x, NumericVector y,
+IntegerVector earcut_cpp(NumericVector x, NumericVector y,
                      IntegerVector holes = -1,
                      IntegerVector numholes = 0) {
   using Coord = double;
@@ -53,17 +20,22 @@ IntegerVector earcut(NumericVector x, NumericVector y,
   int vcount = x.length();
   Point pt;
   Polygons polyrings;
+  Rprintf("numholes %i\n", numholes[0]);
+  int hole_index = 0;
   for (int ipoint = 0; ipoint < vcount; ipoint++) {
     pt = {x[ipoint], y[ipoint]};
     // thanks @virgesmith!!!
     //https://github.com/hypertidy/decido/issues/3#issuecomment-368255556
-    poly.push_back(pt);
+
     if (numholes[0] > 0) {
-      if (ipoint == holes[ipoint]) {
+      if (ipoint == holes[hole_index]) {
+        Rprintf("pushback poly %i\n", ipoint + 1);
         polyrings.push_back(poly);
         poly.clear();
+        hole_index = hole_index + 1;
       }
     }
+    poly.push_back(pt);
   }
 
   polyrings.push_back(poly);

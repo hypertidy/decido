@@ -8,10 +8,10 @@
 */
 
 /* .Call calls */
-extern SEXP _decido_earcut(SEXP, SEXP, SEXP, SEXP);
+extern SEXP _decido_earcut_cpp(SEXP, SEXP, SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_decido_earcut", (DL_FUNC) &_decido_earcut, 4},
+    {"_decido_earcut_cpp", (DL_FUNC) &_decido_earcut_cpp, 4},
     {NULL, NULL, 0}
 };
 
