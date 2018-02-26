@@ -8,8 +8,9 @@ Description: Provides constrained triangulation of polygons. Ear cutting (or
  library 'earcut.hpp' <https://github.com/mapbox/earcut.hpp.git>. 
 Authors@R: c(
         person("Michael", "Sumner", email = "mdsumner@gmail.com", role = c("aut", "cre")), 
-        person("Andrew", "Smith", role = "ctb", comment = "provided C++ guidance"))
-License: GPL-3
+        person("Andrew", "Smith", role = "ctb", comment = "provided C++ guidance"), 
+        person("Mapbox", role = "cph", comment = "author of header library earcut.hpp"))
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 ByteCompile: true

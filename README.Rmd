@@ -51,8 +51,6 @@ Immediate needs:
 * tests!
 
 
-See [rearcut](https://github.com/hypertidy/rearcut.git) for some approaches to the hole encoding. It's not hard, just rife with options. At the moment it seems best to stick close to how the JS earcut encodes them, and this translates very simply in C++. 
-
 ## Example
 
 This is a basic example of triangulating a single-ring polygon. The

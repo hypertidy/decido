@@ -1,3 +1,6 @@
+// header earcut.hpp from https://github.com/mapbox/earcut.hpp
+// see file inst/earcut_source/LICENSE
+
 #pragma once
 
 #include <algorithm>
