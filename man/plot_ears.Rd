@@ -15,6 +15,8 @@ plot_holes(xy, holes = 0, add = FALSE, ...)
 
 \item{idx}{index of triangles}
 
+\item{add}{add to current plot, or create a new}
+
 \item{...}{arguments to polypath}
 
 \item{holes}{index of starting position of holes (see `earcut`)}

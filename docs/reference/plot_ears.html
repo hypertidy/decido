@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>decido: Bindings for 'Mapbox' Ear Cutting Triangulation Library — decido-package • decido</title>
+<title>Plot ears or polygons — plot_ears • decido</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -81,34 +81,49 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>decido: Bindings for 'Mapbox' Ear Cutting Triangulation Library</h1>
+    <h1>Plot ears or polygons</h1>
     </div>
 
     
-    <p>Provides constrained triangulation of polygons. Ear cutting (or
-ear clipping) applies constrained triangulation by successively 'cutting'
-triangles from a polygon defined by path/s. Holes are supported by introducing
-a bridge segment between polygon paths. This package wraps the 'header-only'
-library 'earcut.hpp' &lt;https://github.com/mapbox/earcut.hpp.git&gt;.</p>
+    <p>Plot the triangles for earcut.</p>
     
 
-        
+    <pre class="usage"><span class='fu'>plot_ears</span>(<span class='no'>xy</span>, <span class='no'>idx</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)
+
+<span class='fu'>plot_holes</span>(<span class='no'>xy</span>, <span class='kw'>holes</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>add</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>xy</th>
+      <td><p>matrix of x, y coordinates</p></td>
+    </tr>
+    <tr>
+      <th>idx</th>
+      <td><p>index of triangles</p></td>
+    </tr>
+    <tr>
+      <th>add</th>
+      <td><p>add to current plot, or create a new</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>arguments to polypath</p></td>
+    </tr>
+    <tr>
+      <th>holes</th>
+      <td><p>index of starting position of holes (see `earcut`)</p></td>
+    </tr>
+    </table>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
                 </ul>
-
-    <h2>Author</h2>
-    
-<strong>Maintainer</strong>: Michael Sumner <a href='mailto:mdsumner@gmail.com'>mdsumner@gmail.com</a>
-
-Other contributors:
-<ul>
-<li><p>Andrew Smith (provided C++ guidance) [contributor]</p></li>
-</ul>
-
 
   </div>
 </div>

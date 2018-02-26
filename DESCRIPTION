@@ -16,10 +16,13 @@ ByteCompile: true
 LinkingTo: 
     Rcpp
 Imports: 
-    Rcpp
+    Rcpp,
+    oz
 RoxygenNote: 6.0.1
 Suggests: 
     covr,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 SystemRequirements: C++11
-
+VignetteBuilder: knitr

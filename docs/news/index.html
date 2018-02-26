@@ -58,6 +58,9 @@
   </a>
 </li>
 <li>
+  <a href="../articles/decido.html">Get Started</a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
@@ -87,6 +90,10 @@
 <h1 class="hasAnchor">
 <a href="#decido-0-0-1" class="anchor"></a>decido 0.0.1</h1>
 <ul>
+<li><p>Added helper functions <code>plot_holes</code> and <code>plot_ears</code> to wrap calls to polypath for polygon plot and triangle plot respectively, using the same style as function <code>earcut</code>.</p></li>
+<li><p>Modified to use 1-based indexing always at R level, and wrapped internal function earcut_cpp with R level <code>earcut</code> with checks on inputs.</p></li>
+<li><p>Removed need for <code>numholes</code> argument.</p></li>
+<li><p>Fixed immense logic bug, not sure how it was working at all before.</p></li>
 <li><p>Fixed file naming and declarations, thanks to Andrew Smith.</p></li>
 <li><p>Added support for holes via <code><a href="../reference/earcut.html">earcut(x, y, holes = , numholes = )</a></code>.</p></li>
 <li><p>First implementation from basic template.</p></li>

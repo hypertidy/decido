@@ -12,6 +12,8 @@ earcut(x, y, holes = 0, ...)
 \item{y}{y-coordinate}
 
 \item{holes}{index of starting position of each hole in x,y, leave set to `0` if no holes}
+
+\item{...}{unused}
 }
 \description{
 earcut description

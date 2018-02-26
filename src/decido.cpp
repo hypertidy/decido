@@ -20,24 +20,24 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
   int vcount = x.length();
   Point pt;
   Polygons polyrings;
-  Rprintf("numholes %i\n", numholes[0]);
+ // Rprintf("numholes %i\n", numholes[0]);
   int hole_index = 0;
   for (int ipoint = 0; ipoint < vcount; ipoint++) {
     pt = {x[ipoint], y[ipoint]};
-    // thanks @virgesmith!!!
-    //https://github.com/hypertidy/decido/issues/3#issuecomment-368255556
-
+    // don't add the point if we are starting a new ring
     if (numholes[0] > 0) {
       if (ipoint == holes[hole_index]) {
-        Rprintf("pushback poly %i\n", ipoint + 1);
+       // Rprintf("pushback poly %i\n", ipoint + 1);
         polyrings.push_back(poly);
         poly.clear();
         hole_index = hole_index + 1;
       }
     }
+    // now add the point
     poly.push_back(pt);
   }
 
+  // ensure we catch the last poly ring
   polyrings.push_back(poly);
   // Run tessellation
   // Returns array of indices that refer to the vertices of the input polygon.

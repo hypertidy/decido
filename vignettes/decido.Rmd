@@ -1,0 +1,64 @@
+---
+title: "decido"
+author: "Michael D. Sumner"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    fig_width: 7
+    fig_height: 7
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Example
+
+This is a basic example of triangulating a single-ring polygon. The
+output is a vector of triplet indices defining each triangle. 
+
+
+```{r example}
+library(decido)
+x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
+y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
+(ind <- earcut(x, y))
+
+
+plot_ears(cbind(x, y), ind)
+```
+
+Support for holes is provided by two required arguments `numholes`
+and `holes`. The holes are the starting index of each hole, here in C++ 0-based convention. 
+
+```{r}
+example(earcut, echo = TRUE)
+```
+
+```{r}
+library(oz)
+oz_ring <- oz::ozRegion(states = FALSE)
+ring <- oz_ring$lines[[6]]
+plot(ring, pch = ".", asp = 1/cos(42 * pi/180))
+indices <- earcut(ring$x, ring$y)
+plot_ears(cbind(ring$x, ring$y), indices)
+```
+
+## Performance
+
+Compare timing of C++ versus JS implementations. 
+
+
+```R
+ rbenchmark::benchmark(rearcut::earcut(cbind(ring$x, ring$y)), decido::earcut(ring$x, ring$y))
+                                test replications elapsed relative
+#2 decido::earcut(ring$x, ring$y)          100   0.064    1.000
+#1 rearcut::earcut(cbind(ring$x, ring$y))  100   4.147   64.797
+```

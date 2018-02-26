@@ -6,6 +6,7 @@
 #' @param x x-coordinate
 #' @param y y-coordinate
 #' @param holes index of starting position of each hole in x,y, leave set to `0` if no holes
+#' @param ... unused
 #' @export
 #' @examples
 #' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
@@ -61,10 +62,12 @@ earcut <- function(x, y, holes = 0, ...) {
 #' @param xy matrix of x, y coordinates
 #' @param idx index of triangles
 #' @param holes index of starting position of holes (see `earcut`)
+#' @param add add to current plot, or create a new
 #' @param ... arguments to polypath
 #' @export
+#' @importFrom graphics plot polypath
 plot_ears <- function(xy, idx, add = FALSE, ...) {
-  if (!add) plot(x, y, asp = 1)
+  if (!add) plot(xy, asp = 1)
   apply(matrix(idx, 3), 2, function(i) polypath(xy[i, ], ...))
 }
 
