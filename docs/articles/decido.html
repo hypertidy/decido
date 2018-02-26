@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>decido • decido</title>
+<title>decido - polygon triangulation by ear clipping • decido</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -56,7 +56,7 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>decido</h1>
+      <h1>decido - polygon triangulation by ear clipping</h1>
                         <h4 class="author">Michael D. Sumner</h4>
             
             <h4 class="date">2018-02-26</h4>
@@ -65,7 +65,7 @@
     
     
 <div class="contents">
-<p>WIP</p>
+<p>Constrained triangulation of polygons by ear clipping.</p>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
@@ -79,99 +79,108 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind)</code></pre></div>
 <p><img src="decido_files/figure-html/example-1.png" width="672"></p>
-<p>Support for holes is provided by two required arguments <code>numholes</code> and <code>holes</code>. The holes are the starting index of each hole, here in R 1-based convention.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(earcut, <span class="dt">echo =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; </span>
-<span class="co">#&gt; earcut&gt; ## single ring polygon</span>
-<span class="co">#&gt; earcut&gt; x &lt;- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; earcut&gt; y &lt;- c(0, 1, 1, 0.8, 0.7, 0.6, 0)</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; earcut&gt; (ind &lt;- earcut(x, y))</span>
-<span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; earcut&gt; plot_ears(cbind(x, y), ind)</span></code></pre></div>
+<p>Support for holes is provided by the argument <code>holes</code>. The values are the starting index of each hole, here in R’s 1-based convention.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## polygon with a hole
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>,
+     <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>,
+     <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>)
+ind &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(x, y, <span class="dt">holes =</span> <span class="dv">8</span>)
+<span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind)</code></pre></div>
 <p><img src="decido_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
-<pre><code>#&gt; 
-#&gt; earcut&gt; ## polygon with a hole
-#&gt; earcut&gt; x &lt;- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
-#&gt; earcut+      0.2, 0.5, 0.5, 0.3, 0.2)
-#&gt; 
-#&gt; earcut&gt; y &lt;- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
-#&gt; earcut+      0.2, 0.2, 0.4, 0.6, 0.4)
-#&gt; 
-#&gt; earcut&gt; ind &lt;- earcut(x, y, holes = 8)
-#&gt; 
-#&gt; earcut&gt; plot_ears(cbind(x, y), ind)</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-2.png" width="672"></p>
-<pre><code>#&gt; 
-#&gt; earcut&gt; ## 1) Notice how the hole begins at index 8,
-#&gt; earcut&gt; ## hence holes = 8 above, and holes = c(8, 13) below
-#&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey", border = NA)</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-3.png" width="672"></p>
-<pre><code>#&gt; 
-#&gt; earcut&gt; text(x, y, labels = seq_along(x), pos = 2)
-#&gt; 
-#&gt; earcut&gt; ## add another hole
-#&gt; earcut&gt; x &lt;- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
-#&gt; earcut+      0.2, 0.5, 0.5, 0.3, 0.2,
-#&gt; earcut+       0.15, 0.23, 0.2)
-#&gt; 
-#&gt; earcut&gt; y &lt;- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
-#&gt; earcut+      0.2, 0.2, 0.4, 0.6, 0.4,
-#&gt; earcut+       0.65, 0.65, 0.81)
-#&gt; 
-#&gt; earcut&gt; ind &lt;- earcut(x, y, holes = c(8, 13))
-#&gt; 
-#&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-4.png" width="672"></p>
-<pre><code>#&gt; 
-#&gt; earcut&gt; # simpler shape with more than one hole
-#&gt; earcut&gt; # the two inside holes are open to each other
-#&gt; earcut&gt; # (so we can use the same data for one hole or two)
-#&gt; earcut&gt; x &lt;- c(0, 0, 1, 1,
-#&gt; earcut+        0.4, 0.2, 0.2, 0.4,
-#&gt; earcut+        0.6, 0.8, 0.8, 0.6
-#&gt; earcut+ )
-#&gt; 
-#&gt; earcut&gt; y &lt;- c(0, 1, 1, 0,
-#&gt; earcut+        0.2, 0.2, 0.4, 0.4,
-#&gt; earcut+        0.6, 0.6, 0.4, 0.4
-#&gt; earcut+ )
-#&gt; 
-#&gt; earcut&gt; ind &lt;- decido::earcut(x, y, holes = c(5, 9))
-#&gt; 
-#&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-5.png" width="672"></p>
-<pre><code>#&gt; 
-#&gt; earcut&gt; plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-6.png" width="672"></p>
-<pre><code>#&gt; 
-#&gt; earcut&gt; ind &lt;- decido::earcut(x, y, holes = 5)
-#&gt; 
-#&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-7.png" width="672"></p>
-<pre><code>#&gt; 
-#&gt; earcut&gt; plot_holes(cbind(x, y), holes = 5, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-8.png" width="672"></p>
+<p>The hole-specification is a little subtle, since usually R’s functions (polygon and polypath, and others) expect NA values to separate separate paths.</p>
+<p>Notice how the hole begins at index 8, hence <code>holes = 8</code> above, and <code>holes = c(8, 13)</code> below.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind, <span class="dt">col =</span> <span class="st">"grey"</span>, <span class="dt">border =</span> <span class="ot">NA</span>)
+<span class="kw">text</span>(x, y, <span class="dt">labels =</span> <span class="kw">seq_along</span>(x), <span class="dt">pos =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+<p>The method is subtle, and it’s also not the only way to do it, the grid package uses a grouping vector rather than a sparse index like this. The spatial packages sp and sf explicitly use structural hierarchies rather than more abstract specifications. The fortify-approach in ggplot2 is more like the grid one. A sparse representation is closer to what is needed for topological operations and visualization, consider that when we have triangles there are no need for “holes”, we can identify which triangles will be plotted and how (or not), and an index into the vertices available becomes a key efficiency feature. (See <a href="https://github.com/hypertidy/silicate">silicate</a> for a lot more on this topic).</p>
+<p>This example adds a third polygon, a second hole in the island.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## add another hole
+x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>,
+     <span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.5</span>, <span class="fl">0.3</span>, <span class="fl">0.2</span>,
+      <span class="fl">0.15</span>, <span class="fl">0.23</span>, <span class="fl">0.2</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>,
+     <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>,
+      <span class="fl">0.65</span>, <span class="fl">0.65</span>, <span class="fl">0.81</span>)
+ind &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(x, y, <span class="dt">holes =</span> <span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">13</span>))
+<span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind, <span class="dt">col =</span> <span class="st">"grey"</span>)</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-3-1.png" width="672"></p>
+</div>
+<div id="comparing-paths-and-triangles" class="section level2">
+<h2 class="hasAnchor">
+<a href="#comparing-paths-and-triangles" class="anchor"></a>Comparing paths and triangles</h2>
+<p>This example defines a much simpler shape, the minimal shape able to be decomposed to triangles (and not stay a triangle).</p>
+<p>A quadrilateral, with two holes that are open to each other allows the use of the same data, and we can tweak whether we wanted one hole or two. This is an important example used for validating early versions of this package.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>,
+       <span class="fl">0.4</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>,
+       <span class="fl">0.6</span>, <span class="fl">0.8</span>, <span class="fl">0.8</span>, <span class="fl">0.6</span>
+)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,
+       <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.4</span>,
+       <span class="fl">0.6</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span>, <span class="fl">0.4</span>
+)
+ind &lt;-<span class="st"> </span>decido<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/decido/topics/earcut">earcut</a></span>(x, y, <span class="dt">holes =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">9</span>))
+<span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind, <span class="dt">col =</span> <span class="st">"grey"</span>)
+<span class="kw">title</span>(<span class="st">"triangle plot, two holes"</span>)</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-1.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_ears.html">plot_holes</a></span>(<span class="kw">cbind</span>(x, y), <span class="dt">holes =</span> <span class="kw">c</span>(<span class="dv">5</span>, <span class="dv">9</span>), <span class="dt">col =</span> <span class="st">"grey"</span>)
+<span class="kw">title</span>(<span class="st">"path plot, two holes"</span>)</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-2.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+ind &lt;-<span class="st"> </span>decido<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/decido/topics/earcut">earcut</a></span>(x, y, <span class="dt">holes =</span> <span class="dv">5</span>)
+<span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind, <span class="dt">col =</span> <span class="st">"grey"</span>)
+<span class="kw">title</span>(<span class="st">"triangle plot, two holes as one"</span>)</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-3.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/plot_ears.html">plot_holes</a></span>(<span class="kw">cbind</span>(x, y), <span class="dt">holes =</span> <span class="dv">5</span>, <span class="dt">col =</span> <span class="st">"grey"</span>)
+<span class="kw">title</span>(<span class="st">"path plot, two holes as one"</span>)</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-4.png" width="672"></p>
+</div>
+<div id="a-geographic-example" class="section level2">
+<h2 class="hasAnchor">
+<a href="#a-geographic-example" class="anchor"></a>A geographic example</h2>
+<p>For good measure we include a geographic example, a triangulation of the mainland part of Tasmania from the <code>oz</code> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(oz)
 oz_ring &lt;-<span class="st"> </span>oz<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/oz/topics/oz">ozRegion</a></span>(<span class="dt">states =</span> <span class="ot">FALSE</span>)
 ring &lt;-<span class="st"> </span>oz_ring<span class="op">$</span>lines[[<span class="dv">6</span>]]
 indices &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y)
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y), indices)</code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-5-1.png" width="672"></p>
 </div>
 <div id="variants" class="section level2">
 <h2 class="hasAnchor">
 <a href="#variants" class="anchor"></a>Variants</h2>
 <p>The actual triangulation obtained depends on where the polygons start. This is complicated, because of the sheer number of possible variants, combinations of starting points among the island and its holes.</p>
 <p>Important “edge” cases are degeneracies, holes touching the island or each other, duplicated edges, intersecting edges, zero-length edges, holes actually external to islands, already existing triangles, and existing quadrilaterals (amongst others). We aren’t going to explore those here, and we are reasonably confident that Mapbox has been presented with a rich enough pool of variant polygons to make its library pretty robust. There’s no uniquely “correct” here either, different systems and standards will apply different rules and allow or choose differently.</p>
+<p>First a function to “rotate” coordinates to different start/end.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">vecrot &lt;-<span class="st"> </span><span class="cf">function</span>(x, k) {
   <span class="cf">if</span> (k <span class="op">&lt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">||</span><span class="st"> </span>k <span class="op">&gt;</span><span class="st"> </span><span class="kw">length</span>(x)) <span class="kw">warning</span>(<span class="st">"k out of bounds of 'x' index"</span>)
   k &lt;-<span class="st"> </span>k <span class="op">%%</span><span class="st"> </span><span class="kw">length</span>(x)
   ## from DescTools::VecRot
   <span class="kw">rep</span>(x, <span class="dt">times =</span> <span class="dv">2</span>)[(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span>k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">:</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span>k)]
 }</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>)
+y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)
+(ind &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(x, y))
+<span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span>
+
+<span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind)
+<span class="kw">title</span>(<span class="st">"original"</span>)</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (rot <span class="cf">in</span> <span class="kw">head</span>(<span class="kw">seq_along</span>(x), <span class="dv">-1</span>)) {
+xx &lt;-<span class="st"> </span><span class="kw">vecrot</span>(x, rot); yy &lt;-<span class="st"> </span><span class="kw">vecrot</span>(y, rot)
+ind &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(xx, yy)
+<span class="kw">plot_ears</span>(<span class="kw">cbind</span>(xx, yy), ind)
+<span class="kw">title</span>(<span class="kw">sprintf</span>(<span class="st">"rot %i"</span>, rot))
+}</code></pre></div>
+<p><img src="decido_files/figure-html/unnamed-chunk-7-2.png" width="672"><img src="decido_files/figure-html/unnamed-chunk-7-3.png" width="672"><img src="decido_files/figure-html/unnamed-chunk-7-4.png" width="672"><img src="decido_files/figure-html/unnamed-chunk-7-5.png" width="672"><img src="decido_files/figure-html/unnamed-chunk-7-6.png" width="672"><img src="decido_files/figure-html/unnamed-chunk-7-7.png" width="672"></p>
+<p>Expand on this with constrained and conforming Delaunay …</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sfdct)
+<span class="kw">library</span>(sf)
+xsf &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/sfc">st_sfc</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st">st_polygon</a></span>(<span class="kw">list</span>(<span class="kw">cbind</span>(x, y)[<span class="kw">c</span>(<span class="kw">seq_along</span>(x), <span class="dv">1</span>), ])))
+<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/sfdct/topics/ct_triangulate">ct_triangulate</a></span>(xsf, <span class="dt">Y =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>], <span class="dt">col =</span> <span class="ot">NA</span>)
+
+## now a conforming Delaunay triangulation
+<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/sfdct/topics/ct_triangulate">ct_triangulate</a></span>(xsf, <span class="dt">D =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>], <span class="dt">col =</span> <span class="ot">NA</span>)</code></pre></div>
 </div>
 <div id="performance" class="section level2">
 <h2 class="hasAnchor">
@@ -191,6 +200,8 @@ indices &lt;-<span class="st"> </span><span class="kw"><a href="../reference/ear
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#example">Example</a></li>
+      <li><a href="#comparing-paths-and-triangles">Comparing paths and triangles</a></li>
+      <li><a href="#a-geographic-example">A geographic example</a></li>
       <li><a href="#variants">Variants</a></li>
       <li><a href="#performance">Performance</a></li>
       </ul>

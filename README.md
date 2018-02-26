@@ -14,22 +14,12 @@ This augments the Javascript version available in [rearcut](https://github.com/h
 Installation
 ------------
 
-You can install decido from GitHub with:
+You can install decido from GitHub with the following. You will need the [set of development tools](https://www.rstudio.com/products/rpackages/devtools/) for building source packages with binary code.
 
 ``` r
 ## install.packages("devtools")
-devtools::install_github("hypertidy/decido")
+devtools::install_github("hypertidy/decido", build_vignettes = TRUE)
 ```
-
-Development
------------
-
-Immediate needs:
-
--   wrap around complex types of multiple polygons, etc.
--   more doc and tests!
-
-This is motivated by the topology aspirations of [hypertidy/silicate](https://github.com/hypertidy/silicate). We need tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control.
 
 Example
 -------
@@ -44,7 +34,23 @@ earcut(x, y)
 #>  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2
 ```
 
-See the documentation and vignette for more.
+See the [documentation](https://hypertidy.github.io/decido/) and [vignette](https://hypertidy.github.io/decido/articles/decido.html) for more.
+
+Open the getting started vignette.
+
+``` r
+vignette("decido", package = "decido")
+```
+
+Development
+-----------
+
+Immediate needs:
+
+-   wrap around complex types of multiple polygons, etc.
+-   more doc and tests!
+
+This is motivated by the topology aspirations of [hypertidy/silicate](https://github.com/hypertidy/silicate). We need tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control.
 
 Beware!
 -------

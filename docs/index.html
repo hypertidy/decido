@@ -71,19 +71,9 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install decido from GitHub with:</p>
+<p>You can install decido from GitHub with the following. You will need the <a href="https://www.rstudio.com/products/rpackages/devtools/">set of development tools</a> for building source packages with binary code.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## install.packages("devtools")
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"hypertidy/decido"</span>)</code></pre></div>
-</div>
-<div id="development" class="section level2">
-<h2 class="hasAnchor">
-<a href="#development" class="anchor"></a>Development</h2>
-<p>Immediate needs:</p>
-<ul>
-<li>wrap around complex types of multiple polygons, etc.</li>
-<li>more doc and tests!</li>
-</ul>
-<p>This is motivated by the topology aspirations of <a href="https://github.com/hypertidy/silicate">hypertidy/silicate</a>. We need tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control.</p>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"hypertidy/decido"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -94,7 +84,19 @@ x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)
 <span class="kw"><a href="reference/earcut.html">earcut</a></span>(x, y)
 <span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span></code></pre></div>
-<p>See the documentation and vignette for more.</p>
+<p>See the <a href="https://hypertidy.github.io/decido/">documentation</a> and <a href="https://hypertidy.github.io/decido/articles/decido.html">vignette</a> for more.</p>
+<p>Open the getting started vignette.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vignette</span>(<span class="st">"decido"</span>, <span class="dt">package =</span> <span class="st">"decido"</span>)</code></pre></div>
+</div>
+<div id="development" class="section level2">
+<h2 class="hasAnchor">
+<a href="#development" class="anchor"></a>Development</h2>
+<p>Immediate needs:</p>
+<ul>
+<li>wrap around complex types of multiple polygons, etc.</li>
+<li>more doc and tests!</li>
+</ul>
+<p>This is motivated by the topology aspirations of <a href="https://github.com/hypertidy/silicate">hypertidy/silicate</a>. We need tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control.</p>
 </div>
 <div id="beware" class="section level2">
 <h2 class="hasAnchor">

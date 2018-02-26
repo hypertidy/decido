@@ -1,5 +1,7 @@
 # decido 0.0.1
 
+* Added a vignette and more complete documentation. 
+
 * Added helper functions `plot_holes` and `plot_ears` to wrap calls to polypath for polygon plot and
  triangle plot respectively, using the same style as function `earcut`. 
  
