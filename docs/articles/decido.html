@@ -73,28 +73,26 @@
 x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>)
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)
 (ind &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(x, y))
-<span class="co">#&gt; numholes 0</span>
 <span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span>
 
 
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind)</code></pre></div>
 <p><img src="decido_files/figure-html/example-1.png" width="672"></p>
-<pre><code>#&gt; NULL</code></pre>
 <p>Support for holes is provided by two required arguments <code>numholes</code> and <code>holes</code>. The holes are the starting index of each hole, here in C++ 0-based convention.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">example</span>(earcut, <span class="dt">echo =</span> <span class="ot">TRUE</span>)
 <span class="co">#&gt; </span>
+<span class="co">#&gt; earcut&gt; ## single ring polygon</span>
 <span class="co">#&gt; earcut&gt; x &lt;- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; earcut&gt; y &lt;- c(0, 1, 1, 0.8, 0.7, 0.6, 0)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; earcut&gt; (ind &lt;- earcut(x, y))</span>
-<span class="co">#&gt; numholes 0</span>
 <span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; earcut&gt; plot_ears(cbind(x, y), ind)</span></code></pre></div>
 <p><img src="decido_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
-<pre><code>#&gt; NULL
-#&gt; 
+<pre><code>#&gt; 
+#&gt; earcut&gt; ## polygon with a hole
 #&gt; earcut&gt; x &lt;- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
 #&gt; earcut+      0.2, 0.5, 0.5, 0.3, 0.2)
 #&gt; 
@@ -102,13 +100,10 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 #&gt; earcut+      0.2, 0.2, 0.4, 0.6, 0.4)
 #&gt; 
 #&gt; earcut&gt; ind &lt;- earcut(x, y, holes = 8)
-#&gt; numholes 1
-#&gt; pushback poly 8
 #&gt; 
 #&gt; earcut&gt; plot_ears(cbind(x, y), ind)</code></pre>
 <p><img src="decido_files/figure-html/unnamed-chunk-1-2.png" width="672"></p>
-<pre><code>#&gt; NULL
-#&gt; 
+<pre><code>#&gt; 
 #&gt; earcut&gt; ## add another hole
 #&gt; earcut&gt; x &lt;- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
 #&gt; earcut+      0.2, 0.5, 0.5, 0.3, 0.2,
@@ -119,17 +114,13 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 #&gt; earcut+       0.65, 0.65, 0.81)
 #&gt; 
 #&gt; earcut&gt; ind &lt;- earcut(x, y, holes = c(8, 13))
-#&gt; numholes 2
-#&gt; pushback poly 8
-#&gt; pushback poly 13
 #&gt; 
 #&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
 <p><img src="decido_files/figure-html/unnamed-chunk-1-3.png" width="672"></p>
-<pre><code>#&gt; NULL
-#&gt; 
-#&gt; earcut&gt; ## more than one hole
-#&gt; earcut&gt; ## but the two inside holes are open to each other
-#&gt; earcut&gt; ## (so we can use the same data for one hole or two)
+<pre><code>#&gt; 
+#&gt; earcut&gt; # simpler shape with more than one hole
+#&gt; earcut&gt; # the two inside holes are open to each other
+#&gt; earcut&gt; # (so we can use the same data for one hole or two)
 #&gt; earcut&gt; x &lt;- c(0, 0, 1, 1,
 #&gt; earcut+        0.4, 0.2, 0.2, 0.4,
 #&gt; earcut+        0.6, 0.8, 0.8, 0.6
@@ -140,41 +131,27 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 #&gt; earcut+        0.6, 0.6, 0.4, 0.4
 #&gt; earcut+ )
 #&gt; 
-#&gt; earcut&gt; plot(x, y, type = "n")</code></pre>
+#&gt; earcut&gt; ind &lt;- decido::earcut(x, y, holes = c(5, 9))
+#&gt; 
+#&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
 <p><img src="decido_files/figure-html/unnamed-chunk-1-4.png" width="672"></p>
 <pre><code>#&gt; 
-#&gt; earcut&gt; ind &lt;- decido::earcut(x, y, holes = c(5, 9))
-#&gt; numholes 2
-#&gt; pushback poly 5
-#&gt; pushback poly 9
-#&gt; 
-#&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-5.png" width="672"></p>
-<pre><code>#&gt; NULL
-#&gt; 
 #&gt; earcut&gt; plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-6.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-5.png" width="672"></p>
 <pre><code>#&gt; 
 #&gt; earcut&gt; ind &lt;- decido::earcut(x, y, holes = 5)
-#&gt; numholes 1
-#&gt; pushback poly 5
 #&gt; 
 #&gt; earcut&gt; plot_ears(cbind(x, y), ind, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-7.png" width="672"></p>
-<pre><code>#&gt; NULL
-#&gt; 
+<p><img src="decido_files/figure-html/unnamed-chunk-1-6.png" width="672"></p>
+<pre><code>#&gt; 
 #&gt; earcut&gt; plot_holes(cbind(x, y), holes = 5, col = "grey")</code></pre>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-8.png" width="672"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-7.png" width="672"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(oz)
 oz_ring &lt;-<span class="st"> </span>oz<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/oz/topics/oz">ozRegion</a></span>(<span class="dt">states =</span> <span class="ot">FALSE</span>)
 ring &lt;-<span class="st"> </span>oz_ring<span class="op">$</span>lines[[<span class="dv">6</span>]]
-<span class="kw">plot</span>(ring, <span class="dt">pch =</span> <span class="st">"."</span>, <span class="dt">asp =</span> <span class="dv">1</span><span class="op">/</span><span class="kw">cos</span>(<span class="dv">42</span> <span class="op">*</span><span class="st"> </span>pi<span class="op">/</span><span class="dv">180</span>))</code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">indices &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y)
-<span class="co">#&gt; numholes 0</span>
+indices &lt;-<span class="st"> </span><span class="kw"><a href="../reference/earcut.html">earcut</a></span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y)
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y), indices)</code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-2-2.png" width="672"></p>
-<pre><code>#&gt; NULL</code></pre>
+<p><img src="decido_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
 </div>
 <div id="performance" class="section level2">
 <h2 class="hasAnchor">
