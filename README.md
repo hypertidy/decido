@@ -30,8 +30,6 @@ Immediate needs:
 -   wrap around complex types of multiple polygons, etc.
 -   tests!
 
-See [rearcut](https://github.com/hypertidy/rearcut.git) for some approaches to the hole encoding. It's not hard, just rife with options. At the moment it seems best to stick close to how the JS earcut encodes them, and this translates very simply in C++.
-
 Example
 -------
 
@@ -42,7 +40,6 @@ library(decido)
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 earcut(x, y)
-#> numholes 0
 #>  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2
 ```
 

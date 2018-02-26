@@ -7,7 +7,7 @@ output:
     fig_width: 7
     fig_height: 7
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{decido - polygon triangulation by ear clipping}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -46,7 +46,6 @@ example(earcut, echo = TRUE)
 library(oz)
 oz_ring <- oz::ozRegion(states = FALSE)
 ring <- oz_ring$lines[[6]]
-plot(ring, pch = ".", asp = 1/cos(42 * pi/180))
 indices <- earcut(ring$x, ring$y)
 plot_ears(cbind(ring$x, ring$y), indices)
 ```

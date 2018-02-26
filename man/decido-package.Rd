@@ -18,6 +18,7 @@ library 'earcut.hpp' <https://github.com/mapbox/earcut.hpp.git>.
 Other contributors:
 \itemize{
   \item Andrew Smith (provided C++ guidance) [contributor]
+  \item Mapbox (author of header library earcut.hpp) [copyright holder]
 }
 
 }

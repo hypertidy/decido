@@ -9,16 +9,20 @@
 #' @param ... unused
 #' @export
 #' @examples
+#' ## single ring polygon
 #' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 #' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 #' (ind <- earcut(x, y))
 #' plot_ears(cbind(x, y), ind)
+#'
+#' ## polygon with a hole
 #' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
 #'      0.2, 0.5, 0.5, 0.3, 0.2)
 #' y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
 #'      0.2, 0.2, 0.4, 0.6, 0.4)
 #' ind <- earcut(x, y, holes = 8)
 #' plot_ears(cbind(x, y), ind)
+#'
 #' ## add another hole
 #' x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
 #'      0.2, 0.5, 0.5, 0.3, 0.2,
@@ -28,9 +32,10 @@
 #'       0.65, 0.65, 0.81)
 #' ind <- earcut(x, y, holes = c(8, 13))
 #' plot_ears(cbind(x, y), ind, col = "grey")
-#' ## more than one hole
-#' ## but the two inside holes are open to each other
-#' ## (so we can use the same data for one hole or two)
+
+#' # simpler shape with more than one hole
+#' # the two inside holes are open to each other
+#' # (so we can use the same data for one hole or two)
 #' x <- c(0, 0, 1, 1,
 #'        0.4, 0.2, 0.2, 0.4,
 #'        0.6, 0.8, 0.8, 0.6
@@ -39,7 +44,6 @@
 #'        0.2, 0.2, 0.4, 0.4,
 #'        0.6, 0.6, 0.4, 0.4
 #' )
-#' plot(x, y, type = "n")
 #' ind <- decido::earcut(x, y, holes = c(5, 9))
 #' plot_ears(cbind(x, y), ind, col = "grey")
 #' plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")
@@ -69,6 +73,7 @@ earcut <- function(x, y, holes = 0, ...) {
 plot_ears <- function(xy, idx, add = FALSE, ...) {
   if (!add) plot(xy, asp = 1)
   apply(matrix(idx, 3), 2, function(i) polypath(xy[i, ], ...))
+  invisible(NULL)
 }
 
 #' @name plot_ears
@@ -83,5 +88,5 @@ plot_holes <- function(xy, holes = 0, add = FALSE, ...) {
   xyna <- utils::head(do.call(rbind, lapply(split(as.data.frame(xy), g), function(itab) rbind(itab, NA))), -1L)
   if (!add) plot(xyna, type = "n", asp = 1)
   polypath(xyna, rule = "evenodd", ...)
-
+  invisible(NULL)
 }
