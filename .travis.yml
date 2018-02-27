@@ -5,11 +5,6 @@ warnings_are_errors: true
 sudo: false
 cache: packages
 
-#addons:
-#    apt:
-#        packages:
-#            - libudunits2-dev
-
 matrix:
     include:
         - os: linux

@@ -11,7 +11,7 @@ plot_ears(xy, idx, add = FALSE, ...)
 plot_holes(xy, holes = 0, add = FALSE, ...)
 }
 \arguments{
-\item{xy}{matrix of x, y coordinates}
+\item{xy}{xy-coordinates, either a list, matrix, or data frame}
 
 \item{idx}{index of triangles}
 

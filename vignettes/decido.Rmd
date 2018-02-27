@@ -32,7 +32,7 @@ output is a vector of triplet indices defining each triangle.
 library(decido)
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
-(ind <- earcut(x, y))
+(ind <- earcut(cbind(x, y)))
 
 
 plot_ears(cbind(x, y), ind)
@@ -46,7 +46,7 @@ x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
      0.2, 0.5, 0.5, 0.3, 0.2)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
      0.2, 0.2, 0.4, 0.6, 0.4)
-ind <- earcut(x, y, holes = 8)
+ind <- earcut(cbind(x, y), holes = 8)
 plot_ears(cbind(x, y), ind)
 ```
 
@@ -76,7 +76,7 @@ x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
      0.2, 0.2, 0.4, 0.6, 0.4,
       0.65, 0.65, 0.81)
-ind <- earcut(x, y, holes = c(8, 13))
+ind <- earcut(cbind(x, y), holes = c(8, 13))
 plot_ears(cbind(x, y), ind, col = "grey")
 
 ```
@@ -98,13 +98,13 @@ y <- c(0, 1, 1, 0,
        0.2, 0.2, 0.4, 0.4,
        0.6, 0.6, 0.4, 0.4
 )
-ind <- decido::earcut(x, y, holes = c(5, 9))
+ind <- decido::earcut(cbind(x, y), holes = c(5, 9))
 plot_ears(cbind(x, y), ind, col = "grey")
 title("triangle plot, two holes")
 plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")
 title("path plot, two holes")
 
-ind <- decido::earcut(x, y, holes = 5)
+ind <- decido::earcut(cbind(x, y), holes = 5)
 plot_ears(cbind(x, y), ind, col = "grey")
 title("triangle plot, two holes as one")
 plot_holes(cbind(x, y), holes = 5, col = "grey")
@@ -121,7 +121,7 @@ of the mainland part of Tasmania from the `oz` package.
 library(oz)
 oz_ring <- oz::ozRegion(states = FALSE)
 ring <- oz_ring$lines[[6]]
-indices <- earcut(ring$x, ring$y)
+indices <- earcut(ring[c("x", "y")])
 plot_ears(cbind(ring$x, ring$y), indices)
 ```
 
@@ -147,13 +147,15 @@ vecrot <- function(x, k) {
 ```{r}
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
-(ind <- earcut(x, y))
+(ind <- earcut(cbind(x, y)))
 
 plot_ears(cbind(x, y), ind)
+
 title("original")
+
 for (rot in head(seq_along(x), -1)) {
 xx <- vecrot(x, rot); yy <- vecrot(y, rot)
-ind <- earcut(xx, yy)
+ind <- earcut(cbind(xx, yy))
 plot_ears(cbind(xx, yy), ind)
 title(sprintf("rot %i", rot))
 }

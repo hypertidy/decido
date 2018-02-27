@@ -2,14 +2,16 @@
 % Please edit documentation in R/earcut.R
 \name{earcut}
 \alias{earcut}
+\alias{earcut}
+\alias{earcut.default}
 \title{Constrained polygon triangulation}
 \usage{
-earcut(x, y, holes = 0, ...)
+earcut(xy, holes = 0, ...)
+
+\method{earcut}{default}(xy, holes = 0, ...)
 }
 \arguments{
-\item{x}{x-coordinate}
-
-\item{y}{y-coordinate}
+\item{xy}{xy-coordinates, either a list, matrix, or data frame}
 
 \item{holes}{index of starting position of each hole in x,y, leave set to \code{0} if no holes}
 
@@ -35,7 +37,7 @@ starting "1) Notice how the hole begins ..." in relation to the example code.
 ## single ring polygon
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
-(ind <- earcut(x, y))
+(ind <- earcut(cbind(x, y)))
 plot_ears(cbind(x, y), ind)
 
 ## polygon with a hole
@@ -43,7 +45,7 @@ x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
      0.2, 0.5, 0.5, 0.3, 0.2)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
      0.2, 0.2, 0.4, 0.6, 0.4)
-ind <- earcut(x, y, holes = 8)
+ind <- earcut(cbind(x, y), holes = 8)
 plot_ears(cbind(x, y), ind)
 
 ## 1) Notice how the hole begins at index 8,
@@ -58,7 +60,7 @@ x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
      0.2, 0.2, 0.4, 0.6, 0.4,
       0.65, 0.65, 0.81)
-ind <- earcut(x, y, holes = c(8, 13))
+ind <- earcut(cbind(x, y), holes = c(8, 13))
 plot_ears(cbind(x, y), ind, col = "grey")
 # simpler shape with more than one hole
 # the two inside holes are open to each other
@@ -71,10 +73,10 @@ y <- c(0, 1, 1, 0,
        0.2, 0.2, 0.4, 0.4,
        0.6, 0.6, 0.4, 0.4
 )
-ind <- decido::earcut(x, y, holes = c(5, 9))
+ind <- decido::earcut(cbind(x, y), holes = c(5, 9))
 plot_ears(cbind(x, y), ind, col = "grey")
 plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")
-ind <- decido::earcut(x, y, holes = 5)
+ind <- decido::earcut(cbind(x, y), holes = 5)
 plot_ears(cbind(x, y), ind, col = "grey")
 plot_holes(cbind(x, y), holes = 5, col = "grey")
 }
