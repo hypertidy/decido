@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,12 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Plot ears or polygons — plot_ears" />
+
+<meta property="og:description" content="Plot the triangles produced by earcut, or plot the polygon paths
+using the same interface as earcut uses. This allows for easy
+comparison and checking of what the results should be." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -85,7 +93,7 @@
     </div>
 
     
-    <p>Plot the triangles produced by <a href='earcut.html'>earcut</a>, or plot the polygon paths
+    <p>Plot the triangles produced by earcut, or plot the polygon paths
 using the same interface as earcut uses. This allows for easy
 comparison and checking of what the results should be.</p>
     
@@ -99,7 +107,7 @@ comparison and checking of what the results should be.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>xy</th>
-      <td><p>matrix of x, y coordinates</p></td>
+      <td><p>xy-coordinates, either a list, matrix, or data frame</p></td>
     </tr>
     <tr>
       <th>idx</th>
@@ -115,7 +123,7 @@ comparison and checking of what the results should be.</p>
     </tr>
     <tr>
       <th>holes</th>
-      <td><p>index of starting position of holes (see <a href='earcut.html'>earcut</a>)</p></td>
+      <td><p>index of starting position of holes (see earcut)</p></td>
     </tr>
     </table>
     
@@ -173,3 +181,4 @@ order may be ignored).</p>
 
   </body>
 </html>
+

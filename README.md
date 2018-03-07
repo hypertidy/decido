@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-blue.svg)](https://www.tidyverse.org/lifecycle/#stable) [![Travis-CI Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/hypertidy/decido) [![Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/hypertidy/decido) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/decido) [![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://codecov.io/github/hypertidy/decido?branch=master)
+[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing) [![Travis-CI Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=trusty_release&label=linux)](https://travis-ci.org/hypertidy/decido) [![Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/hypertidy/decido) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/decido) [![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://codecov.io/github/hypertidy/decido?branch=master)
 
 decido
 ======
@@ -30,7 +30,7 @@ This is a basic example of triangulating a single-ring polygon. The output is a 
 library(decido)
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
-earcut(x, y)
+earcut(cbind(x, y))
 #>  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2
 ```
 
@@ -45,12 +45,9 @@ vignette("decido", package = "decido")
 Development
 -----------
 
-Immediate needs:
-
--   wrap around complex types of multiple polygons, etc.
--   more doc and tests!
-
 This is motivated by the topology aspirations of [hypertidy/silicate](https://github.com/hypertidy/silicate). We need tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control.
+
+This is fairly well advanced in silicate show-cased in [hypertidy/anglr](https://github.com/hypertidy/anglr).
 
 Other implementations
 ---------------------
@@ -59,7 +56,7 @@ Ear clipping (or ear cutting) is also available in the [rgl](https://CRAN.r-proj
 
 In comparison to path-based ear-clipping, other libraries 'Triangle' and 'CGAL' provide edge-based *mostly Delaunay* triangulation. The Triangle library is available in the R package [RTriangle](https://CRAN.r-project.org/package=RTriangle). Experimental implementations binding CGAL are in [rcgal](https://github.com/s-u/rcgal) and [laridae](https://github.com/hypertidy/laridae).
 
-Do you know of others? Let me know! Triangulation is common across many R packages, but constrained algorithms are pretty rare (it's hard). There are many Delaunay and other non-constrained implementations in many packages, and I'm compiling a list of those as well. OTOH there's rgeos, sf, deldir, geometry, tripack, spatstat, akima, and several mesh-related packages Rvcg, meshsimp, icosa, webglobe ...
+Do you know of others? Let me know! Triangulation is common across many R packages, but constrained algorithms are pretty rare (it's hard). There are many Delaunay and other non-constrained implementations in many packages, and I'm compiling a list of those as well. OTOH there's rgeos, sf, deldir, geometry, tripack, spatstat, akima, several mesh-related packages Rvcg, meshsimp, icosa, webglobe ...
 
 ------------------------------------------------------------------------
 

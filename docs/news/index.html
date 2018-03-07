@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,7 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="All news" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -86,6 +89,14 @@
     </div>
 
     <div class="contents">
+    <div id="decido-0-1-0" class="section level1">
+<h1 class="hasAnchor">
+<a href="#decido-0-1-0" class="anchor"></a>decido 0.1.0</h1>
+<ul>
+<li><p><code>earcut</code> is now generic, with a default argument that operates on matrix, list or data frame inputs - future extensions may dispatch on class of single xy argument.</p></li>
+<li><p>Breaking change, all R functions now have <code>xy</code> as first argument, no more <code>x</code> or <code>y</code> as separate vectors. xy maybe a matrix, a list, or a dataframe.</p></li>
+</ul>
+</div>
     <div id="decido-0-0-1" class="section level1">
 <h1 class="hasAnchor">
 <a href="#decido-0-0-1" class="anchor"></a>decido 0.0.1</h1>
@@ -96,7 +107,7 @@
 <li><p>Removed need for <code>numholes</code> argument.</p></li>
 <li><p>Fixed immense logic bug, not sure how it was working at all before.</p></li>
 <li><p>Fixed file naming and declarations, thanks to Andrew Smith.</p></li>
-<li><p>Added support for holes via <code><a href="../reference/earcut.html">earcut(x, y, holes = , numholes = )</a></code>.</p></li>
+<li><p>Added support for holes via <code>earcut(x, y, holes = , numholes = )</code>.</p></li>
 <li><p>First implementation from basic template.</p></li>
 </ul>
 </div>
@@ -107,6 +118,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#decido-0-1-0">0.1.0</a></li>
         <li><a href="#decido-0-0-1">0.0.1</a></li>
       </ul>
     </div>
@@ -128,3 +140,4 @@
 
   </body>
 </html>
+

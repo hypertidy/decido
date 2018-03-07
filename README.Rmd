@@ -23,8 +23,7 @@ knitr::opts_chunk$set(
 ```
 # decido
 
-The goal of decido is to provide an R binding to the 
-Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp) for constrained polygon triangulation. Decido is aimed at package developers
+The goal of decido is to provide an R binding to the Mapbox library [earcut.hpp](https://github.com/mapbox/earcut.hpp) for constrained polygon triangulation. Decido is aimed at package developers
 at the moment, there are not high-level classes or objects but the earcut
 functionality can be easily used in higher-level tools or just used directly. 
 
@@ -69,13 +68,9 @@ vignette("decido", package = "decido")
 
 ## Development
 
-Immediate needs: 
+This is motivated by the topology aspirations of  [hypertidy/silicate](https://github.com/hypertidy/silicate). We need tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control. 
 
-* wrap around complex types of multiple polygons, etc. 
-* more doc and tests!
-
-This is motivated by the topology aspirations of  [hypertidy/silicate](https://github.com/hypertidy/silicate). We need
-tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control. 
+This is fairly well advanced in silicate show-cased in [hypertidy/anglr](https://github.com/hypertidy/anglr). 
 
 
 
@@ -88,7 +83,7 @@ In comparison to path-based ear-clipping, other libraries 'Triangle' and 'CGAL' 
 
 
 Do you know of others? Let me know!  Triangulation is common across 
-many R packages, but constrained algorithms are pretty rare (it's hard).  There are many Delaunay and other non-constrained implementations in many packages, and I'm compiling a list of those as well. OTOH there's rgeos, sf, deldir, geometry, tripack, spatstat, akima, and several mesh-related packages Rvcg, meshsimp, icosa, webglobe ...
+many R packages, but constrained algorithms are pretty rare (it's hard).  There are many Delaunay and other non-constrained implementations in many packages, and I'm compiling a list of those as well. OTOH there's rgeos, sf, deldir, geometry, tripack, spatstat, akima, several mesh-related packages Rvcg, meshsimp, icosa, webglobe ...
 
 
 

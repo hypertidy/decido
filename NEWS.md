@@ -1,9 +1,9 @@
-# decido dev
+# decido 0.1.0
 
 * `earcut` is now generic, with a default argument that operates on matrix, 
- list or data frame inputs - future extensions may dispatch on class of  single xy argument
+ list or data frame inputs - future extensions may dispatch on class of  single xy argument.
  
-* breaking change, all R functions now have `xy` as first argument, no more
+* Breaking change, all R functions now have `xy` as first argument, no more
  `x` or `y` as separate vectors. xy maybe a matrix, a list, or a dataframe. 
 
 # decido 0.0.1
