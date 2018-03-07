@@ -70,9 +70,7 @@ vignette("decido", package = "decido")
 
 This is motivated by the topology aspirations of  [hypertidy/silicate](https://github.com/hypertidy/silicate). We need tools for decomposing shape data into primitives for analysis and visualization. Decomposition into graph types is already well supported and exercised, but triangulations of paths versus triangulations from edges are two key facilities needed for greater control. 
 
-This is fairly well advanced in silicate show-cased in [hypertidy/anglr](https://github.com/hypertidy/anglr). 
-
-
+This broader project is fairly well advanced in silicate and show-cased in [hypertidy/anglr](https://github.com/hypertidy/anglr). 
 
 ## Other implementations
 

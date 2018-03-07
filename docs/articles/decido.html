@@ -161,7 +161,7 @@ indices &lt;-<span class="st"> </span><span class="kw">earcut</span>(ring[<span 
   ## from DescTools::VecRot
   <span class="kw">rep</span>(x, <span class="dt">times =</span> <span class="dv">2</span>)[(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span>k <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)<span class="op">:</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span>k)]
 }</code></pre></div>
-<p>Now plot each possible variant of definining the polygon ring by traversing the boundary anti-clockwise.</p>
+<p>Now plot each possible variant of definining the polygon ring by traversing the boundary anti-clockwise from a different starting vertex, shown as a filled point symbol.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>)
 y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)
 (ind &lt;-<span class="st"> </span><span class="kw">earcut</span>(<span class="kw">cbind</span>(x, y)))
