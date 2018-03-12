@@ -11,7 +11,8 @@ Provides constrained triangulation of polygons. Ear cutting (or
 ear clipping) applies constrained triangulation by successively 'cutting'
 triangles from a polygon defined by path/s. Holes are supported by introducing
 a bridge segment between polygon paths. This package wraps the 'header-only'
-library 'earcut.hpp' <https://github.com/mapbox/earcut.hpp.git>.
+library 'earcut.hpp' <https://github.com/mapbox/earcut.hpp.git> which includes
+a reference to the method used by Held, M. (2001) <doi:doi.org/10.1007/s00453-001-0028-4>.
 
 Provides constrained triangulation of polygons. Ear cutting (or
 ear clipping) applies constrained triangulation by successively 'cutting'

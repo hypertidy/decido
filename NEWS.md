@@ -1,5 +1,7 @@
 # decido 0.1.0
 
+* Modified description based on advice from CRAN. 
+
 * `earcut` is now generic, with a default argument that operates on matrix, 
  list or data frame inputs - future extensions may dispatch on class of  single xy argument.
  

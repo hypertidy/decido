@@ -1,3 +1,7 @@
+## Resubmit first release
+
+* Added reference to Held (2001). 
+
 ## Test environments
 * local debian sid, R 3.4.3
 * ubuntu 14.04 (on travis-ci), R 3.4.3
