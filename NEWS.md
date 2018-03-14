@@ -1,3 +1,5 @@
+# decido 0.1.0.9000
+
 # decido 0.1.0
 
 * Modified description based on advice from CRAN. 
