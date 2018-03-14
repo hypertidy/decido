@@ -62,13 +62,20 @@
       <h1>decido - polygon triangulation by ear clipping</h1>
                         <h4 class="author">Michael D. Sumner</h4>
             
-            <h4 class="date">2018-03-08</h4>
+            <h4 class="date">2018-03-15</h4>
           </div>
 
     
     
 <div class="contents">
-<p>Constrained triangulation of polygons by ear clipping.</p>
+<div id="constrained-triangulation-of-polygons" class="section level2">
+<h2 class="hasAnchor">
+<a href="#constrained-triangulation-of-polygons" class="anchor"></a>Constrained triangulation of polygons</h2>
+<p>Decido aims to provide very fast constratined triangulations for polygons in R using a robust C++ library created by Mapbox.</p>
+<p>Constrained triangulation of polygons by ear clipping is an important low-cost method for decomposing a polygon into triangles. Polygon triangulation is necessary for 3D visualization and many analytical techniques. Here <em>constrained</em> means <strong>shape-preserving</strong>, in the sense that every edge of the polygon will be include as the edge of a triangle in the result.</p>
+<p>Ear clipping (or cutting) must be applied to a <em>path-based</em> polygon that consists of only one island, with zero or more holes. Any multiple island polygons must be triangulation separately by this method.</p>
+<p>The better-known <em>Delaunay triangulation</em> is generally not shape-preserving as it works only on points, without knowledge of input line segments or polygon edges. Shape-preserving Delaunay or more commonly <em>near-Delaunay</em> triangulation is performed on a set of edges rather than paths, and can be performed on multiple polygons at once. Holes require careful trimming of triangles after the decomposition is performed in this approach.</p>
+</div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
@@ -91,7 +98,7 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 ind &lt;-<span class="st"> </span><span class="kw">earcut</span>(<span class="kw">cbind</span>(x, y), <span class="dt">holes =</span> <span class="dv">8</span>)
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind)</code></pre></div>
 <p><img src="decido_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
-<p>The hole-specification is a little subtle, since usually R’s functions (polygon and polypath, and others) expect NA values to separate separate paths.</p>
+<p>The hole-specification is a little subtle, since usually R’s functions (polygon and polypath, and others) expect NA values to separate paths.</p>
 <p>Notice how the hole begins at index 8, hence <code>holes = 8</code> above, and <code>holes = c(8, 13)</code> below.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot_ears</span>(<span class="kw">cbind</span>(x, y), ind, <span class="dt">col =</span> <span class="st">"grey"</span>, <span class="dt">border =</span> <span class="ot">NA</span>)
 <span class="kw">text</span>(x, y, <span class="dt">labels =</span> <span class="kw">seq_along</span>(x), <span class="dt">pos =</span> <span class="dv">2</span>)</code></pre></div>
@@ -172,7 +179,7 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 <span class="kw">title</span>(<span class="st">"original"</span>)</code></pre></div>
 <p><img src="decido_files/figure-html/unnamed-chunk-7-1.png" width="672"></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">op &lt;-<span class="st"> </span><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>))
-<span class="cf">for</span> (rot <span class="cf">in</span> <span class="kw">head</span>(<span class="kw">seq_along</span>(x), <span class="op">-</span><span class="dv">1</span>)) {
+<span class="cf">for</span> (rot <span class="cf">in</span> <span class="kw">head</span>(<span class="kw">seq_along</span>(x), <span class="dv">-1</span>)) {
 xx &lt;-<span class="st"> </span><span class="kw">vecrot</span>(x, rot); yy &lt;-<span class="st"> </span><span class="kw">vecrot</span>(y, rot)
 ind &lt;-<span class="st"> </span><span class="kw">earcut</span>(<span class="kw">cbind</span>(xx, yy))
 <span class="kw">plot_ears</span>(<span class="kw">cbind</span>(xx, yy), ind)
@@ -184,17 +191,17 @@ ind &lt;-<span class="st"> </span><span class="kw">earcut</span>(<span class="kw
 <p>Compare this to constrained Delaunay triangulation from the <code>RTriangle</code> package (not illustrated here but the result is that the <em>constrained</em> triangulation is different from all variants above, and the <em>conforming</em> triangulation inserts two points not included in the original data - these are called Steiner points).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sfdct)
 <span class="kw">library</span>(sf)
-xsf &lt;-<span class="st"> </span><span class="kw">st_sfc</span>(<span class="kw">st_polygon</span>(<span class="kw">list</span>(<span class="kw">cbind</span>(x, y)[<span class="kw">c</span>(<span class="kw">seq_along</span>(x), <span class="dv">1</span>), ])))
-<span class="kw">plot</span>(<span class="kw">ct_triangulate</span>(xsf, <span class="dt">Y =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>], <span class="dt">col =</span> <span class="ot">NA</span>)
+xsf &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/sfc">st_sfc</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st">st_polygon</a></span>(<span class="kw">list</span>(<span class="kw">cbind</span>(x, y)[<span class="kw">c</span>(<span class="kw">seq_along</span>(x), <span class="dv">1</span>), ])))
+<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/sfdct/topics/ct_triangulate">ct_triangulate</a></span>(xsf, <span class="dt">Y =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>], <span class="dt">col =</span> <span class="ot">NA</span>)
 
 ## now a conforming Delaunay triangulation
-<span class="kw">plot</span>(<span class="kw">ct_triangulate</span>(xsf, <span class="dt">D =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>], <span class="dt">col =</span> <span class="ot">NA</span>)</code></pre></div>
+<span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/plot">plot</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/sfdct/topics/ct_triangulate">ct_triangulate</a></span>(xsf, <span class="dt">D =</span> <span class="ot">TRUE</span>)[<span class="dv">1</span>], <span class="dt">col =</span> <span class="ot">NA</span>)</code></pre></div>
 </div>
 <div id="performance" class="section level2">
 <h2 class="hasAnchor">
 <a href="#performance" class="anchor"></a>Performance</h2>
 <p>Compare timing of C++ versus JS implementations.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> rbenchmark<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rbenchmark/topics/benchmark">benchmark</a></span>(rearcut<span class="op">::</span><span class="kw">earcut</span>(<span class="kw">cbind</span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y)), decido<span class="op">::</span><span class="kw">earcut</span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> rbenchmark<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rbenchmark/topics/benchmark">benchmark</a></span>(rearcut<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/rearcut/topics/earcut">earcut</a></span>(<span class="kw">cbind</span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y)), decido<span class="op">::</span><span class="kw">earcut</span>(ring<span class="op">$</span>x, ring<span class="op">$</span>y))
                                 test replications elapsed relative
 <span class="co">#2 decido::earcut(ring$x, ring$y)          100   0.064    1.000</span>
 <span class="co">#1 rearcut::earcut(cbind(ring$x, ring$y))  100   4.147   64.797</span></code></pre></div>
@@ -207,7 +214,8 @@ xsf &lt;-<span class="st"> </span><span class="kw">st_sfc</span>(<span class="kw
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#example">Example</a></li>
+<li><a href="#constrained-triangulation-of-polygons">Constrained triangulation of polygons</a></li>
+      <li><a href="#example">Example</a></li>
       <li><a href="#comparing-paths-and-triangles">Comparing paths and triangles</a></li>
       <li><a href="#a-geographic-example">A geographic example</a></li>
       <li><a href="#variants">Variants</a></li>

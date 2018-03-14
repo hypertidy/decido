@@ -14,7 +14,8 @@
  ear clipping) applies constrained triangulation by successively 'cutting'
  triangles from a polygon defined by path/s. Holes are supported by introducing
  a bridge segment between polygon paths. This package wraps the 'header-only' 
- library 'earcut.hpp' &lt;https://github.com/mapbox/earcut.hpp.git&gt;. ">
+ library 'earcut.hpp' &lt;https://github.com/mapbox/earcut.hpp.git&gt; which includes
+ a reference to the method used by Held, M. (2001) &lt;doi:10.1007/s00453-001-0028-4&gt;. ">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -116,7 +117,14 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2 class="hasAnchor">
-<a href="#sidebar" class="anchor"></a>License</h2>
+<a href="#sidebar" class="anchor"></a>Links</h2>
+<ul class="list-unstyled">
+<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=decido">https://​cran.r-project.org/​package=decido</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/hypertidy/decido/issues">https://​github.com/​hypertidy/​decido/​issues</a>
+</li>
+</ul>
+<h2>License</h2>
 <p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
 <h2>Developers</h2>
 <ul class="list-unstyled">
@@ -125,7 +133,7 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.tidyverse.org/lifecycle/#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="lifecycle"></a></li>
+<li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="lifecycle"></a></li>
 <li><a href="https://travis-ci.org/hypertidy/decido"><img src="http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&amp;env=BUILD_NAME=trusty_release&amp;label=linux" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://travis-ci.org/hypertidy/decido"><img src="http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&amp;env=BUILD_NAME=osx_release&amp;label=osx" alt="Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/mdsumner/decido"><img src="https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
