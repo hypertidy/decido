@@ -29,5 +29,5 @@ Suggests:
 SystemRequirements: C++11
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
-URL: https://github.com/hypertidy/decido
+URL: https://hypertidy.github.io/decido
 BugReports: https://github.com/hypertidy/decido/issues
