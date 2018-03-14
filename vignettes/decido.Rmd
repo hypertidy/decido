@@ -19,7 +19,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-Constrained triangulation of polygons by ear clipping. 
+## Constrained triangulation of polygons
+
+Decido aims to provide very fast constratined triangulations for polygons in R using a robust C++ library created by Mapbox. 
+
+Constrained triangulation of polygons by ear clipping is an important
+low-cost method for decomposing a polygon into triangles. Polygon triangulation is necessary for 3D visualization and many analytical techniques. Here *constrained* means **shape-preserving**, in the sense that every edge of the polygon will be include as the edge of a triangle in the result. 
+
+Ear clipping (or cutting) must be applied to a *path-based* polygon that consists of only one island, with zero or more holes. Any multiple island polygons must be triangulation separately by this method. 
+
+The better-known *Delaunay triangulation* is generally not shape-preserving as it works only on points, without knowledge of input line segments or polygon edges. Shape-preserving Delaunay or more commonly *near-Delaunay* triangulation is performed on a set of edges rather than paths, and can be
+performed on multiple polygons at once. Holes require careful trimming of triangles after the decomposition is performed in this approach. 
 
 
 ## Example
@@ -52,7 +62,7 @@ plot_ears(cbind(x, y), ind)
 
 
 The hole-specification is a little subtle, since usually R's functions
-(polygon and polypath, and others) expect NA values to separate separate paths. 
+(polygon and polypath, and others) expect NA values to separate paths. 
 
 
 Notice how the hole begins at index 8, hence `holes = 8` above, and `holes = c(8, 13)` below. 
