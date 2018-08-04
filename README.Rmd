@@ -11,6 +11,7 @@ editor_options:
 [![Build Status](http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&env=BUILD_NAME=osx_release&label=osx)](https://travis-ci.org/hypertidy/decido) 
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/decido) 
 [![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://codecov.io/github/hypertidy/decido?branch=master)
+[![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/decido)](http://cran.r-project.org/web/packages/decido/index.html)
 
 
 ```{r setup, include = FALSE}
