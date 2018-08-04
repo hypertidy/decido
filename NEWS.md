@@ -1,6 +1,8 @@
 # decido 0.2.0
 
-* updated readme
+* Updated readme. 
+
+* Move oz to Suggests. 
 
 # decido 0.1.0
 
