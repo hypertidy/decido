@@ -18,14 +18,18 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
   Polygon poly;
   using Polygons = std::vector<Polygon>;
   int vcount = x.length();
+  // TODO might be worth checking x and y same length?
   Point pt;
   Polygons polyrings;
- // Rprintf("numholes %i\n", numholes[0]);
+  if (numholes.size())
+    Rcout << "numholes[0]:" << numholes[0] << std::endl;
   int hole_index = 0;
   for (int ipoint = 0; ipoint < vcount; ipoint++) {
     pt = {x[ipoint], y[ipoint]};
     // don't add the point if we are starting a new ring
-    if (numholes[0] > 0) {
+    if (numholes.size() && numholes[0] > 0) {
+      if (hole_index >= holes.size())
+        throw std::runtime_error("bounds");
       if (ipoint == holes[hole_index]) {
        // Rprintf("pushback poly %i\n", ipoint + 1);
         polyrings.push_back(poly);
