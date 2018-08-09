@@ -17,8 +17,8 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
   using Polygon = std::vector<Point>;
   Polygon poly;
   using Polygons = std::vector<Polygon>;
-  int vcount = x.length();
-  // TODO might be worth checking x and y same length?
+
+  int vcount = static_cast <int> (x.length());
   Point pt;
   Polygons polyrings;
   if (numholes.size())
@@ -49,8 +49,8 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
   std::vector<N> indices = mapbox::earcut<N>(polyrings);
 
   IntegerVector out(indices.size());
-  for (int j = 0; j < out.length(); j++){
-    out[j] = indices[j];
+  for (size_t j = 0; j < static_cast <size_t> (out.length()); j++){
+    out[static_cast <R_xlen_t> (j)] = static_cast <int> (indices[j]);
   }
   return out;
 }
