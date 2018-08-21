@@ -18,13 +18,13 @@ ByteCompile: true
 LinkingTo: 
     Rcpp
 Imports: 
-    Rcpp,
-    oz
-RoxygenNote: 6.0.1
+    Rcpp
+RoxygenNote: 6.1.0
 Suggests: 
     covr,
     testthat,
     knitr,
+    oz,
     rmarkdown
 SystemRequirements: C++11
 VignetteBuilder: knitr

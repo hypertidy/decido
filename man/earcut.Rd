@@ -2,7 +2,6 @@
 % Please edit documentation in R/earcut.R
 \name{earcut}
 \alias{earcut}
-\alias{earcut}
 \alias{earcut.default}
 \title{Constrained polygon triangulation}
 \usage{
