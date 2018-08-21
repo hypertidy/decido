@@ -2,7 +2,6 @@
 % Please edit documentation in R/earcut.R
 \name{plot_ears}
 \alias{plot_ears}
-\alias{plot_ears}
 \alias{plot_holes}
 \title{Plot ears or polygons}
 \usage{

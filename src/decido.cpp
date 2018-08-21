@@ -6,8 +6,8 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 IntegerVector earcut_cpp(NumericVector x, NumericVector y,
-                     IntegerVector holes = -1,
-                     IntegerVector numholes = 0) {
+                     IntegerVector holes,
+                     IntegerVector numholes) {
   using Coord = double;
   // The index type. Defaults to uint32_t, but you can also pass uint16_t if you know that your
   // data won't have more than 65536 vertices.
