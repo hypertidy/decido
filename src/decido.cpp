@@ -6,8 +6,8 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 IntegerVector earcut_cpp(NumericVector x, NumericVector y,
-                     IntegerVector holes = -1,
-                     IntegerVector numholes = 0) {
+                     IntegerVector holes,
+                     IntegerVector numholes) {
   using Coord = double;
   // The index type. Defaults to uint32_t, but you can also pass uint16_t if you know that your
   // data won't have more than 65536 vertices.
@@ -21,15 +21,15 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
   int vcount = static_cast <int> (x.length());
   Point pt;
   Polygons polyrings;
-  if (numholes.size())
-    Rcout << "numholes[0]:" << numholes[0] << std::endl;
+ // if (numholes.size())
+//    Rcout << "numholes[0]:" << numholes[0] << std::endl;
   int hole_index = 0;
   for (int ipoint = 0; ipoint < vcount; ipoint++) {
     pt = {x[ipoint], y[ipoint]};
     // don't add the point if we are starting a new ring
     if (numholes.size() && numholes[0] > 0) {
-      if (hole_index >= holes.size())
-        throw std::runtime_error("bounds");
+      if (hole_index > holes.size())
+         throw std::runtime_error("bounds");
       if (ipoint == holes[hole_index]) {
        // Rprintf("pushback poly %i\n", ipoint + 1);
         polyrings.push_back(poly);
