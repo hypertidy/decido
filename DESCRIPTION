@@ -1,5 +1,5 @@
 Package: decido
-Version: 0.1.0.9000
+Version: 0.2.0
 Title: Bindings for 'Mapbox' Ear Cutting Triangulation Library 
 Description: Provides constrained triangulation of polygons. Ear cutting (or 
  ear clipping) applies constrained triangulation by successively 'cutting'
@@ -10,7 +10,8 @@ Description: Provides constrained triangulation of polygons. Ear cutting (or
 Authors@R: c(
         person("Michael", "Sumner", email = "mdsumner@gmail.com", role = c("aut", "cre")), 
         person("Andrew", "Smith", role = "ctb", comment = "provided C++ guidance"), 
-        person("Mapbox", role = "cph", comment = "author of header library earcut.hpp"))
+        person("Mapbox", role = "cph", comment = "author of header library earcut.hpp"), 
+        person("Mark", "Padgham", role = "ctb", comment = "help with CRAN issues"))
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
