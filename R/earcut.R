@@ -77,7 +77,7 @@ earcut <- function(xy, holes = 0, ...) {
 }
 #' @name earcut
 #' @export
-earcut.default <- function(xy, holes = 0, ...) {
+earcut.default <- function(xy, holes = 0L, ...) {
   xy <- handle_xy(xy)
   x <- xy[ ,1L]
   y <- xy[ ,2L]
@@ -89,10 +89,10 @@ earcut.default <- function(xy, holes = 0, ...) {
   nholes <- length(holes)
   if (holes[1] == 0) {
     ## a nonsense situation, so we reset to be sure
-    nholes <- 0
-    holes <- 0
+    nholes <- 0L
+    holes <- 0L
   }
-  earcut_cpp(x, y, holes = holes - 1, numholes = nholes) + 1L
+  earcut_cpp(x, y, holes = as.integer(holes - 1), numholes = as.integer(nholes)) + 1L
 }
 #' Plot ears or polygons
 #'
