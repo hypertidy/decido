@@ -37,8 +37,13 @@ This augments the Javascript version available in [rearcut](https://github.com/h
 
 ## Installation
 
-You can install decido from GitHub with the following. You will need
-the [set of development tools](https://www.rstudio.com/products/rpackages/devtools/) for building source packages with binary code. 
+Install the released version from CRAN. 
+
+```R
+install.packages("decido")
+```
+
+You can install the development version from GitHub with the following code. You will need the [set of development tools](https://www.rstudio.com/products/rpackages/devtools/) for building source packages with binary code. 
 
 
 ```R
@@ -88,4 +93,4 @@ many R packages, but constrained algorithms are pretty rare (it's hard).  There 
 
 ---
 
-Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).  By participating in this project you agree to abide by its terms.
+Please note that the decido project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).  By participating in this project you agree to abide by its terms.
