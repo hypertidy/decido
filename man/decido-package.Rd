@@ -34,6 +34,7 @@ Other contributors:
 \itemize{
   \item Andrew Smith (provided C++ guidance) [contributor]
   \item Mapbox (author of header library earcut.hpp) [copyright holder]
+  \item Mark Padgham (help with CRAN issues) [contributor]
 }
 
 }

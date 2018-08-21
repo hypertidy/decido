@@ -8,8 +8,8 @@
 <title>Bindings for 'Mapbox' Ear Cutting Triangulation Library  • decido</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Bindings for 'Mapbox' Ear Cutting Triangulation Library ">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script><meta property="og:title" content="Bindings for 'Mapbox' Ear Cutting Triangulation Library ">
 <meta property="og:description" content="Provides constrained triangulation of polygons. Ear cutting (or 
  ear clipping) applies constrained triangulation by successively 'cutting'
  triangles from a polygon defined by path/s. Holes are supported by introducing
@@ -23,7 +23,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -32,8 +32,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">decido</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="index.html">decido</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
@@ -43,13 +47,13 @@
   </a>
 </li>
 <li>
-  <a href="articles/decido.html">Get Started</a>
+  <a href="articles/decido.html">Get started</a>
 </li>
 <li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
@@ -62,12 +66,11 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     
 
     
     
-<div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <div id="decido" class="section level1">
@@ -80,21 +83,21 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install decido from GitHub with the following. You will need the <a href="https://www.rstudio.com/products/rpackages/devtools/">set of development tools</a> for building source packages with binary code.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## install.packages("devtools")
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"hypertidy/decido"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">## install.packages("devtools")</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"hypertidy/decido"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example of triangulating a single-ring polygon. The output is a vector of triplet indices defining each triangle.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(decido)
-x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>)
-y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)
-<span class="kw">earcut</span>(<span class="kw">cbind</span>(x, y))
-<span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(decido)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="reference/earcut.html">earcut</a></span>(<span class="kw">cbind</span>(x, y))</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span></a></code></pre></div>
 <p>See the <a href="https://hypertidy.github.io/decido/">documentation</a> and <a href="https://hypertidy.github.io/decido/articles/decido.html">vignette</a> for more.</p>
 <p>Open the getting started vignette.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vignette</span>(<span class="st">"decido"</span>, <span class="dt">package =</span> <span class="st">"decido"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">"decido"</span>, <span class="dt">package =</span> <span class="st">"decido"</span>)</a></code></pre></div>
 </div>
 <div id="development" class="section level2">
 <h2 class="hasAnchor">
@@ -109,28 +112,37 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 <p>In comparison to path-based ear-clipping, other libraries ‘Triangle’ and ‘CGAL’ provide edge-based <em>mostly Delaunay</em> triangulation. The Triangle library is available in the R package <a href="https://CRAN.r-project.org/package=RTriangle">RTriangle</a>. Experimental implementations binding CGAL are in <a href="https://github.com/s-u/rcgal">rcgal</a> and <a href="https://github.com/hypertidy/laridae">laridae</a>.</p>
 <p>Do you know of others? Let me know! Triangulation is common across many R packages, but constrained algorithms are pretty rare (it’s hard). There are many Delaunay and other non-constrained implementations in many packages, and I’m compiling a list of those as well. OTOH there’s rgeos, sf, deldir, geometry, tripack, spatstat, akima, several mesh-related packages Rvcg, meshsimp, icosa, webglobe …</p>
 <hr>
-<p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
-</div>
+<p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2 class="hasAnchor">
-<a href="#sidebar" class="anchor"></a>Links</h2>
+    <div class="links">
+<h2>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cran.r-project.org/package=decido">https://​cran.r-project.org/​package=decido</a>
+<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=decido">https://​cloud.r-project.org/​package=decido</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/hypertidy/decido/issues">https://​github.com/​hypertidy/​decido/​issues</a>
 </li>
 </ul>
+</div>
+<div class="license">
 <h2>License</h2>
-<p><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE.html">LICENSE</a></p>
+<ul class="list-unstyled">
+<li><a href="LICENSE.html">Full license</a></li>
+<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+</ul>
+</div>
+<div class="developers">
 <h2>Developers</h2>
 <ul class="list-unstyled">
 <li>Michael Sumner <br><small class="roles"> Author, maintainer </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
+</div>
+
+      <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://www.tidyverse.org/lifecycle/#stable"><img src="https://img.shields.io/badge/lifecycle-stable-green.svg" alt="lifecycle"></a></li>
@@ -138,7 +150,9 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 <li><a href="https://travis-ci.org/hypertidy/decido"><img src="http://badges.herokuapp.com/travis/hypertidy/decido?branch=master&amp;env=BUILD_NAME=osx_release&amp;label=osx" alt="Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/mdsumner/decido"><img src="https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/hypertidy/decido?branch=master"><img src="https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg" alt="Coverage status"></a></li>
+<li><a href="http://cran.r-project.org/web/packages/decido/index.html"><img src="http://cranlogs.r-pkg.org/badges/decido" alt="CRAN RStudio mirror downloads"></a></li>
 </ul>
+</div>
 </div>
 
 </div>
@@ -154,6 +168,8 @@ y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</sp
 
       </footer>
 </div>
+
+  
 
   </body>
 </html>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • decido</title>
+<title>Changelog • decido</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -21,13 +21,19 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
-<meta property="og:title" content="All news" />
+
+
+
+<meta property="og:title" content="Changelog" />
+
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -50,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">decido</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">decido</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.0</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -61,19 +71,20 @@
   </a>
 </li>
 <li>
-  <a href="../articles/decido.html">Get Started</a>
+  <a href="../articles/decido.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -81,21 +92,27 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="contents">
-    <div id="decido-0-1-0-9000" class="section level1">
-<h1 class="hasAnchor">
-<a href="#decido-0-1-0-9000" class="anchor"></a>decido 0.1.0.9000</h1>
+    <div id="decido-0-2-0" class="section level1">
+<h1 class="page-header">
+<a href="#decido-0-2-0" class="anchor"></a>decido 0.2.0<small> Unreleased </small>
+</h1>
+<ul>
+<li><p>Cleaned up some Rcpp defaults</p></li>
+<li><p>Updated readme.</p></li>
+<li><p>Move oz to Suggests.</p></li>
+</ul>
 </div>
     <div id="decido-0-1-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#decido-0-1-0" class="anchor"></a>decido 0.1.0</h1>
+<h1 class="page-header">
+<a href="#decido-0-1-0" class="anchor"></a>decido 0.1.0<small> 2018-03-13 </small>
+</h1>
 <ul>
 <li><p>Modified description based on advice from CRAN.</p></li>
 <li><p><code>earcut</code> is now generic, with a default argument that operates on matrix, list or data frame inputs - future extensions may dispatch on class of single xy argument.</p></li>
@@ -103,8 +120,9 @@
 </ul>
 </div>
     <div id="decido-0-0-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#decido-0-0-1" class="anchor"></a>decido 0.0.1</h1>
+<h1 class="page-header">
+<a href="#decido-0-0-1" class="anchor"></a>decido 0.0.1<small> Unreleased </small>
+</h1>
 <ul>
 <li><p>Added a vignette and more complete documentation.</p></li>
 <li><p>Added helper functions <code>plot_holes</code> and <code>plot_ears</code> to wrap calls to polypath for polygon plot and triangle plot respectively, using the same style as function <code>earcut</code>.</p></li>
@@ -112,18 +130,17 @@
 <li><p>Removed need for <code>numholes</code> argument.</p></li>
 <li><p>Fixed immense logic bug, not sure how it was working at all before.</p></li>
 <li><p>Fixed file naming and declarations, thanks to Andrew Smith.</p></li>
-<li><p>Added support for holes via <code>earcut(x, y, holes = , numholes = )</code>.</p></li>
+<li><p>Added support for holes via <code><a href="../reference/earcut.html">earcut(x, y, holes = , numholes = )</a></code>.</p></li>
 <li><p>First implementation from basic template.</p></li>
 </ul>
 </div>
-    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#decido-0-1-0-9000">0.1.0.9000</a></li>
+        <li><a href="#decido-0-2-0">0.2.0</a></li>
         <li><a href="#decido-0-1-0">0.1.0</a></li>
         <li><a href="#decido-0-0-1">0.0.1</a></li>
       </ul>
@@ -144,5 +161,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

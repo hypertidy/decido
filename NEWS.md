@@ -1,5 +1,7 @@
 # decido 0.2.0
 
+* Cleaned up some Rcpp defaults
+
 * Updated readme. 
 
 * Move oz to Suggests. 
