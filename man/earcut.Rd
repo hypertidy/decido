@@ -7,7 +7,7 @@
 \usage{
 earcut(xy, holes = 0, ...)
 
-\method{earcut}{default}(xy, holes = 0, ...)
+\method{earcut}{default}(xy, holes = 0L, ...)
 }
 \arguments{
 \item{xy}{xy-coordinates, either a list, matrix, or data frame}
