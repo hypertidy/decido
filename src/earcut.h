@@ -9,13 +9,15 @@
 #include <memory>
 #include <vector>
 
+static const double tol = 1.0e-16;
+
 namespace mapbox {
 
 namespace util {
 
 template <std::size_t I, typename T> struct nth {
     inline static typename std::tuple_element<I, T>::type
-    get(const T& t) { return std::get<I>(t); };
+    get(const T& t) { return std::get<I>(t); }
 };
 
 }
@@ -230,7 +232,9 @@ Earcut<N>::filterPoints(Node* start, Node* end) {
     do {
         again = false;
 
-        if (!p->steiner && (equals(p, p->next) || area(p->prev, p, p->next) == 0)) {
+        //if (!p->steiner && (equals(p, p->next) || area(p->prev, p, p->next) == 0)) {
+        if (!p->steiner && (equals(p, p->next) ||
+                    fabs (area(p->prev, p, p->next)) < tol)) {
             removeNode(p);
             p = end = p->prev;
 
@@ -466,13 +470,18 @@ Earcut<N>::findHoleBridge(Node* hole, Node* outerNode) {
     // find a segment intersected by a ray from the hole's leftmost Vertex to the left;
     // segment's endpoint with lesser x will be potential connection Vertex
     do {
-        if (hy <= p->y && hy >= p->next->y && p->next->y != p->y) {
+        //if (hy <= p->y && hy >= p->next->y && p->next->y != p->y) {
+        if (hy <= p->y && hy >= p->next->y && fabs (p->next->y - p->y) > tol) {
           double x = p->x + (hy - p->y) * (p->next->x - p->x) / (p->next->y - p->y);
           if (x <= hx && x > qx) {
             qx = x;
-            if (x == hx) {
-                if (hy == p->y) return p;
-                if (hy == p->next->y) return p->next;
+            //if (x == hx) {
+            //    if (hy == p->y) return p;
+            //    if (hy == p->next->y) return p->next;
+            //}
+            if (fabs (x - hx) < tol) {
+                if (fabs (hy - p->y) < tol) return p;
+                if (fabs (hy - p->next->y) < tol) return p->next;
             }
             m = p->x < p->next->x ? p : p->next;
           }
@@ -480,9 +489,10 @@ Earcut<N>::findHoleBridge(Node* hole, Node* outerNode) {
         p = p->next;
     } while (p != outerNode);
 
-    if (!m) return 0;
+    if (!m) return nullptr;
 
-    if (hx == qx) return m->prev;
+    //if (hx == qx) return m->prev;
+    if (fabs (hx - qx) < tol) return m->prev;
 
     // look for points inside the triangle of hole Vertex, segment intersection and endpoint;
     // if there are no points found, we have a valid connection;
@@ -497,12 +507,14 @@ Earcut<N>::findHoleBridge(Node* hole, Node* outerNode) {
     double my = m->y;
 
     while (p != stop) {
-        if (hx >= p->x && p->x >= mx && hx != p->x &&
+        //if (hx >= p->x && p->x >= mx && hx != p->x &&
+        if (hx >= p->x && p->x >= mx && fabs (hx - p->x) > tol &&
             pointInTriangle(hy < my ? hx : qx, hy, mx, my, hy < my ? qx : hx, hy, p->x, p->y)) {
 
             tanCur = std::abs(hy - p->y) / (hx - p->x); // tangential
 
-            if ((tanCur < tanMin || (tanCur == tanMin && p->x > m->x)) && locallyInside(p, hole)) {
+            //if ((tanCur < tanMin || (tanCur == tanMin && p->x > m->x)) && locallyInside(p, hole)) {
+            if ((tanCur < tanMin || (fabs (tanCur - tanMin) < tol && p->x > m->x)) && locallyInside(p, hole)) {
                 m = p;
                 tanMin = tanCur;
             }
@@ -660,7 +672,8 @@ double Earcut<N>::area(const Node* p, const Node* q, const Node* r) const {
 // check if two points are equal
 template <typename N>
 bool Earcut<N>::equals(const Node* p1, const Node* p2) {
-    return p1->x == p2->x && p1->y == p2->y;
+    //return p1->x == p2->x && p1->y == p2->y;
+    return (fabs (p1->x - p2->x) < tol && fabs (p1->y - p2->y) < tol);
 }
 
 // check if two segments intersect
@@ -701,7 +714,9 @@ bool Earcut<N>::middleInside(const Node* a, const Node* b) {
     double px = (a->x + b->x) / 2;
     double py = (a->y + b->y) / 2;
     do {
-        if (((p->y > py) != (p->next->y > py)) && p->next->y != p->y &&
+        //if (((p->y > py) != (p->next->y > py)) && p->next->y != p->y &&
+        if (((p->y > py) != (p->next->y > py)) &&
+                fabs (p->next->y - p->y) > tol &&
                 (px < (p->next->x - p->x) * (py - p->y) / (p->next->y - p->y) + p->x))
             inside = !inside;
         p = p->next;
