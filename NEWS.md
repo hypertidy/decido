@@ -1,5 +1,7 @@
 # decido 0.2.0
 
+* Increased automated test coverage of underlying library code. 
+
 * Fixed a memory bug, thanks to CRAN checks. 
 
 * Cleaned up some Rcpp defaults. 
