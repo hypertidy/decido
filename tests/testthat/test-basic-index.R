@@ -21,3 +21,10 @@ test_that("single-hole triangulation works", {
                c(1L, 8L, 12L, 9L, 8L, 1L, 7L, 6L, 5L, 5L, 4L, 3L, 2L, 1L, 12L,
                  9L, 1L, 7L, 5L, 3L, 2L, 2L, 12L, 11L, 10L, 9L, 7L, 5L, 2L, 11L,10L, 7L, 5L, 5L, 11L, 10L))
 })
+
+test_that("we can run biggish inputs (and hopefully invoke the hashing logic)", {
+  earcut(ant_cont) %>% expect_length(7611) %>% sum() %>% expect_equal(9670500L)
+})
+
+
+
