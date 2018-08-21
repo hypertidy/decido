@@ -24,6 +24,9 @@ test_that("single-hole triangulation works", {
 
 test_that("we can run biggish inputs (and hopefully invoke the hashing logic)", {
   earcut(ant_cont) %>% expect_length(7611) %>% sum() %>% expect_equal(9670500L)
+
+  earcut(rbind(ant_cont, ant_circle), holes = 2541) %>% expect_length(7977) %>% sum() %>% expect_equal(10511060L)
+
 })
 
 
