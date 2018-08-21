@@ -13,4 +13,6 @@ test_that("bad inputs handled", {
   expect_error(earcut(cbind(x, y), holes = 7),
                "no hole can begin later than 3 elements from the end")
 
+
+   expect_error(expect_warning(earcut(matrix(x), holes = 7)), "expected two columns, x/y")
 })

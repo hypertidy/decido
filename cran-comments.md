@@ -1,15 +1,19 @@
-Hello, I've checked and believe I'm now free of valgrind-visible problems. 
+Hello, 
+
+I believe decido 0.2.0 is now free of valgrind-visible problems. 
+
+Apologies for the failure to fix before 2018-07-30, I was travelling at the time. 
 
 Best regards, Mike
 
-CRAN removal issue reported was
+CRAN removal memory-access issue reported was
 
 > showing memory-access errors under Fedora 28: see the
 > 'Additional issues' linked from the packages's CRAN results page.
 >
 > Please correct ASAP and before Jul 30 to safely retain the package on CRAN"
 
-## Resubmit version 0.2.0 after removal from CRAN
+## Resubmit version 0.2.0 after being archived
 
 * Cleaned up Rcpp default arguments. 
 * Fixed out of bounds code in Rcpp causing valgrind problems. 
