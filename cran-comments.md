@@ -1,6 +1,4 @@
-Hello, I've checked this build as much as I can, I can't see more problems under valgrind. 
-
-Apologies if the issue is still present. 
+Hello, I've checked and believe I'm now free of valgrind-visible problems. 
 
 Best regards, Mike
 
@@ -14,6 +12,7 @@ CRAN removal issue reported was
 ## Resubmit version 0.2.0 after removal from CRAN
 
 * Cleaned up Rcpp default arguments. 
+* Fixed out of bounds code in Rcpp causing valgrind problems. 
 * Ran valgrind tests locally and on R-hub. 
 * Fixed unused oz import, replaced by Suggests. 
 

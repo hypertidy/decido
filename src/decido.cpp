@@ -28,13 +28,15 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
     pt = {x[ipoint], y[ipoint]};
     // don't add the point if we are starting a new ring
     if (numholes.size() && numholes[0] > 0) {
-      if (hole_index > holes.size())
-         throw std::runtime_error("bounds");
-      if (ipoint == holes[hole_index]) {
-       // Rprintf("pushback poly %i\n", ipoint + 1);
+      if (hole_index < holes.size()) {
+//         throw std::runtime_error("bounds");
+      int ihole = holes[hole_index];
+      if (ipoint == ihole) {
+        // Rprintf("pushback poly %i\n", ipoint + 1);
         polyrings.push_back(poly);
         poly.clear();
-        hole_index = hole_index + 1;
+        hole_index++;
+      }
       }
     }
     // now add the point
