@@ -82,22 +82,24 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can install decido from GitHub with the following. You will need the <a href="https://www.rstudio.com/products/rpackages/devtools/">set of development tools</a> for building source packages with binary code.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">## install.packages("devtools")</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"hypertidy/decido"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>Install the released version from CRAN.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"decido"</span>)</a></code></pre></div>
+<p>You can install the development version from GitHub with the following code. You will need the <a href="https://www.rstudio.com/products/rpackages/devtools/">set of development tools</a> for building source packages with binary code.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">## install.packages("devtools")</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"hypertidy/decido"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example of triangulating a single-ring polygon. The output is a vector of triplet indices defining each triangle.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(decido)</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4"><span class="kw"><a href="reference/earcut.html">earcut</a></span>(<span class="kw">cbind</span>(x, y))</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(decido)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">0.75</span>, <span class="dv">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span>)</a>
+<a class="sourceLine" id="cb3-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="kw"><a href="reference/earcut.html">earcut</a></span>(<span class="kw">cbind</span>(x, y))</a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2</span></a></code></pre></div>
 <p>See the <a href="https://hypertidy.github.io/decido/">documentation</a> and <a href="https://hypertidy.github.io/decido/articles/decido.html">vignette</a> for more.</p>
 <p>Open the getting started vignette.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">"decido"</span>, <span class="dt">package =</span> <span class="st">"decido"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">vignette</span>(<span class="st">"decido"</span>, <span class="dt">package =</span> <span class="st">"decido"</span>)</a></code></pre></div>
 </div>
 <div id="development" class="section level2">
 <h2 class="hasAnchor">
@@ -112,7 +114,7 @@
 <p>In comparison to path-based ear-clipping, other libraries ‘Triangle’ and ‘CGAL’ provide edge-based <em>mostly Delaunay</em> triangulation. The Triangle library is available in the R package <a href="https://CRAN.r-project.org/package=RTriangle">RTriangle</a>. Experimental implementations binding CGAL are in <a href="https://github.com/s-u/rcgal">rcgal</a> and <a href="https://github.com/hypertidy/laridae">laridae</a>.</p>
 <p>Do you know of others? Let me know! Triangulation is common across many R packages, but constrained algorithms are pretty rare (it’s hard). There are many Delaunay and other non-constrained implementations in many packages, and I’m compiling a list of those as well. OTOH there’s rgeos, sf, deldir, geometry, tripack, spatstat, akima, several mesh-related packages Rvcg, meshsimp, icosa, webglobe …</p>
 <hr>
-<p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
+<p>Please note that the decido project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p>
 </div>
 </div>
   </div>
