@@ -12,3 +12,6 @@
 ^src/LICENSE$
 ^LICENSE\.md$
 ^cran-comments\.md$
+^decido\.Rcheck$
+^decido.*\.tar\.gz$
+^decido.*\.tgz$
