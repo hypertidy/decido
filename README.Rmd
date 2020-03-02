@@ -40,7 +40,8 @@ This augments the Javascript version available in [rearcut](https://github.com/h
 Install the released version from CRAN. 
 
 ```R
-install.packages("decido")
+## install.packages("remotes")
+remotes::install_cran("decido")
 ```
 
 You can install the development version from GitHub with the following code. You will need the [set of development tools](https://www.rstudio.com/products/rpackages/devtools/) for building source packages with binary code. 
