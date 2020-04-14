@@ -3,7 +3,7 @@
 #include <stdlib.h> // for NULL
 #include <R_ext/Rdynload.h>
 
-/* FIXME: 
+/* FIXME:
    Check these declarations against the C/Fortran source code.
 */
 
@@ -17,6 +17,10 @@ static const R_CallMethodDef CallEntries[] = {
 
 void R_init_decido(DllInfo *dll)
 {
+
+    R_RegisterCCallable("decido", "decido_earcut_cpp", (DL_FUNC) &_decido_earcut_cpp);
+
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }
+

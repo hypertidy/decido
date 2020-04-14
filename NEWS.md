@@ -1,3 +1,7 @@
+# decido dev
+
+* decido now registers the C Callable function `decido_earcut_cpp`, thanks to inspiration of @dcooley. 
+
 # decido 0.2.0
 
 * Increased automated test coverage of underlying library code. 
