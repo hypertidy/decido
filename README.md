@@ -108,8 +108,9 @@ constraint-based triangulation, but I don’t yet know the details.
 In comparison to path-based ear-clipping, other libraries ‘Triangle’ and
 ‘CGAL’ provide edge-based *mostly Delaunay* triangulation. The Triangle
 library is available in the R package
-[RTriangle](https://CRAN.r-project.org/package=RTriangle). Experimental
-implementations binding CGAL are in
+[RTriangle](https://CRAN.r-project.org/package=RTriangle) and for (some)
+R spatial formats in [sfdct](https://CRAN.r-project.org/package=sfdct).
+Experimental implementations binding CGAL are in
 [rcgal](https://github.com/s-u/rcgal) and
 [laridae](https://github.com/hypertidy/laridae).
 
