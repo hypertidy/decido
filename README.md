@@ -38,7 +38,8 @@ implementations](http://rpubs.com/cyclemumner/364247).
 Install the released version from CRAN.
 
 ``` r
-install.packages("decido")
+## install.packages("remotes")
+remotes::install_cran("decido")
 ```
 
 You can install the development version from GitHub with the following
@@ -77,14 +78,20 @@ vignette("decido", package = "decido")
 ## Development
 
 This is motivated by the topology aspirations of
-[hypertidy/silicate](https://github.com/hypertidy/silicate). We need
-tools for decomposing shape data into primitives for analysis and
+[silicate](https://CRAN.r-project.org/package=silicate). We need tools
+for decomposing shape data into primitives for analysis and
 visualization. Decomposition into graph types is already well supported
 and exercised, but triangulations of paths versus triangulations from
 edges are two key facilities needed for greater control.
 
-This broader project is fairly well advanced in silicate and show-cased
-in [hypertidy/anglr](https://github.com/hypertidy/anglr).
+This broader project is fairly well advanced in silicate which provides
+ear-cutting triangulations and enhanced with high-quality methods in
+[hypertidy/anglr](https://github.com/hypertidy/anglr).
+
+To triangulate sf polygons see [function
+here](https://github.com/hypertidy/decido/issues/9). For high-quality
+triangulations of sf polygons directly see
+[sfdct](https://CRAN.r-project.org/package=sfdct).
 
 ## Other implementations
 
