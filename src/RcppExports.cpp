@@ -19,20 +19,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// test
-SEXP test();
-RcppExport SEXP _decido_test() {
+// earcut_sfc
+SEXP earcut_sfc(Rcpp::List& sfg);
+RcppExport SEXP _decido_earcut_sfc(SEXP sfgSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    rcpp_result_gen = Rcpp::wrap(test());
+    Rcpp::traits::input_parameter< Rcpp::List& >::type sfg(sfgSEXP);
+    rcpp_result_gen = Rcpp::wrap(earcut_sfc(sfg));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_decido_earcut_cpp", (DL_FUNC) &_decido_earcut_cpp, 4},
-    {"_decido_test", (DL_FUNC) &_decido_test, 0},
+    {"_decido_earcut_sfc", (DL_FUNC) &_decido_earcut_sfc, 1},
     {NULL, NULL, 0}
 };
 

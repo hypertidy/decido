@@ -10,7 +10,7 @@ namespace Rcpp {
 
   template < typename T > SEXP wrap( std::array< T, 2 >& Point );
   template < typename T > SEXP wrap( std::vector< std::array< T, 2 > >& Polygon );
-  template < typename T > SEXP wrap( std::vector< std::vector< std::array< T, 2 > > > Polygons );
+  template < typename T > SEXP wrap( std::vector< std::vector< std::array< T, 2 > > >& Polygons );
 
 namespace traits {
 
@@ -47,7 +47,7 @@ namespace Rcpp {
   }
 
   template < typename T >
-  SEXP wrap( std::vector< std::vector< std::array< T, 2 > > > Polygons ) {
+  SEXP wrap( std::vector< std::vector< std::array< T, 2 > > >& Polygons ) {
     R_xlen_t n = Polygons.size();
     Rcpp::List lst( n );
     R_xlen_t i;
@@ -127,6 +127,11 @@ namespace traits {
 
 } // traits
 } // Rcpp
+
+typedef double Coord;
+typedef std::array< Coord, 2 > Point;
+typedef std::vector< Point > Polygon;
+typedef std::vector< Polygon > Polygons;
 
 namespace decido {
 namespace earcut {
