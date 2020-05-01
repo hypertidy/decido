@@ -3,6 +3,7 @@
 using namespace Rcpp;
 #include "earcut.h"
 
+#include "decido/decido.hpp"
 
 // [[Rcpp::export]]
 IntegerVector earcut_cpp(NumericVector x, NumericVector y,
@@ -57,3 +58,28 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
   return out;
 }
 
+
+// [[Rcpp::export]]
+SEXP test( ) {
+  using N = uint32_t;
+  using Coord = double;
+  using Point = std::array< Coord, 2>;
+  using Polygon = std::vector< Point >;
+  Polygon poly;
+  using Polygons = std::vector< Polygon >;
+  Polygons polyrings;
+
+  //Point p {0,1};
+  //poly.push_back(p);
+  //polyrings.push_back( poly );
+
+  polyrings.push_back( { {100, 0}, {100, 100}, {0, 100}, {0, 0} } );
+  polyrings.push_back( { {75, 25}, {75, 75}, {25, 75}, {25, 25} } );
+
+  //Rcpp::NumericVector res = Rcpp::wrap( p );
+  //Rcpp::NumericMatrix res = Rcpp::wrap( poly );
+  Rcpp::List res = Rcpp::wrap( polyrings );
+
+  return res;
+
+}

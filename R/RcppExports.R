@@ -5,3 +5,7 @@ earcut_cpp <- function(x, y, holes, numholes) {
     .Call(`_decido_earcut_cpp`, x, y, holes, numholes)
 }
 
+test <- function() {
+    .Call(`_decido_test`)
+}
+
