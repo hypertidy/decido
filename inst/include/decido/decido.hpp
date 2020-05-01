@@ -2,7 +2,7 @@
 #define R_DECIDO_EARCUT_H
 
 #include <RcppCommon.h>
-
+#include <array>
 #include "earcut.h"
 
 

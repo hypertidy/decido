@@ -55,14 +55,9 @@ IntegerVector earcut_cpp(NumericVector x, NumericVector y,
 // [[Rcpp::export]]
 SEXP earcut_sfc( Rcpp::List& sfg ) {
 
-  // using Coord = double;
-  // The index type. Defaults to uint32_t, but you can also pass uint16_t if you know that your
-  // data won't have more than 65536 vertices.
-  using N = uint32_t;
-
   Polygons polyrings = Rcpp::as< Polygons >( sfg );
 
-  std::vector<N> indices = mapbox::earcut<N>( polyrings );
+  std::vector< uint32_t > indices = mapbox::earcut< uint32_t >( polyrings );
   return Rcpp::wrap( indices );
 }
 
