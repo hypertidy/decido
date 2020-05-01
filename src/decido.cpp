@@ -69,17 +69,23 @@ SEXP test( ) {
   using Polygons = std::vector< Polygon >;
   Polygons polyrings;
 
-  //Point p {0,1};
-  //poly.push_back(p);
+  Point p {0,1};
+  poly.push_back(p);
   //polyrings.push_back( poly );
 
   polyrings.push_back( { {100, 0}, {100, 100}, {0, 100}, {0, 0} } );
   polyrings.push_back( { {75, 25}, {75, 75}, {25, 75}, {25, 25} } );
 
   //Rcpp::NumericVector res = Rcpp::wrap( p );
-  //Rcpp::NumericMatrix res = Rcpp::wrap( poly );
-  Rcpp::List res = Rcpp::wrap( polyrings );
+  //Rcpp::NumericMatrix mat = Rcpp::wrap( poly );
+  //Polygon poly2 = Rcpp::as< Polygon >( mat );
 
-  return res;
+  //Rcpp::List res = Rcpp::wrap( polyrings );
+
+  Rcpp::List lst = Rcpp::wrap( polyrings );
+  Polygons more_polyrings = Rcpp::as< Polygons >( lst );
+  Rcpp::List lst2 = Rcpp::wrap( more_polyrings );
+  return lst2;
+
 
 }
