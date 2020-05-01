@@ -1,7 +1,7 @@
 ---
 title: "decido - polygon triangulation by ear clipping"
 author: "Michael D. Sumner"
-date: "2020-04-14"
+date: "2020-05-01"
 output:
   rmarkdown::html_vignette:
     fig_width: 7
