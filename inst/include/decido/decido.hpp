@@ -134,8 +134,62 @@ typedef std::vector< Point > Polygon;
 typedef std::vector< Polygon > Polygons;
 
 namespace decido {
-namespace earcut {
+namespace api {
 
+  inline Rcpp::IntegerVector earcut(
+    Rcpp::NumericVector& x,
+    Rcpp::NumericVector& y,
+    IntegerVector& holes,
+    IntegerVector& numholes
+  ) {
+    // The index type. Defaults to uint32_t, but you can also pass uint16_t if you know that your
+    // data won't have more than 65536 vertices.
+    using N = uint32_t;
+    Polygon poly;
+
+    int vcount = static_cast <int> (x.length());
+    Point pt;
+    Polygons polyrings;
+    // if (numholes.size())
+    //    Rcout << "numholes[0]:" << numholes[0] << std::endl;
+    int hole_index = 0;
+    for (int ipoint = 0; ipoint < vcount; ipoint++) {
+      pt = {x[ipoint], y[ipoint]};
+
+      // don't add the point if we are starting a new ring
+      if (numholes.size() && numholes[0] > 0) {
+        if (hole_index < holes.size()) {
+          //         throw std::runtime_error("bounds");
+          int ihole = holes[hole_index];
+          if (ipoint == ihole) {
+            // Rprintf("pushback poly %i\n", ipoint + 1);
+            polyrings.push_back(poly);
+            poly.clear();
+            hole_index++;
+          }
+        }
+      }
+      // now add the point
+      poly.push_back(pt);
+    }
+
+    // ensure we catch the last poly ring
+    polyrings.push_back(poly);
+
+    // Run tessellation
+    // Returns array of indices that refer to the vertices of the input polygon.
+    // Three subsequent indices form a triangle.
+    std::vector<N> indices = mapbox::earcut<N>(polyrings);
+    return Rcpp::wrap( indices );
+  }
+
+  inline Rcpp::IntegerVector earcut(
+      Rcpp::List& polygon
+  ) {
+    Polygons polyrings = Rcpp::as< Polygons >( polygon );
+    std::vector< uint32_t > indices = mapbox::earcut< uint32_t >( polyrings );
+    return Rcpp::wrap( indices );
+  }
 
 } // earcut
 } // decido

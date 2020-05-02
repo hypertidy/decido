@@ -6,7 +6,7 @@
 using namespace Rcpp;
 
 // earcut_cpp
-IntegerVector earcut_cpp(NumericVector x, NumericVector y, IntegerVector holes, IntegerVector numholes);
+Rcpp::IntegerVector earcut_cpp(NumericVector x, NumericVector y, IntegerVector holes, IntegerVector numholes);
 RcppExport SEXP _decido_earcut_cpp(SEXP xSEXP, SEXP ySEXP, SEXP holesSEXP, SEXP numholesSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
@@ -20,7 +20,7 @@ BEGIN_RCPP
 END_RCPP
 }
 // earcut_sfc
-SEXP earcut_sfc(Rcpp::List& sfg);
+Rcpp::IntegerVector earcut_sfc(Rcpp::List& sfg);
 RcppExport SEXP _decido_earcut_sfc(SEXP sfgSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
