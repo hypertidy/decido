@@ -17,7 +17,7 @@ Rcpp::IntegerVector earcut_cpp(
 
 
 // [[Rcpp::export]]
-Rcpp::IntegerVector earcut_sfc( Rcpp::List& sfg ) {
+Rcpp::IntegerVector earcut_sfg( SEXP& sfg ) {
   return decido::api::earcut( sfg );
 }
 

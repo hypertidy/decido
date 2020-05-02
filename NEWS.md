@@ -1,3 +1,7 @@
+# decido 0.2.0.9
+
+* Created decido.hpp header file for linking from other packages
+
 # decido 0.2.0
 
 * Increased automated test coverage of underlying library code. 

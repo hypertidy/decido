@@ -19,21 +19,21 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// earcut_sfc
-Rcpp::IntegerVector earcut_sfc(Rcpp::List& sfg);
-RcppExport SEXP _decido_earcut_sfc(SEXP sfgSEXP) {
+// earcut_sfg
+Rcpp::IntegerVector earcut_sfg(SEXP& sfg);
+RcppExport SEXP _decido_earcut_sfg(SEXP sfgSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< Rcpp::List& >::type sfg(sfgSEXP);
-    rcpp_result_gen = Rcpp::wrap(earcut_sfc(sfg));
+    Rcpp::traits::input_parameter< SEXP& >::type sfg(sfgSEXP);
+    rcpp_result_gen = Rcpp::wrap(earcut_sfg(sfg));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
     {"_decido_earcut_cpp", (DL_FUNC) &_decido_earcut_cpp, 4},
-    {"_decido_earcut_sfc", (DL_FUNC) &_decido_earcut_sfc, 1},
+    {"_decido_earcut_sfg", (DL_FUNC) &_decido_earcut_sfg, 1},
     {NULL, NULL, 0}
 };
 

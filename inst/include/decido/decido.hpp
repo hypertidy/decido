@@ -74,6 +74,9 @@ namespace traits {
     }
 
     Point get() {
+      if( vec.length() != 2 ) {
+        Rcpp::stop("decido - each point in the polygon must have exactly two coordinates");
+      }
       Point x({ vec[0], vec[1] });
       return x;
     }
@@ -118,6 +121,9 @@ namespace traits {
       Polygons x( n );
       R_xlen_t i;
       for( i = 0; i < n; ++i ) {
+        if( !Rf_isMatrix( lst[ i ] ) ) {
+          Rcpp::stop("decido - a list must only contain matrices");
+        }
         Rcpp::Matrix< RTYPE > mat = lst[ i ];
         x[i] = Rcpp::as< std::vector< std::array< T, 2 > > >( mat );
       }
@@ -184,8 +190,11 @@ namespace api {
   }
 
   inline Rcpp::IntegerVector earcut(
-      Rcpp::List& polygon
+      SEXP& polygon
   ) {
+    if( TYPEOF( polygon ) != VECSXP ) {
+      Rcpp::stop("decido - expecting a list of matrices");
+    }
     Polygons polyrings = Rcpp::as< Polygons >( polygon );
     std::vector< uint32_t > indices = mapbox::earcut< uint32_t >( polyrings );
     return Rcpp::wrap( indices );
