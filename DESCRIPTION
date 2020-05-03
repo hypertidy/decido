@@ -11,7 +11,8 @@ Authors@R: c(
         person("Michael", "Sumner", email = "mdsumner@gmail.com", role = c("aut", "cre")), 
         person("Andrew", "Smith", role = "ctb", comment = "provided C++ guidance"), 
         person("Mapbox", role = "cph", comment = "author of header library earcut.hpp"), 
-        person("Mark", "Padgham", role = "ctb", comment = "help with CRAN issues"))
+        person("Mark", "Padgham", role = "ctb", comment = "help with CRAN issues"), 
+        person("David", "Cooley", role = "ctb", comment = "create header capality for linking from other packages"))
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
