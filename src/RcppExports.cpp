@@ -30,10 +30,22 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// earcut_sfc
+SEXP earcut_sfc(Rcpp::List& sfc);
+RcppExport SEXP _decido_earcut_sfc(SEXP sfcSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::List& >::type sfc(sfcSEXP);
+    rcpp_result_gen = Rcpp::wrap(earcut_sfc(sfc));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_decido_earcut_cpp", (DL_FUNC) &_decido_earcut_cpp, 4},
     {"_decido_earcut_sfg", (DL_FUNC) &_decido_earcut_sfg, 1},
+    {"_decido_earcut_sfc", (DL_FUNC) &_decido_earcut_sfc, 1},
     {NULL, NULL, 0}
 };
 

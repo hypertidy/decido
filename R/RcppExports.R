@@ -9,3 +9,7 @@ earcut_sfg <- function(sfg) {
     .Call(`_decido_earcut_sfg`, sfg)
 }
 
+earcut_sfc <- function(sfc) {
+    .Call(`_decido_earcut_sfc`, sfc)
+}
+
