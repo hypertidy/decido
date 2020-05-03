@@ -3,12 +3,9 @@
 
 <!-- badges: start -->
 
-[![R build
-status](https://github.com/hypertidy/decido/workflows/check-standard/badge.svg)](https://github.com/hypertidy/decido/actions)
-[![R build
-status](https://github.com/hypertidy/decido/workflows/test-coverage/badge.svg)](https://github.com/hypertidy/decido/actions)
-[![R build
-status](https://github.com/hypertidy/decido/workflows/pkgdown/badge.svg)](https://github.com/hypertidy/decido/actions)
+[![R-CMD-check](https://github.com/hypertidy/decido/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/decido/actions)
+[![R\_build\_status](https://github.com/hypertidy/decido/workflows/test-coverage/badge.svg)](https://github.com/hypertidy/decido/actions)
+[![R\_build\_status](https://github.com/hypertidy/decido/workflows/pkgdown/badge.svg)](https://github.com/hypertidy/decido/actions)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Travis-CI Build
 Status](http://badges.herokuapp.com/travis/hypertidy/decido)](https://travis-ci.org/hypertidy/decido)
