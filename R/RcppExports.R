@@ -5,3 +5,7 @@ earcut_cpp <- function(x, y, holes, numholes) {
     .Call(`_decido_earcut_cpp`, x, y, holes, numholes)
 }
 
+earcut_sfg <- function(sfg) {
+    .Call(`_decido_earcut_sfg`, sfg)
+}
+

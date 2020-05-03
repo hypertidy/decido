@@ -783,6 +783,7 @@ void Earcut<N>::removeNode(Node* p) {
 
 template <typename N = uint32_t, typename Polygon>
 std::vector<N> earcut(const Polygon& poly) {
+
     mapbox::detail::Earcut<N> earcut;
     earcut(poly);
     return std::move(earcut.indices);
