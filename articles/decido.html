@@ -76,7 +76,7 @@
       <h1 data-toc-skip>decido - polygon triangulation by ear clipping</h1>
                         <h4 class="author">Michael D. Sumner</h4>
             
-            <h4 class="date">2020-04-23</h4>
+            <h4 class="date">2020-05-03</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/hypertidy/decido/blob/master/vignettes/decido.Rmd"><code>vignettes/decido.Rmd</code></a></small>
       <div class="hidden name"><code>decido.Rmd</code></div>
@@ -209,10 +209,10 @@
 <div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sfdct</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sf</span>)
 <span class="no">xsf</span> <span class="kw">&lt;-</span> <span class="fu">st_sfc</span>(<span class="fu">st_polygon</span>(<span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span>(<span class="no">x</span>, <span class="no">y</span>)[<span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq_along</a></span>(<span class="no">x</span>), <span class="fl">1</span>), ])))
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu">ct_triangulate</span>(<span class="no">xsf</span>, <span class="kw">Y</span> <span class="kw">=</span> <span class="fl">TRUE</span>)[<span class="fl">1</span>], <span class="kw">col</span> <span class="kw">=</span> <span class="fl">NA</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu">ct_triangulate</span>(<span class="no">xsf</span>, <span class="kw">Y</span> <span class="kw">=</span> <span class="fl">TRUE</span>)[<span class="fl">1</span>], <span class="kw">col</span> <span class="kw">=</span> <span class="fl">NA</span>)
 
 <span class="co">## now a conforming Delaunay triangulation</span>
-<span class="fu"><a href="https://rdrr.io/r/graphics/plot.html">plot</a></span>(<span class="fu">ct_triangulate</span>(<span class="no">xsf</span>, <span class="kw">D</span> <span class="kw">=</span> <span class="fl">TRUE</span>)[<span class="fl">1</span>], <span class="kw">col</span> <span class="kw">=</span> <span class="fl">NA</span>)</pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/plot.html">plot</a></span>(<span class="fu">ct_triangulate</span>(<span class="no">xsf</span>, <span class="kw">D</span> <span class="kw">=</span> <span class="fl">TRUE</span>)[<span class="fl">1</span>], <span class="kw">col</span> <span class="kw">=</span> <span class="fl">NA</span>)</pre></body></html></div>
 </div>
 <div id="performance" class="section level2">
 <h2 class="hasAnchor">
