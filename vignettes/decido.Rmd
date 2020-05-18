@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 ## Constrained triangulation of polygons
 
-Decido aims to provide very fast constratined triangulations for polygons in R using a robust C++ library created by Mapbox. 
+Decido aims to provide very fast constrained triangulations for polygons in R using a robust C++ library created by Mapbox. 
 
 Constrained triangulation of polygons by ear clipping is an important
 low-cost method for decomposing a polygon into triangles. Polygon triangulation is necessary for 3D visualization and many analytical techniques. Here *constrained* means **shape-preserving**, in the sense that every edge of the polygon will be include as the edge of a triangle in the result. 
@@ -153,7 +153,7 @@ vecrot <- function(x, k) {
 }
 ```
 
-Now plot each possible variant of definining the polygon ring by traversing the boundary anti-clockwise from 
+Now plot each possible variant of defining the polygon ring by traversing the boundary anti-clockwise from 
 a different starting vertex, shown as a filled point symbol. 
 
 ```{r}

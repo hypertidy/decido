@@ -33,12 +33,6 @@ successively ‘cutting’ triangles from a polygon defined by path/s. Holes
 are supported, the earcut library works with single-island-with-holes
 polygons, analogous to the POLYGON type in simple features.
 
-This augments the Javascript version available in
-[rearcut](https://github.com/hypertidy/rearcut.git) (also an R wrapper
-of the JS version by Mapbox). Only very minimal comparison testing has
-yet been done to [compare these
-implementations](http://rpubs.com/cyclemumner/364247).
-
 ## Installation
 
 Install the released version from CRAN.
@@ -48,9 +42,7 @@ install.packages("decido")
 ```
 
 You can install the development version from GitHub with the following
-code. You will need the [set of development
-tools](https://www.rstudio.com/products/rpackages/devtools/) for
-building source packages with binary code.
+code.
 
 ``` r
 ## install.packages("remotes")
@@ -106,7 +98,7 @@ Ear clipping (or ear cutting) is also available in the
 [lawn](https://CRAN.r-project.org/package=lawn) function
 `lawn_tesselate` (implemented via the Mapbox Javascript library earcut).
 In rgl the function also classifies input coordinates according to their
-nesting, a necessary first step if the relaionship between holes and
+nesting, a necessary first step if the relationship between holes and
 islands is not known. The `INLA` package has some kind of
 constraint-based triangulation, but I don’t yet know the details.
 
@@ -121,7 +113,7 @@ in a limited sf wrapper in
 The best prospects for high-quality trianguation is probably the
 [CGAL](https://www.cgal.org/) library, and this now available to R via
 the [cgalheaders](https://github.com/dickoa/cgalheaders) package,
-similiarly used in the [prepair](https://github.com/dickoa/prepair)
+similarly used in the [prepair](https://github.com/dickoa/prepair)
 package.
 
 Older experimental implementations binding CGAL are in
