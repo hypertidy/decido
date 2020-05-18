@@ -44,8 +44,7 @@ implementations](http://rpubs.com/cyclemumner/364247).
 Install the released version from CRAN.
 
 ``` r
-## install.packages("remotes")
-remotes::install_cran("decido")
+install.packages("decido")
 ```
 
 You can install the development version from GitHub with the following
@@ -54,8 +53,8 @@ tools](https://www.rstudio.com/products/rpackages/devtools/) for
 building source packages with binary code.
 
 ``` r
-## install.packages("devtools")
-devtools::install_github("hypertidy/decido", build_vignettes = TRUE)
+## install.packages("remotes")
+remotes::install_github("hypertidy/decido")
 ```
 
 ## Example
@@ -114,11 +113,26 @@ constraint-based triangulation, but I don’t yet know the details.
 In comparison to path-based ear-clipping, other libraries ‘Triangle’ and
 ‘CGAL’ provide edge-based *mostly Delaunay* triangulation. The Triangle
 library is available in the R package
-[RTriangle](https://CRAN.r-project.org/package=RTriangle) and for (some)
-R spatial formats in [sfdct](https://CRAN.r-project.org/package=sfdct).
-Experimental implementations binding CGAL are in
+[RTriangle](https://CRAN.r-project.org/package=RTriangle), for spatial
+formats in the [anglr](https://CRAN.r-project.org/package=package), and
+in a limited sf wrapper in
+[sfdct](https://CRAN.r-project.org/package=sfdct).
+
+The best prospects for high-quality trianguation is probably the
+[CGAL](https://www.cgal.org/) library, and this now available to R via
+the [cgalheaders](https://github.com/dickoa/cgalheaders) package,
+similiarly used in the [prepair](https://github.com/dickoa/prepair)
+package.
+
+Older experimental implementations binding CGAL are in
 [rcgal](https://github.com/s-u/rcgal) and
 [laridae](https://github.com/hypertidy/laridae).
+
+There’s an interesting new package
+[terrainmeshr](https://CRAN.r-project.org/package=terrainmeshr)for
+triangulating rasters based on the
+[hmm](https://github.com/fogleman/hmm) library, this is leveraged in the
+dev-version of the [anglr](https://CRAN.r-project.org/package=anglr).
 
 Do you know of others? Let me know\! Triangulation is common across many
 R packages, but constrained algorithms are pretty rare (it’s hard).
@@ -127,8 +141,11 @@ many packages, and I’m compiling a list of those as well. OTOH there’s
 rgeos, sf, deldir, geometry, tripack, spatstat, akima, several
 mesh-related packages Rvcg, meshsimp, icosa, webglobe …
 
+There’s a rough benchmark here: <https://rpubs.com/cyclemumner/416456>
+
 -----
 
 Please note that the decido project is released with a [Contributor Code
-of Conduct](CODE_OF_CONDUCT.md). By participating in this project you
-agree to abide by its terms.
+of
+Conduct](https://github.com/hypertidy/decido/blob/master/CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.

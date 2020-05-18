@@ -1,6 +1,4 @@
 .Rproj.user
-inst/doc
 tests/testthat/*.pdf
-decido.Rcheck/
-decido*.tar.gz
-decido*.tgz
+.Rhistory
+data-raw/earcut.hpp

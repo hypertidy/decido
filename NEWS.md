@@ -1,6 +1,10 @@
-# decido 0.2.0.9
+# decido 0.3.0
 
-* Created decido.hpp header file for linking from other packages
+* Remove old src/init.c partially manual registration. 
+
+* Updated Mapbox earcut.hpp source (to commit 6d18edf0ce046023a7cb55e69c4cd9ba90e2c716).  See inst/earcut_source.R. 
+
+* Created decido.hpp header file for linking from other packages, contributed by David Cooley. 
 
 # decido 0.2.0
 

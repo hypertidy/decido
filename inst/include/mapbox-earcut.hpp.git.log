@@ -1,0 +1,29 @@
+commit 6d18edf0ce046023a7cb55e69c4cd9ba90e2c716
+Author: Vladimir Agafonkin <agafonkin@gmail.com>
+Date:   Fri Jan 24 13:33:02 2020 +0200
+
+    update changelog with master changes
+
+commit 5d554768316a7931bcc999dc8d7675d58be1ac45
+Author: Vladimir Agafonkin <agafonkin@gmail.com>
+Date:   Thu Jan 23 12:39:31 2020 +0200
+
+    fix another edge case (v2.2.2 parity)
+
+commit ee3637f5c762e61fa96a9cec63b265148a1dc12d
+Author: Vladimir Agafonkin <agafonkin@gmail.com>
+Date:   Fri Sep 20 01:31:10 2019 +0300
+
+    update appveyor badge, close #84
+
+commit a57e4cec4e6d792b6115ffe402f232a2fa89e199
+Author: Vladimir Agafonkin <agafonkin@gmail.com>
+Date:   Thu Sep 19 16:47:30 2019 +0300
+
+    fix rare case with touching holes (parity with earcut v2.2.1) (#82)
+
+commit cab15e28cc6cd21ba3efe4fe81784f5008076eda
+Author: Dane Springmeyer <springmeyer@users.noreply.github.com>
+Date:   Wed Sep 18 23:02:20 2019 -0700
+
+    install ccache via mason (#81)

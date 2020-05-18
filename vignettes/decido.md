@@ -1,7 +1,7 @@
 ---
 title: "decido - polygon triangulation by ear clipping"
 author: "Michael D. Sumner"
-date: "2020-05-01"
+date: "2020-05-18"
 output:
   rmarkdown::html_vignette:
     fig_width: 7
@@ -77,8 +77,7 @@ text(x, y, labels = seq_along(x), pos = 2)
 
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
-The method is subtle, and it's also not the only way to do it, the grid package uses a grouping vector rather than a sparse index like this. The spatial packages sp and sf explicitly use structural hierarchies rather than more abstract specifications. The fortify-approach in ggplot2 is more like the grid one. A sparse representation is closer to what is needed for topological operations and visualization, consider that when we have triangles there are no need for "holes", we can identify which triangles will be plotted and how (or not), and an index into the vertices available becomes a key efficiency feature. (See [silicate](https://github.com/hypertidy/silicate) for a lot more on this topic). 
-
+The method is subtle. 
 
 This example adds a third polygon, a second hole in the island. 
 
@@ -243,3 +242,8 @@ Compare timing of C++ versus JS implementations.
 #2 decido::earcut(ring$x, ring$y)          100   0.064    1.000
 #1 rearcut::earcut(cbind(ring$x, ring$y))  100   4.147   64.797
 ```
+
+
+
+
+
