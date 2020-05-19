@@ -19,3 +19,4 @@
 ^clang-\.*$
 ^vignettes/figure$
 ^revdep$
+^CRAN-RELEASE$

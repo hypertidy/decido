@@ -106,7 +106,7 @@ y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 idx <- earcut(cbind(x, y))
 
 ## idx is triplets of indices into x,y 
-plot(cbind(x, y)[rbind(matrix(idx, nrow = 3), NA), ], type = "l", lwd = 2, col = "darkgrey")
+plot(cbind(x, y)[rbind(matrix(idx, nrow = 3)[c(1:3, 1), ], NA), ], type = "l", lwd = 2, col = "darkgrey")
 ```
 
 <img src="man/figures/README-tricks-1.png" width="100%" />
