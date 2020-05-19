@@ -4,8 +4,6 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/hypertidy/decido/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/decido/actions)
-[![R\_build\_status](https://github.com/hypertidy/decido/workflows/test-coverage/badge.svg)](https://github.com/hypertidy/decido/actions)
-[![R\_build\_status](https://github.com/hypertidy/decido/workflows/pkgdown/badge.svg)](https://github.com/hypertidy/decido/actions)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Travis-CI Build
 Status](http://badges.herokuapp.com/travis/hypertidy/decido)](https://travis-ci.org/hypertidy/decido)
@@ -74,8 +72,30 @@ vignette("decido", package = "decido")
 
 ## Development
 
-This is motivated by the topology aspirations of
-[silicate](https://CRAN.r-project.org/package=silicate). We need tools
+There is a C++ headers API for decido.
+
+``` r
+library(Rcpp)
+
+cppFunction(
+  depends = "decido"
+  , includes = '#include "decido/decido.hpp"'
+  , code = '
+    Rcpp::IntegerVector earcut0( SEXP polygon ) {
+      return decido::api::earcut( polygon );
+    }
+  '
+)
+
+poly <- list(matrix(c(0,0,0,1,1,1,1,0,0,0), ncol = 2, byrow = T))
+earcut0( poly )
+#> [1] 1 4 3 3 2 1
+```
+
+## Motivation
+
+This was originally motivated by the topology aspirations of
+[silicate](https://CRAN.r-project.org/package=silicate) needing tools
 for decomposing shape data into primitives for analysis and
 visualization. Decomposition into graph types is already well supported
 and exercised, but triangulations of paths versus triangulations from
@@ -133,7 +153,8 @@ many packages, and I’m compiling a list of those as well. OTOH there’s
 rgeos, sf, deldir, geometry, tripack, spatstat, akima, several
 mesh-related packages Rvcg, meshsimp, icosa, webglobe …
 
-There’s a rough benchmark here: <https://rpubs.com/cyclemumner/416456>
+There’s a rough and old benchmark here:
+<https://rpubs.com/cyclemumner/416456>
 
 -----
 

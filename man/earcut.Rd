@@ -25,6 +25,9 @@ that may include holes. Holes are specified by input argument \code{holes}
 which marks the starting index of each hole, if any.
 }
 \details{
+Triangles are returned in counter-clockwise orientation, a common convention that ascribes a positive area
+to the triangle. (Orientation may be collinear or numerically ambiguous and so may be undetermined).
+
 Ear cutting (or ear clipping) applies constrained triangulation by
 successively 'cutting' triangles from a polygon defined by path/s. Holes are supported, the earcut library works with
 single-island-with-holes polygons, analogous to the POLYGON type in simple features.

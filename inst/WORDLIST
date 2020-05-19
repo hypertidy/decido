@@ -10,6 +10,7 @@ CGAL
 CGAL’
 cgalheaders
 CMD
+collinear
 cpp
 cutting’
 cyclemumner
@@ -27,6 +28,7 @@ https
 hypertidy
 icosa
 init
+io
 Javascript
 JS
 laridae
@@ -39,6 +41,7 @@ rasters
 rcgal
 Rcpp
 readme
+rearcut
 rgeos
 rgl
 rpubs

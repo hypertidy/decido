@@ -1,7 +1,7 @@
 ---
 title: "decido - polygon triangulation by ear clipping"
 author: "Michael D. Sumner"
-date: "`r Sys.Date()`"
+date: "2020-05-19"
 output:
   rmarkdown::html_vignette:
     fig_width: 7
@@ -12,12 +12,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
-```
+
 
 ## Constrained triangulation of polygons
 
@@ -37,19 +32,24 @@ This is a basic example of triangulating a single-ring polygon. The
 output is a vector of triplet indices defining each triangle. 
 
 
-```{r example}
+
+```r
 library(decido)
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 (ind <- earcut(cbind(x, y)))
+#>  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2
 
 
 plot_ears(cbind(x, y), ind)
 ```
 
+![plot of chunk example](figure/example-1.png)
+
 Support for holes is provided by the argument `holes`. The values are the starting index of each hole, here in R's 1-based convention. 
 
-```{r}
+
+```r
 ## polygon with a hole
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
      0.2, 0.5, 0.5, 0.3, 0.2)
@@ -59,6 +59,8 @@ ind <- earcut(cbind(x, y), holes = 8)
 plot_ears(cbind(x, y), ind)
 ```
 
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)
+
 
 The hole-specification is a little subtle, since usually R's functions
 (polygon and polypath, and others) expect NA values to separate paths. 
@@ -66,17 +68,20 @@ The hole-specification is a little subtle, since usually R's functions
 
 Notice how the hole begins at index 8, hence `holes = 8` above, and `holes = c(8, 13)` below. 
 
-```{r}
+
+```r
 plot_ears(cbind(x, y), ind, col = "grey", border = NA)
 text(x, y, labels = seq_along(x), pos = 2)
-
 ```
+
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 The method is subtle. 
 
 This example adds a third polygon, a second hole in the island. 
 
-```{r}
+
+```r
 ## add another hole
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69,
      0.2, 0.5, 0.5, 0.3, 0.2,
@@ -86,15 +91,17 @@ y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
       0.65, 0.65, 0.81)
 ind <- earcut(cbind(x, y), holes = c(8, 13))
 plot_ears(cbind(x, y), ind, col = "grey")
-
 ```
+
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 
 ## Performance for developers
 
 There is a headers API for decido. 
 
-```{r headers, eval = FALSE, include = TRUE}
+
+```r
 ## this code is not run in the vignette
 ## but can be run as is with decido installed
 library(Rcpp)
@@ -121,7 +128,8 @@ Triangles are returned in *counter-clockwise* order, as is proper and good in a 
 
 First a function so I can show this with a plot. 
 
-```{r triplot}
+
+```r
 ## plot triangles (input is triplets of xy coordinates)
 ## with one side an oriented arrow
 plot_tri <- function(x, add = TRUE) {
@@ -140,15 +148,17 @@ plot_tri <- function(x, add = TRUE) {
     
   }
 }
-
 ```
 
 
 See how each triangle has its first edge (the first two indexes) shown as an arrow. They're all counter-clockwise. I've checked this on very large sets of real-world inputs, you can get 0-area polygons and *very small negative-epsilon area* polygons when the 3 points are collinear or so close to it that numeric precision fails us. 
 
-```{r orientation}
+
+```r
 plot_tri(cbind(x, y)[ind, ], add = FALSE)
 ```
+
+![plot of chunk orientation](figure/orientation-1.png)
 
 (See [this discussion](https://github.com/hypertidy/decido/issues/17) for more on the topic where I was exactly backwards on the counter-clockwise thing, but airing the topic was very helpful). 
 
@@ -161,7 +171,8 @@ be decomposed to triangles (and not stay a triangle).
 
 A quadrilateral, with two holes that are open to each other allows the use of the same data, and we can tweak whether we wanted one hole or two. This is an important example used for validating early versions of this package. 
 
-```{r}
+
+```r
 x <- c(0, 0, 1, 1,
        0.4, 0.2, 0.2, 0.4,
        0.6, 0.8, 0.8, 0.6
@@ -173,15 +184,32 @@ y <- c(0, 1, 1, 0,
 ind <- decido::earcut(cbind(x, y), holes = c(5, 9))
 plot_ears(cbind(x, y), ind, col = "grey")
 title("triangle plot, two holes")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+
+```r
 plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")
 title("path plot, two holes")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-2.png)
+
+```r
 
 ind <- decido::earcut(cbind(x, y), holes = 5)
 plot_ears(cbind(x, y), ind, col = "grey")
 title("triangle plot, two holes as one")
+```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-3.png)
+
+```r
 plot_holes(cbind(x, y), holes = 5, col = "grey")
 title("path plot, two holes as one")
 ```
+
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-4.png)
 
 ## A geographic example
 
@@ -189,13 +217,16 @@ For good measure we include a geographic example, a triangulation
 of the mainland part of Tasmania from the `oz` package. 
 
 
-```{r}
+
+```r
 library(oz)
 oz_ring <- oz::ozRegion(states = FALSE)
 ring <- oz_ring$lines[[6]]
 indices <- earcut(ring[c("x", "y")])
 plot_ears(cbind(ring$x, ring$y), indices)
 ```
+
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 
 ## Variants
@@ -207,7 +238,8 @@ Important "edge" cases are degeneracies, holes touching the island or each other
 
 First a function to "rotate" coordinates to different start/end. 
 
-```{r}
+
+```r
 vecrot <- function(x, k) {
   if (k < 0 || k > length(x)) warning("k out of bounds of 'x' index")
   k <- k %% length(x)
@@ -219,14 +251,21 @@ vecrot <- function(x, k) {
 Now plot each possible variant of defining the polygon ring by traversing the boundary anti-clockwise from 
 a different starting vertex, shown as a filled point symbol. 
 
-```{r}
+
+```r
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 (ind <- earcut(cbind(x, y)))
+#>  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2
 
 plot_ears(cbind(x, y), ind)
 points(x[1], y[1], pch = 19, col = "firebrick")
 title("original")
+```
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+
+```r
 op <- par(mfrow = c(2, 3))
 for (rot in head(seq_along(x), -1)) {
 xx <- vecrot(x, rot); yy <- vecrot(y, rot)
@@ -235,8 +274,12 @@ plot_ears(cbind(xx, yy), ind)
 title(sprintf("rot %i", rot))
 points(xx[1], yy[1], pch = 19, col = "firebrick")
 }
-par(op)
+```
 
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-2.png)
+
+```r
+par(op)
 
 ```
 
@@ -295,7 +338,5 @@ rbenchmark::benchmark(js = rearcut::earcut(ring),
 [1]: See [https://hypertidy.github.io/sfdct/reference/ct_triangulate.html#examples] of `st_triangulate` vs `ct_triangulate` on a set of polygons, the unconstrained version does not include all the polygon edges, the boundaries are the convex of *each polygon* and so each triangle collection is overlapping. 
 
 
-```{r, include=FALSE}
-# , and it's also not the only way to do it, the grid package uses a grouping vector rather than a sparse index like this. The spatial packages sp and sf explicitly use structural hierarchies rather than more abstract specifications. The fortify-approach in ggplot2 is more like the grid one. A sparse representation is closer to what is needed for topological operations and visualization, consider that when we have triangles there are no need for "holes", we can identify which triangles will be plotted and how (or not), and an index into the vertices available becomes a key efficiency feature. (See [silicate](https://github.com/hypertidy/silicate) for a lot more on this topic). 
-```
+
 
