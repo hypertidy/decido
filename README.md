@@ -106,8 +106,8 @@ In comparison to path-based ear-clipping, other libraries ‘Triangle’ and
 ‘CGAL’ provide edge-based *mostly Delaunay* triangulation. The Triangle
 library is available in the R package
 [RTriangle](https://CRAN.r-project.org/package=RTriangle), for spatial
-formats in the [anglr](https://CRAN.r-project.org/package=package), and
-in a limited sf wrapper in
+formats in the [anglr](https://CRAN.r-project.org/package=anglr), and in
+a limited sf wrapper in
 [sfdct](https://CRAN.r-project.org/package=sfdct).
 
 The best prospects for high-quality trianguation is probably the
