@@ -74,7 +74,7 @@ which marks the starting index of each hole, if any." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">decido</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.2.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0</span>
       </span>
     </div>
 
@@ -154,7 +154,9 @@ which marks the starting index of each hole, if any.</p>
     <p>integer vector of triangle index, in sets of three</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Ear cutting (or ear clipping) applies constrained triangulation by
+    <p>Triangles are returned in counter-clockwise orientation, a common convention that ascribes a positive area
+to the triangle. (Orientation may be collinear or numerically ambiguous and so may be undetermined).</p>
+<p>Ear cutting (or ear clipping) applies constrained triangulation by
 successively 'cutting' triangles from a polygon defined by path/s. Holes are supported, the earcut library works with
 single-island-with-holes polygons, analogous to the POLYGON type in simple features.</p>
 <p>To understand the specification of holes, see the examples with comment
