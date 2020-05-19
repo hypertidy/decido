@@ -95,7 +95,19 @@ earcut0( poly )
 
 ## Motivation 
 
-This was originally motivated by the topology aspirations of
+Triangles can be addictive once you get used to them and can really focus attention on how simple things work. I love this sneaky trick for turning a set of unique coordinates into a picture with basic array, plot, and index idioms. 
+
+```{r tricks}
+library(decido)
+x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
+y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
+idx <- earcut(cbind(x, y))
+
+## idx is triplets of indices into x,y 
+plot(cbind(x, y)[rbind(matrix(idx, nrow = 3), NA), ], type = "l", lwd = 2, col = "darkgrey")
+```
+
+The need for polygon triangulation was originally motivated by the topology aspirations of
 [silicate](https://CRAN.r-project.org/package=silicate) needing tools for
 decomposing shape data into primitives for analysis and visualization.
 Decomposition into graph types is already well supported and exercised, but
