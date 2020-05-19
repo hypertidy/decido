@@ -1,12 +1,11 @@
-#include <Rcpp.h>
-#include <array>
+#include "decido.h"
+
 using namespace Rcpp;
-#include "earcut.h"
 
 #include "decido/decido.hpp"
 
 // [[Rcpp::export]]
-Rcpp::IntegerVector earcut_cpp(
+IntegerVector earcut_cpp(
     NumericVector x,
     NumericVector y,
     IntegerVector holes,
@@ -17,7 +16,7 @@ Rcpp::IntegerVector earcut_cpp(
 
 
 // [[Rcpp::export]]
-Rcpp::IntegerVector earcut_sfg( SEXP& sfg ) {
+IntegerVector earcut_sfg( SEXP& sfg ) {
   return decido::api::earcut( sfg );
 }
 
