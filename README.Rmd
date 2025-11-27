@@ -8,10 +8,8 @@ editor_options:
 
 <!-- badges: start -->
 [![R-CMD-check](https://github.com/hypertidy/decido/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/decido/actions)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Travis-CI Build Status](http://badges.herokuapp.com/travis/hypertidy/decido)](https://travis-ci.org/hypertidy/decido)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/hypertidy/decido?branch=master&svg=true)](https://ci.appveyor.com/project/mdsumner/decido) 
-[![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://codecov.io/github/hypertidy/decido?branch=master)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://tidyverse.org/lifecycle/)
+[![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://app.codecov.io/github/hypertidy/decido?branch=master)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/decido)](https://CRAN.R-project.org/package=decido)
 [![CRAN status](https://www.r-pkg.org/badges/version/decido)](https://CRAN.R-project.org/package=decido)
 <!-- badges: end -->
@@ -130,7 +128,7 @@ kind of constraint-based triangulation, but I don't yet know the details.
 
 In comparison to path-based ear-clipping, other libraries 'Triangle' and 'CGAL' provide edge-based *mostly Delaunay* triangulation. The Triangle library is available in the R package [RTriangle](https://CRAN.r-project.org/package=RTriangle), for spatial formats in the [anglr](https://CRAN.r-project.org/package=anglr), and in a limited sf wrapper in [sfdct](https://CRAN.r-project.org/package=sfdct). 
 
-The best prospects for high-quality trianguation is probably the [CGAL](https://www.cgal.org/) library, and this now available to R via the [cgalheaders](https://github.com/dickoa/cgalheaders) package, similarly used in the [prepair](https://github.com/dickoa/prepair) package. 
+The best prospects for high-quality trianguation is probably the [CGAL](https://www.cgal.org/) library, and this now available to R via the [cgalheaders](https://github.com/dickoa/cgalh) package, similarly used in the [prepair](https://github.com/dickoa/prepr) package. 
 
 Older experimental implementations binding CGAL are in [rcgal](https://github.com/s-u/rcgal) and [laridae](https://github.com/hypertidy/laridae). 
 

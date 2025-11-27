@@ -15,7 +15,7 @@ This package wraps the 'header-only' library 'earcut.hpp'
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://hypertidy.github.io/decido}
+  \item \url{https://hypertidy.github.io/decido/}
   \item Report bugs at \url{https://github.com/hypertidy/decido/issues}
 }
 
