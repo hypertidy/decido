@@ -1,5 +1,5 @@
 Package: decido
-Version: 0.3.0.9001
+Version: 0.4.0
 Title: Bindings for 'Mapbox' Ear Cutting Triangulation Library 
 Description: Provides constrained triangulation of polygons. Ear cutting (or 
  ear clipping) applies constrained triangulation by successively 'cutting'
@@ -22,15 +22,15 @@ LinkingTo:
 Depends: R (>= 3.2.5)
 Imports: 
     Rcpp
-RoxygenNote: 7.1.0
+RoxygenNote: 7.3.2
 Suggests: 
     covr,
     testthat,
     knitr,
     oz,
     rmarkdown,
-    spelling
-SystemRequirements: C++11
+    spelling,
+    markdown
 VignetteBuilder: knitr
 Roxygen: list(markdown = TRUE)
 URL: https://hypertidy.github.io/decido

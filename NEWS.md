@@ -1,3 +1,7 @@
+# decido 0.4.0
+
+Remove C++11 requirement, thanks to CRAN. 
+
 # decido 0.3.0
 
 * Remove old src/init.c partially manual registration. 

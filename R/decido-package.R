@@ -2,8 +2,6 @@
 #' @importFrom Rcpp sourceCpp
 NULL
 
-#' @keywords internal
-"_PACKAGE"
 
 
 #' decido
@@ -15,5 +13,4 @@ NULL
 #' <https://github.com/mapbox/earcut.hpp.git>.
 #'
 #' @name decido-package
-#' @docType package
-NULL
+"_PACKAGE"
