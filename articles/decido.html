@@ -330,12 +330,19 @@ variants above, and the <em>conforming</em> triangulation inserts two
 points not included in the original data - these are called Steiner
 points).</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hypertidy/sfdct" class="external-link">sfdct</a></span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="co">## x, y as above</span></span>
+<span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span>, <span class="fl">0.75</span>, <span class="fl">1</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>, <span class="fl">0.69</span><span class="op">)</span></span>
+<span><span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span>, <span class="fl">1</span>, <span class="fl">0.8</span>, <span class="fl">0.7</span>, <span class="fl">0.6</span>, <span class="fl">0</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/hypertidy/sfdct" class="external-link">sfdct</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/" class="external-link">sf</a></span><span class="op">)</span></span>
 <span><span class="va">xsf</span> <span class="op">&lt;-</span> <span class="fu">st_sfc</span><span class="op">(</span><span class="fu">st_polygon</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="fl">1</span><span class="op">)</span>, <span class="op">]</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co">## Y prohibits insertion of Steiner points (as per RTriangle)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">ct_triangulate</span><span class="op">(</span><span class="va">xsf</span>, Y <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co">## now a conforming Delaunay triangulation</span></span>
+<span><span class="co">## D produces a conforming Delaunay triangulation (as per RTriangle)</span></span>
+<span><span class="co">## now a conforming Delaunay triangulation, we get extra verts</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span><span class="fu">ct_triangulate</span><span class="op">(</span><span class="va">xsf</span>, D <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, col <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
@@ -344,35 +351,35 @@ points).</p>
 <p>Compare timing of C++ versus JS implementations, the original C++
 decido was born from the Javascript version ‘rearcut’. With version
 0.3.0 decido gained a C++ headers API thanks to David Cooley.</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span></span>
-<span><span class="va">ring</span> <span class="op">&lt;-</span> </span>
-<span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"hypertidy/rearcut"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://www.rcpp.org" class="external-link">Rcpp</a></span><span class="op">)</span></span>
-<span><span class="co">## some people love to see the world burn by</span></span>
-<span><span class="co">## ignoring indexes and working purely in coordinates ...</span></span>
-<span><span class="fu"><a href="https://rdrr.io/pkg/Rcpp/man/cppFunction.html" class="external-link">cppFunction</a></span><span class="op">(</span></span>
-<span>  depends <span class="op">=</span> <span class="st">"decido"</span></span>
-<span>  , includes <span class="op">=</span> <span class="st">'#include "decido/decido.hpp"'</span></span>
-<span>  , code <span class="op">=</span> <span class="st">'</span></span>
-<span><span class="st">    Rcpp::IntegerVector earcut0( SEXP polygon ) {</span></span>
-<span><span class="st">      return decido::api::earcut( polygon );</span></span>
-<span><span class="st">    }</span></span>
-<span><span class="st">  '</span></span>
-<span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/dim.html" class="external-link">dim</a></span><span class="op">(</span><span class="va">ring</span> <span class="op">&lt;-</span> <span class="fu">decido</span><span class="fu">:::</span><span class="va">ant_cont</span> <span class="op">)</span></span>
-<span></span>
-<span><span class="fu">rbenchmark</span><span class="fu">::</span><span class="fu">benchmark</span><span class="op">(</span>js <span class="op">=</span> <span class="fu">rearcut</span><span class="fu">::</span><span class="fu">earcut</span><span class="op">(</span><span class="va">ring</span><span class="op">)</span>, </span>
-<span>                      decido <span class="op">=</span> <span class="fu">decido</span><span class="fu">::</span><span class="fu"><a href="../reference/earcut.html">earcut</a></span><span class="op">(</span><span class="va">ring</span><span class="op">)</span>,</span>
-<span>                      headers_decido <span class="op">=</span> <span class="fu">earcut0</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span><span class="va">ring</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
-<span>                      </span>
-<span>                      </span>
-<span><span class="co">#            test replications elapsed relative user.self sys.self user.child sys.child</span></span>
-<span><span class="co"># 2         decido          100   0.304    1.924     0.305    0.000          0         0</span></span>
-<span><span class="co"># 3 headers_decido          100   0.158    1.000     0.158    0.000          0         0</span></span>
-<span><span class="co"># 1             js          100   6.876   43.519     6.818    0.148          0         0</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>ring <span class="ot">&lt;-</span> decido<span class="sc">:::</span>ant_cont </span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="fu">dim</span>(ring)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"hypertidy/rearcut"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a><span class="fu">library</span>(Rcpp)</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a><span class="do">## some people love to see the world burn by</span></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a><span class="do">## ignoring indexes and working purely in coordinates ...</span></span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="fu">cppFunction</span>(</span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a>  <span class="at">depends =</span> <span class="st">"decido"</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a>  , <span class="at">includes =</span> <span class="st">'#include "decido/decido.hpp"'</span></span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a>  , <span class="at">code =</span> <span class="st">'</span></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a><span class="st">    Rcpp::IntegerVector earcut0( SEXP polygon ) {</span></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="st">      return decido::api::earcut( polygon );</span></span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="st">    }</span></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a><span class="st">  '</span></span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a>)</span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a></span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a>rbenchmark<span class="sc">::</span><span class="fu">benchmark</span>(<span class="at">js =</span> rearcut<span class="sc">::</span><span class="fu">earcut</span>(ring), </span>
+<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a>                      <span class="at">decido =</span> decido<span class="sc">::</span><span class="fu">earcut</span>(ring),</span>
+<span id="cb18-23"><a href="#cb18-23" tabindex="-1"></a>                      <span class="at">headers_decido =</span> <span class="fu">earcut0</span>(<span class="fu">list</span>(ring)))</span>
+<span id="cb18-24"><a href="#cb18-24" tabindex="-1"></a>                      </span>
+<span id="cb18-25"><a href="#cb18-25" tabindex="-1"></a>                      </span>
+<span id="cb18-26"><a href="#cb18-26" tabindex="-1"></a>            test replications elapsed relative user.self sys.self user.child sys.child</span>
+<span id="cb18-27"><a href="#cb18-27" tabindex="-1"></a><span class="dv">2</span>         decido          <span class="dv">100</span>   <span class="fl">0.051</span>    <span class="fl">1.000</span>     <span class="fl">0.051</span>    <span class="fl">0.000</span>          <span class="dv">0</span>         <span class="dv">0</span></span>
+<span id="cb18-28"><a href="#cb18-28" tabindex="-1"></a><span class="dv">3</span> headers_decido          <span class="dv">100</span>   <span class="fl">0.086</span>    <span class="fl">1.686</span>     <span class="fl">0.085</span>    <span class="fl">0.000</span>          <span class="dv">0</span>         <span class="dv">0</span></span>
+<span id="cb18-29"><a href="#cb18-29" tabindex="-1"></a><span class="dv">1</span>             js          <span class="dv">100</span>   <span class="fl">2.861</span>   <span class="fl">56.098</span>     <span class="fl">3.993</span>    <span class="fl">0.122</span>          <span class="dv">0</span>         <span class="dv">0</span></span></code></pre></div>
 <p>[1]: See [<a href="https://hypertidy.github.io/sfdct/reference/ct_triangulate.html#examples" class="external-link uri">https://hypertidy.github.io/sfdct/reference/ct_triangulate.html#examples</a>]
 of <code>st_triangulate</code> vs <code>ct_triangulate</code> on a set
 of polygons, the unconstrained version does not include all the polygon
