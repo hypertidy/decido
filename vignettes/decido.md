@@ -1,7 +1,7 @@
 ---
 title: "decido - polygon triangulation by ear clipping"
 author: "Michael D. Sumner"
-date: "2025-11-27"
+date: "2025-11-28"
 output:
   rmarkdown::html_vignette:
     fig_width: 7
@@ -289,12 +289,19 @@ Compare this to constrained Delaunay triangulation from the `RTriangle` package 
 but the result is that the *constrained* triangulation is different from all variants above, and the *conforming* triangulation inserts two points not included in the original data - these are called Steiner points). 
 
 ```R
+## x, y as above
+x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
+y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
+
 library(sfdct)
 library(sf)
 xsf <- st_sfc(st_polygon(list(cbind(x, y)[c(seq_along(x), 1), ])))
+
+## Y prohibits insertion of Steiner points (as per RTriangle)
 plot(ct_triangulate(xsf, Y = TRUE)[1], col = NA)
 
-## now a conforming Delaunay triangulation
+## D produces a conforming Delaunay triangulation (as per RTriangle)
+## now a conforming Delaunay triangulation, we get extra verts
 plot(ct_triangulate(xsf, D = TRUE)[1], col = NA)
 
 ```
@@ -305,8 +312,9 @@ Compare timing of C++ versus JS implementations, the original C++ decido was bor
 
 
 ```R
+ring <- decido:::ant_cont 
+dim(ring)
 
-ring <- 
 remotes::install_github("hypertidy/rearcut")
 
 library(Rcpp)
@@ -322,17 +330,17 @@ cppFunction(
   '
 )
 
-dim(ring <- decido:::ant_cont )
+
 
 rbenchmark::benchmark(js = rearcut::earcut(ring), 
                       decido = decido::earcut(ring),
                       headers_decido = earcut0(list(ring)))
                       
                       
-#            test replications elapsed relative user.self sys.self user.child sys.child
-# 2         decido          100   0.304    1.924     0.305    0.000          0         0
-# 3 headers_decido          100   0.158    1.000     0.158    0.000          0         0
-# 1             js          100   6.876   43.519     6.818    0.148          0         0
+            test replications elapsed relative user.self sys.self user.child sys.child
+2         decido          100   0.051    1.000     0.051    0.000          0         0
+3 headers_decido          100   0.086    1.686     0.085    0.000          0         0
+1             js          100   2.861   56.098     3.993    0.122          0         0
 ```
 
 

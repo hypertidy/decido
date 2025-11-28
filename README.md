@@ -4,7 +4,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/hypertidy/decido/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/decido/actions)
-[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://tidyverse.org/lifecycle/)
+[![lifecycle](https://img.shields.io/badge/lifecycle-stable-green.svg)](https://lifecycle.r-lib.org/articles/stages.html/)
 [![Coverage
 status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://app.codecov.io/github/hypertidy/decido?branch=master)
 [![CRAN RStudio mirror
