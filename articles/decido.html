@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">decido</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.4.1</span>
       </span>
     </div>
 
@@ -73,7 +73,7 @@ clipping</h1>
                         <h4 data-toc-skip class="author">Michael D.
 Sumner</h4>
             
-            <h4 data-toc-skip class="date">2025-11-28</h4>
+            <h4 data-toc-skip class="date">2026-07-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/hypertidy/decido/blob/main/vignettes/decido.Rmd" class="external-link"><code>vignettes/decido.Rmd</code></a></small>
       <div class="hidden name"><code>decido.Rmd</code></div>
@@ -121,7 +121,7 @@ output is a vector of triplet indices defining each triangle.</p>
 <span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, <span class="va">ind</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/example-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/example-1.png" class="r-plt" alt="" width="700"></p>
 <p>Support for holes is provided by the argument <code>holes</code>. The
 values are the starting index of each hole, here in R’s 1-based
 convention.</p>
@@ -133,7 +133,7 @@ convention.</p>
 <span>     <span class="fl">0.2</span>, <span class="fl">0.2</span>, <span class="fl">0.4</span>, <span class="fl">0.6</span>, <span class="fl">0.4</span><span class="op">)</span></span>
 <span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/earcut.html">earcut</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, holes <span class="op">=</span> <span class="fl">8</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, <span class="va">ind</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-1-1.png" class="r-plt" alt="" width="700"></p>
 <p>The hole-specification is a little subtle, since usually R’s
 functions (polygon and polypath, and others) expect NA values to
 separate paths.</p>
@@ -142,7 +142,7 @@ above, and <code>holes = c(8, 13)</code> below.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, <span class="va">ind</span>, col <span class="op">=</span> <span class="st">"grey"</span>, border <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/text.html" class="external-link">text</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>, labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, pos <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
 <p>The method is subtle.</p>
 <p>This example adds a third polygon, a second hole in the island.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -155,7 +155,7 @@ above, and <code>holes = c(8, 13)</code> below.</p>
 <span>      <span class="fl">0.65</span>, <span class="fl">0.65</span>, <span class="fl">0.81</span><span class="op">)</span></span>
 <span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/earcut.html">earcut</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, holes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">8</span>, <span class="fl">13</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, <span class="va">ind</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-3-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="performance-for-developers">Performance for developers<a class="anchor" aria-label="anchor" href="#performance-for-developers"></a>
@@ -214,7 +214,7 @@ very large sets of real-world inputs, you can get 0-area polygons and
 collinear or so close to it that numeric precision fails us.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">plot_tri</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span><span class="op">[</span><span class="va">ind</span>, <span class="op">]</span>, add <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/orientation-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/orientation-1.png" class="r-plt" alt="" width="700"></p>
 <p>(See <a href="https://github.com/hypertidy/decido/issues/17" class="external-link">this
 discussion</a> for more on the topic where I was exactly backwards on
 the counter-clockwise thing, but airing the topic was very helpful).</p>
@@ -245,21 +245,21 @@ this package.</p>
 <span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu">decido</span><span class="fu">::</span><span class="fu"><a href="../reference/earcut.html">earcut</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, holes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">9</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, <span class="va">ind</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"triangle plot, two holes"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_ears.html">plot_holes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, holes <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">5</span>, <span class="fl">9</span><span class="op">)</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"path plot, two holes"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-2.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span></span>
 <span><span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu">decido</span><span class="fu">::</span><span class="fu"><a href="../reference/earcut.html">earcut</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, holes <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, <span class="va">ind</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"triangle plot, two holes as one"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-4-3.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-3.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/plot_ears.html">plot_holes</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, holes <span class="op">=</span> <span class="fl">5</span>, col <span class="op">=</span> <span class="st">"grey"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"path plot, two holes as one"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-4-4.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-4-4.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="a-geographic-example">A geographic example<a class="anchor" aria-label="anchor" href="#a-geographic-example"></a>
@@ -272,7 +272,7 @@ the mainland part of Tasmania from the <code>oz</code> package.</p>
 <span><span class="va">ring</span> <span class="op">&lt;-</span> <span class="va">oz_ring</span><span class="op">$</span><span class="va">lines</span><span class="op">[[</span><span class="fl">6</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="va">indices</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/earcut.html">earcut</a></span><span class="op">(</span><span class="va">ring</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"x"</span>, <span class="st">"y"</span><span class="op">)</span><span class="op">]</span><span class="op">)</span></span>
 <span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">ring</span><span class="op">$</span><span class="va">x</span>, <span class="va">ring</span><span class="op">$</span><span class="va">y</span><span class="op">)</span>, <span class="va">indices</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-5-1.png" class="r-plt" alt="" width="700"></p>
 </div>
 <div class="section level2">
 <h2 id="variants">Variants<a class="anchor" aria-label="anchor" href="#variants"></a>
@@ -310,7 +310,7 @@ shown as a filled point symbol.</p>
 <span><span class="fu"><a href="../reference/plot_ears.html">plot_ears</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/cbind.html" class="external-link">cbind</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span>, <span class="va">ind</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">x</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">y</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="st">"original"</span><span class="op">)</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-7-1.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">op</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span>mfrow <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">3</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="kw">for</span> <span class="op">(</span><span class="va">rot</span> <span class="kw">in</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq_along</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>, <span class="op">-</span><span class="fl">1</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span></span>
@@ -320,7 +320,7 @@ shown as a filled point symbol.</p>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/title.html" class="external-link">title</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sprintf.html" class="external-link">sprintf</a></span><span class="op">(</span><span class="st">"rot %i"</span>, <span class="va">rot</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/graphics/points.html" class="external-link">points</a></span><span class="op">(</span><span class="va">xx</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, <span class="va">yy</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>, pch <span class="op">=</span> <span class="fl">19</span>, col <span class="op">=</span> <span class="st">"firebrick"</span><span class="op">)</span></span>
 <span><span class="op">}</span></span></code></pre></div>
-<p><img src="decido_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" width="700"></p>
+<p><img src="decido_files/figure-html/unnamed-chunk-7-2.png" class="r-plt" alt="" width="700"></p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/graphics/par.html" class="external-link">par</a></span><span class="op">(</span><span class="va">op</span><span class="op">)</span></span></code></pre></div>
 <p>Compare this to constrained Delaunay triangulation from the
@@ -409,7 +409,7 @@ each triangle collection is overlapping.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
       </footer>
