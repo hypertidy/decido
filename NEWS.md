@@ -1,3 +1,8 @@
+# decido 0.4.1
+
+* Replaced deprecated dot-name arguments in structure() calls (.Dim,
+  .Dimnames, .Names) with standard attribute names, per CRAN check NOTE.
+
 # decido 0.4.0
 
 * Remove C++11 requirement, thanks to CRAN. 
