@@ -16,9 +16,9 @@
 
 # Dependencies
 
-|package |old   |new   |Δ  |
-|:-------|:-----|:-----|:--|
-|decido  |0.4.0 |0.5.0 |*  |
+|package |old   |new      |Δ  |
+|:-------|:-----|:--------|:--|
+|decido  |0.4.0 |0.4.9001 |*  |
 
 # Revdeps
 

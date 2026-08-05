@@ -15,20 +15,26 @@ test_that("single-hole triangulation works", {
        0.2, 0.5, 0.5, 0.3, 0.2)
   y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0,
        0.2, 0.2, 0.4, 0.6, 0.4)
-  ind <- earcut(cbind(x, y), holes = 8)
-  expect_equal(ind,
+  xy <- cbind(x, y)
 
-               c(1L, 8L, 12L, 9L, 8L, 1L, 9L, 1L, 7L, 9L, 7L, 6L, 5L, 4L, 3L,
-                 5L, 3L, 2L, 2L, 1L, 12L, 2L, 12L, 11L, 2L, 11L, 10L, 10L, 9L,
-                 6L, 10L, 6L, 5L, 10L, 5L, 2L))
+  ## the bridge earcut picks to join the hole depends on floating point
+  ## comparisons and differs between architectures, so check the properties
+  ## every valid triangulation has rather than one platform's index
+  expect_valid_triangulation(xy, earcut(xy, holes = 8), holes = 8, ntri = 12)
+})
+
+test_that("two-hole triangulation works", {
+  x <- c(0, 0, 1, 1, 0.4, 0.2, 0.2, 0.4, 0.6, 0.8, 0.8, 0.6)
+  y <- c(0, 1, 1, 0, 0.2, 0.2, 0.4, 0.4, 0.6, 0.6, 0.4, 0.4)
+  xy <- cbind(x, y)
+
+  expect_valid_triangulation(xy, earcut(xy, holes = c(5, 9)), holes = c(5, 9), ntri = 12)
 })
 
 test_that("we can run biggish inputs (and hopefully invoke the hashing logic)", {
   earcut(ant_cont) %>% expect_length(7611) %>% sum() %>% expect_equal(9687916L)
 
-  earcut(rbind(ant_cont, ant_circle), holes = 2541) %>% expect_length(7977) %>% sum() %>% expect_equal(10535156L)
-
+  expect_valid_triangulation(rbind(ant_cont, ant_circle),
+                             earcut(rbind(ant_cont, ant_circle), holes = 2541),
+                             holes = 2541, ntri = 2659)
 })
-
-
-
