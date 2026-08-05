@@ -7,10 +7,9 @@ editor_options:
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 <!-- badges: start -->
-[![R-CMD-check](https://github.com/hypertidy/decido/workflows/R-CMD-check/badge.svg)](https://github.com/hypertidy/decido/actions)
-[![Coverage status](https://codecov.io/gh/hypertidy/decido/branch/master/graph/badge.svg)](https://app.codecov.io/github/hypertidy/decido?branch=master)
 [![CRAN RStudio mirror downloads](http://cranlogs.r-pkg.org/badges/decido)](https://CRAN.R-project.org/package=decido)
 [![CRAN status](https://www.r-pkg.org/badges/version/decido)](https://CRAN.R-project.org/package=decido)
+[![R-CMD-check](https://github.com/hypertidy/decido/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/hypertidy/decido/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 ```{r setup, include = FALSE}
