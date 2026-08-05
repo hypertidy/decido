@@ -16,3 +16,13 @@ test_that("bad inputs handled", {
 
    expect_error(expect_warning(earcut(matrix(x), holes = 7)), "expected two columns, x/y")
 })
+
+test_that("non-finite coordinates are rejected", {
+  x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
+  y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
+
+  expect_error(earcut(cbind(c(x, NA), c(y, 0.5))), "non-finite coordinates")
+  expect_error(earcut(cbind(c(x, NaN), c(y, 0.5))), "non-finite coordinates")
+  expect_error(earcut(cbind(c(x, Inf), c(y, 0.5))), "non-finite coordinates")
+  expect_silent(earcut(cbind(x, y)))
+})

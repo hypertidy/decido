@@ -52,12 +52,49 @@ library(decido)
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
 y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
 earcut(cbind(x, y))
-#>  [1] 2 1 7 7 6 5 5 4 3 2 7 5 5 3 2
+#>  [1] 2 1 7 7 6 5 5 4 3 5 3 2 5 2 7
 ```
 
 See the [documentation](https://hypertidy.github.io/decido/) and
 [vignette](https://hypertidy.github.io/decido/articles/decido.html) for
 more.
+
+Triangles are cut from the path in order, which tends to leave fans of
+sliver triangles around concave corners. Set `refine = TRUE` for an
+optional Delaunay post-pass that flips interior edges to even them out.
+The boundary, the holes and the number of triangles are all preserved.
+
+``` r
+th <- head(seq(0, 2 * pi, length.out = 49), -1)
+xy <- cbind(cos(th) * (1 + 0.3 * sin(6 * th)),
+            sin(th) * (1 + 0.3 * sin(6 * th)))
+
+draw <- function(xy, idx, title) {
+  plot(xy, asp = 1, axes = FALSE, xlab = "", ylab = "", type = "n", main = title)
+  apply(matrix(idx, 3), 2, function(i) polypath(xy[i, ], col = "#e8e8e8", border = "firebrick"))
+}
+
+op <- par(mfrow = c(1, 2), mar = c(0, 0, 2, 0))
+draw(xy, earcut(xy), "refine = FALSE")
+#> NULL
+draw(xy, earcut(xy, refine = TRUE), "refine = TRUE")
+```
+
+<img src="man/figures/README-refine-1.png" alt="" width="100%" />
+
+    #> NULL
+    par(op)
+
+With `refine = TRUE` decido is no longer purely path-based ear cutting:
+joining holes with bridges, ear clipping, then flipping interior edges
+is the same construction ‘GEOS’ and ‘JTS’ use for constrained Delaunay
+triangulation, so the result converges to the same thing up to the
+tie-breaking of near-cocircular points.
+
+This refines the triangulation of the vertices you supply, it does not
+add any: unlike the quality mesh generation of ‘Triangle’ or ‘CGAL’
+there is no minimum angle or maximum area guarantee, and a sliver forced
+by the input geometry stays a sliver.
 
 Open the getting started vignette.
 
@@ -84,7 +121,7 @@ cppFunction(
 
 poly <- list(matrix(c(0,0,0,1,1,1,1,0,0,0), ncol = 2, byrow = T))
 earcut0( poly )
-#> [1] 1 4 3 3 2 1
+#> [1] 1 4 3 1 3 2
 ```
 
 ## Motivation
@@ -104,7 +141,20 @@ idx <- earcut(cbind(x, y))
 plot(cbind(x, y)[rbind(matrix(idx, nrow = 3)[c(1:3, 1), ], NA), ], type = "l", lwd = 2, col = "darkgrey")
 ```
 
-<img src="man/figures/README-tricks-1.png" width="100%" />
+<img src="man/figures/README-tricks-1.png" alt="" width="100%" />
+
+Using Delaunay refinement (introduced in 0.5.0, off by default) we can
+get higher quality triangles, in this simple example just one segment
+changes:
+
+``` r
+idx <- earcut(cbind(x, y), refine = TRUE)
+
+## idx is triplets of indices into x,y 
+plot(cbind(x, y)[rbind(matrix(idx, nrow = 3)[c(1:3, 1), ], NA), ], type = "l", lwd = 2, col = "darkgrey")
+```
+
+<img src="man/figures/README-delaunay-1.png" alt="" width="100%" />
 
 The need for polygon triangulation was originally motivated by the
 topology aspirations of

@@ -5,9 +5,9 @@
 \alias{earcut.default}
 \title{Constrained polygon triangulation}
 \usage{
-earcut(xy, holes = 0, ...)
+earcut(xy, holes = 0, ..., refine = FALSE)
 
-\method{earcut}{default}(xy, holes = 0L, ...)
+\method{earcut}{default}(xy, holes = 0L, ..., refine = FALSE)
 }
 \arguments{
 \item{xy}{xy-coordinates, either a list, matrix, or data frame}
@@ -15,6 +15,8 @@ earcut(xy, holes = 0, ...)
 \item{holes}{index of starting position of each hole in x,y, leave set to \code{0} if no holes}
 
 \item{...}{unused}
+
+\item{refine}{apply the optional Delaunay refinement post-pass, see Details (default \code{FALSE})}
 }
 \value{
 integer vector of triangle index, in sets of three
@@ -34,7 +36,29 @@ single-island-with-holes polygons, analogous to the POLYGON type in simple featu
 
 To understand the specification of holes, see the examples with comment
 starting "1) Notice how the hole begins ..." in relation to the example code.
+Set \code{refine = TRUE} to apply an optional Delaunay post-pass to the result. This
+legalises every interior edge with edge flips, which removes most sliver triangles
+while preserving the polygon boundary, the holes, and the number of triangles. It
+costs a little more time and is off by default, so the plain result is unchanged.
+
+This is the same construction used for constrained Delaunay triangulation in
+'GEOS' and 'JTS' (join holes into the shell, ear clip, then legalize interior
+edges by flipping), so \code{refine = TRUE} converges to the same triangulation up
+to the tie-breaking of near-cocircular points, where 'earcut' uses a
+floating-point in-circle test rather than an exact one.
+
+This refines the triangulation of the vertices you supply, it does not add any:
+unlike the quality mesh generation of 'Triangle' or 'CGAL' there is no minimum
+angle or maximum area guarantee, and a sliver forced by the input geometry stays
+a sliver.
 }
+\section{Coordinates}{
+
+All coordinates must be finite. \code{NA}, \code{NaN} and \code{Inf} are rejected with an
+error rather than passed to the triangulation library, which does not define
+a result for them.
+}
+
 \examples{
 ## single ring polygon
 x <- c(0, 0, 0.75, 1, 0.5, 0.8, 0.69)
@@ -81,6 +105,11 @@ plot_holes(cbind(x, y), holes = c(5, 9), col = "grey")
 ind <- decido::earcut(cbind(x, y), holes = 5)
 plot_ears(cbind(x, y), ind, col = "grey")
 plot_holes(cbind(x, y), holes = 5, col = "grey")
+
+## optional Delaunay refinement, same triangle count, fewer slivers
+ind0 <- earcut(cbind(x, y), holes = 5)
+ind1 <- earcut(cbind(x, y), holes = 5, refine = TRUE)
+plot_ears(cbind(x, y), ind1, col = "grey")
 }
 \seealso{
 plot_ears

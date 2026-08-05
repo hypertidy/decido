@@ -142,11 +142,27 @@ typedef std::vector< Polygon > Polygons;
 namespace decido {
 namespace api {
 
+  // Flatten rings into one vertex list, in the same order the earcut indices
+  // refer to (ring after ring). This is what mapbox::refine() wants for coords.
+  inline Polygon flatten_rings( const Polygons& polyrings ) {
+    Polygon coords;
+    std::size_t total = 0;
+    for( std::size_t i = 0; i < polyrings.size(); ++i ) {
+      total += polyrings[ i ].size();
+    }
+    coords.reserve( total );
+    for( std::size_t i = 0; i < polyrings.size(); ++i ) {
+      coords.insert( coords.end(), polyrings[ i ].begin(), polyrings[ i ].end() );
+    }
+    return coords;
+  }
+
   inline Rcpp::IntegerVector earcut(
     Rcpp::NumericVector& x,
     Rcpp::NumericVector& y,
     IntegerVector& holes,
-    IntegerVector& numholes
+    IntegerVector& numholes,
+    bool refine = false
   ) {
     // The index type. Defaults to uint32_t, but you can also pass uint16_t if you know that your
     // data won't have more than 65536 vertices.
@@ -186,17 +202,26 @@ namespace api {
     // Returns array of indices that refer to the vertices of the input polygon.
     // Three subsequent indices form a triangle.
     std::vector<N> indices = mapbox::earcut<N>(polyrings);
+    if( refine && !indices.empty() ) {
+      Polygon coords = flatten_rings( polyrings );
+      mapbox::refine( indices, coords );
+    }
     return Rcpp::wrap( indices );
   }
 
   inline Rcpp::IntegerVector earcut(
-      SEXP& polygon
+      SEXP& polygon,
+      bool refine = false
   ) {
     if( TYPEOF( polygon ) != VECSXP ) {
       Rcpp::stop("decido - expecting a list of matrices");
     }
     Polygons polyrings = Rcpp::as< Polygons >( polygon );
     std::vector< uint32_t > indices = mapbox::earcut< uint32_t >( polyrings );
+    if( refine && !indices.empty() ) {
+      Polygon coords = flatten_rings( polyrings );
+      mapbox::refine( indices, coords );
+    }
     return Rcpp::wrap( indices );
   }
 

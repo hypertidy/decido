@@ -1,16 +1,9 @@
-# rayrender
+# raybevel ()
 
-<details>
+* GitHub: <https://github.com/hypertidy/decido>
+* Email: <mailto:mdsumner@gmail.com>
 
-* Version: 
-* Source code: ???
-* URL: https://hypertidy.github.io/decido
-* BugReports: https://github.com/hypertidy/decido/issues
-* Number of recursive dependencies: 0
-
-Run `revdep_details(,"")` for more info
-
-</details>
+Run `revdepcheck::revdep_details(, "raybevel")` for more info
 
 ## Error before installation
 
@@ -34,19 +27,41 @@ Run `revdep_details(,"")` for more info
 
 
 ```
-# silicate
+# rayrender ()
 
-<details>
+* GitHub: <https://github.com/hypertidy/decido>
+* Email: <mailto:mdsumner@gmail.com>
 
-* Version: 
-* Source code: ???
-* URL: https://hypertidy.github.io/decido
-* BugReports: https://github.com/hypertidy/decido/issues
-* Number of recursive dependencies: 0
+Run `revdepcheck::revdep_details(, "rayrender")` for more info
 
-Run `revdep_details(,"")` for more info
+## Error before installation
 
-</details>
+### Devel
+
+```
+
+
+
+
+
+
+```
+### CRAN
+
+```
+
+
+
+
+
+
+```
+# silicate ()
+
+* GitHub: <https://github.com/hypertidy/decido>
+* Email: <mailto:mdsumner@gmail.com>
+
+Run `revdepcheck::revdep_details(, "silicate")` for more info
 
 ## Error before installation
 

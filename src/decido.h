@@ -6,8 +6,9 @@ Rcpp::IntegerVector earcut_cpp(
     Rcpp::NumericVector x,
     Rcpp::NumericVector y,
     Rcpp::IntegerVector holes,
-    Rcpp::IntegerVector numholes
+    Rcpp::IntegerVector numholes,
+    bool refine
   );
 
 
-Rcpp::IntegerVector earcut_sfg( SEXP& sfg );
+Rcpp::IntegerVector earcut_sfg( SEXP& sfg, bool refine );

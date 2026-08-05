@@ -1,29 +1,45 @@
-commit 6d18edf0ce046023a7cb55e69c4cd9ba90e2c716
+commit f25bc765e3084583b7350080319c29ad87bf5857
+Author: Neil Chatterjee <55393285+skeptopic@users.noreply.github.com>
+Date:   Tue Jul 7 14:52:36 2026 +0200
+
+    fix member shadowing warnings (#133)
+    
+    * fix member shadowing warnings
+    
+    MSVC treats locals that hide class members as an error under common
+    strict-warning setups (C4458). Rename the block and diagonal bbox
+    locals in indexSegment and intersectsPolygon, and give the Refiner
+    scratch vectors a Vec suffix so the raw pointers cached in refine's
+    hot loop can keep the names used throughout the algorithm.
+    
+    * Added variable shadow settings to the CMAKE
+    
+    * Fix name shadow in the test
+    
+    * Fix variable shadowing in viz.cpp
+
+commit c0c5ecb6bd1f43ad1f5b005e846221e524d9214d
+Author: Neil Chatterjee <55393285+skeptopic@users.noreply.github.com>
+Date:   Tue Jul 7 10:07:38 2026 +0200
+
+    Guard against degenerate edges (#134)
+    
+    JS Array#Sort doesn't bomb on NaN, but std::sort does
+
+commit f917bfc400bd1a3409b1ca0c5f64f79a14d39979
 Author: Vladimir Agafonkin <agafonkin@gmail.com>
-Date:   Fri Jan 24 13:33:02 2020 +0200
+Date:   Fri Jul 3 15:54:55 2026 +0300
 
-    update changelog with master changes
+    cast container size to fix Qt compilation warnings
 
-commit 5d554768316a7931bcc999dc8d7675d58be1ac45
+commit 4f33ca0b1170913a2d04f550ce4c98ba113cbe0f
 Author: Vladimir Agafonkin <agafonkin@gmail.com>
-Date:   Thu Jan 23 12:39:31 2020 +0200
+Date:   Fri Jul 3 15:24:28 2026 +0300
 
-    fix another edge case (v2.2.2 parity)
+    small cleanup
 
-commit ee3637f5c762e61fa96a9cec63b265148a1dc12d
+commit c68c8835ccff2b7532d31d8fa8dfcf398f629498
 Author: Vladimir Agafonkin <agafonkin@gmail.com>
-Date:   Fri Sep 20 01:31:10 2019 +0300
+Date:   Fri Jul 3 14:58:15 2026 +0300
 
-    update appveyor badge, close #84
-
-commit a57e4cec4e6d792b6115ffe402f232a2fa89e199
-Author: Vladimir Agafonkin <agafonkin@gmail.com>
-Date:   Thu Sep 19 16:47:30 2019 +0300
-
-    fix rare case with touching holes (parity with earcut v2.2.1) (#82)
-
-commit cab15e28cc6cd21ba3efe4fe81784f5008076eda
-Author: Dane Springmeyer <springmeyer@users.noreply.github.com>
-Date:   Wed Sep 18 23:02:20 2019 -0700
-
-    install ccache via mason (#81)
+    polish the readme, update logo

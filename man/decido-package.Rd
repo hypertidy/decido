@@ -23,6 +23,11 @@ Useful links:
 \author{
 \strong{Maintainer}: Michael Sumner \email{mdsumner@gmail.com}
 
+Authors:
+\itemize{
+  \item Michael Sumner \email{mdsumner@gmail.com}
+}
+
 Other contributors:
 \itemize{
   \item Andrew Smith (provided C++ guidance) [contributor]

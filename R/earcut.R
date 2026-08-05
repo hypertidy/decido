@@ -22,10 +22,31 @@ handle_xy <- function(xy) {
 #'
 #' To understand the specification of holes, see the examples with comment
 #' starting "1) Notice how the hole begins ..." in relation to the example code.
+#' Set `refine = TRUE` to apply an optional Delaunay post-pass to the result. This
+#' legalises every interior edge with edge flips, which removes most sliver triangles
+#' while preserving the polygon boundary, the holes, and the number of triangles. It
+#' costs a little more time and is off by default, so the plain result is unchanged.
+#'
+#' This is the same construction used for constrained Delaunay triangulation in
+#' 'GEOS' and 'JTS' (join holes into the shell, ear clip, then legalize interior
+#' edges by flipping), so `refine = TRUE` converges to the same triangulation up
+#' to the tie-breaking of near-cocircular points, where 'earcut' uses a
+#' floating-point in-circle test rather than an exact one.
+#'
+#' This refines the triangulation of the vertices you supply, it does not add any:
+#' unlike the quality mesh generation of 'Triangle' or 'CGAL' there is no minimum
+#' angle or maximum area guarantee, and a sliver forced by the input geometry stays
+#' a sliver.
+#'
 #' @param xy xy-coordinates, either a list, matrix, or data frame
 #' @param holes index of starting position of each hole in x,y, leave set to `0` if no holes
 #' @param ... unused
+#' @param refine apply the optional Delaunay refinement post-pass, see Details (default `FALSE`)
 #' @return integer vector of triangle index, in sets of three
+#' @section Coordinates:
+#' All coordinates must be finite. `NA`, `NaN` and `Inf` are rejected with an
+#' error rather than passed to the triangulation library, which does not define
+#' a result for them.
 #' @export
 #' @seealso plot_ears
 #' @examples
@@ -75,17 +96,30 @@ handle_xy <- function(xy) {
 #' ind <- decido::earcut(cbind(x, y), holes = 5)
 #' plot_ears(cbind(x, y), ind, col = "grey")
 #' plot_holes(cbind(x, y), holes = 5, col = "grey")
-earcut <- function(xy, holes = 0, ...) {
+#'
+#' ## optional Delaunay refinement, same triangle count, fewer slivers
+#' ind0 <- earcut(cbind(x, y), holes = 5)
+#' ind1 <- earcut(cbind(x, y), holes = 5, refine = TRUE)
+#' plot_ears(cbind(x, y), ind1, col = "grey")
+earcut <- function(xy, holes = 0, ..., refine = FALSE) {
  UseMethod("earcut")
 }
 #' @name earcut
 #' @export
-earcut.default <- function(xy, holes = 0L, ...) {
+earcut.default <- function(xy, holes = 0L, ..., refine = FALSE) {
+  if (!is.logical(refine) || length(refine) != 1L || is.na(refine)) {
+    stop("'refine' must be a single TRUE or FALSE")
+  }
   xy <- handle_xy(xy)
+  ## the underlying library assumes finite coordinates, feeding it NA/NaN/Inf
+  ## produces an index that cannot be trusted
+  if (!all(is.finite(xy))) {
+    stop("non-finite coordinates (NA, NaN or Inf) are not supported by earcut()")
+  }
   x <- xy[ ,1L]
   y <- xy[ ,2L]
   ## convert holes to C++ 0-based
-  if (any(holes < 0)) stop("'holes' must be zero, or a vector of positive vaues")
+  if (any(holes < 0)) stop("'holes' must be zero, or a vector of positive values")
   if (any(holes < 1) && length(holes) > 1) stop("cannot mix index 0 with non-zero for 'holes'")
   if (any(holes < 4) && length(holes) > 1) stop("no hole can begin before element 4")
   if (any(holes > (length(x) - 2))) stop("no hole can begin later than 3 elements from the end")
@@ -95,7 +129,8 @@ earcut.default <- function(xy, holes = 0L, ...) {
     nholes <- 0L
     holes <- 0L
   }
-  earcut_cpp(x, y, holes = as.integer(holes - 1), numholes = as.integer(nholes)) + 1L
+  earcut_cpp(x, y, holes = as.integer(holes - 1), numholes = as.integer(nholes),
+             refine = refine) + 1L
 }
 #' Plot ears or polygons
 #'

@@ -11,8 +11,8 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // earcut_cpp
-IntegerVector earcut_cpp(NumericVector x, NumericVector y, IntegerVector holes, IntegerVector numholes);
-RcppExport SEXP _decido_earcut_cpp(SEXP xSEXP, SEXP ySEXP, SEXP holesSEXP, SEXP numholesSEXP) {
+IntegerVector earcut_cpp(NumericVector x, NumericVector y, IntegerVector holes, IntegerVector numholes, bool refine);
+RcppExport SEXP _decido_earcut_cpp(SEXP xSEXP, SEXP ySEXP, SEXP holesSEXP, SEXP numholesSEXP, SEXP refineSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -20,25 +20,27 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< NumericVector >::type y(ySEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type holes(holesSEXP);
     Rcpp::traits::input_parameter< IntegerVector >::type numholes(numholesSEXP);
-    rcpp_result_gen = Rcpp::wrap(earcut_cpp(x, y, holes, numholes));
+    Rcpp::traits::input_parameter< bool >::type refine(refineSEXP);
+    rcpp_result_gen = Rcpp::wrap(earcut_cpp(x, y, holes, numholes, refine));
     return rcpp_result_gen;
 END_RCPP
 }
 // earcut_sfg
-IntegerVector earcut_sfg(SEXP& sfg);
-RcppExport SEXP _decido_earcut_sfg(SEXP sfgSEXP) {
+IntegerVector earcut_sfg(SEXP& sfg, bool refine);
+RcppExport SEXP _decido_earcut_sfg(SEXP sfgSEXP, SEXP refineSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< SEXP& >::type sfg(sfgSEXP);
-    rcpp_result_gen = Rcpp::wrap(earcut_sfg(sfg));
+    Rcpp::traits::input_parameter< bool >::type refine(refineSEXP);
+    rcpp_result_gen = Rcpp::wrap(earcut_sfg(sfg, refine));
     return rcpp_result_gen;
 END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_decido_earcut_cpp", (DL_FUNC) &_decido_earcut_cpp, 4},
-    {"_decido_earcut_sfg", (DL_FUNC) &_decido_earcut_sfg, 1},
+    {"_decido_earcut_cpp", (DL_FUNC) &_decido_earcut_cpp, 5},
+    {"_decido_earcut_sfg", (DL_FUNC) &_decido_earcut_sfg, 2},
     {NULL, NULL, 0}
 };
 

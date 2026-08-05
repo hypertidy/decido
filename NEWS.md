@@ -1,7 +1,27 @@
-# decido 0.4.1
+# decido 0.5.0
+
+* Updated the vendored 'earcut.hpp' source to mapbox/earcut.hpp commit
+  f25bc76 (v3.2.3 plus post-tag fixes for degenerate edges and MSVC
+  shadowing warnings). The previous vendored version was from January 2020.
+  The exact triangulation index returned by `earcut()` differs from earlier
+  versions of decido for some inputs; the number of triangles and the total
+  area they cover are unchanged.
+
+* `earcut()` gains a `refine` argument. Set `refine = TRUE` for an optional
+  Delaunay post-pass that removes most sliver triangles while preserving the
+  boundary, the holes, and the triangle count. The default `FALSE` leaves
+  existing behaviour untouched.
+
+* `earcut()` now rejects non-finite coordinates (`NA`, `NaN`, `Inf`) with an
+  error. Previously these were passed through to the triangulation library,
+  which returned an index that could not be trusted, and which tripped the
+  undefined behaviour sanitizer in the z-order hashing code.
 
 * Replaced deprecated dot-name arguments in structure() calls (.Dim,
-  .Dimnames, .Names) with standard attribute names, per CRAN check NOTE.
+  .Dimnames) with standard attribute names, deprecated in R 4.7.0.
+
+* Removed the stale 'earcut.hold' copy of the previous vendored header, it is
+  in the version history and does not need to be installed.
 
 # decido 0.4.0
 

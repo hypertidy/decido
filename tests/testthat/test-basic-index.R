@@ -5,7 +5,7 @@ test_that("no-hole triangulation works", {
   y <- c(0, 1, 1, 0.8, 0.7, 0.6, 0)
   expect_equal(earcut(cbind(x, y)),
                ## notice dynamic conversion to 1-based index
-               c(1L, 0L, 6L, 6L, 5L, 4L, 4L, 3L, 2L, 1L, 6L, 4L, 4L, 2L, 1L) + 1L)
+               c(1L, 0L, 6L, 6L, 5L, 4L, 4L, 3L, 2L, 4L, 2L, 1L, 4L, 1L, 6L) + 1L)
 
 })
 
@@ -18,14 +18,15 @@ test_that("single-hole triangulation works", {
   ind <- earcut(cbind(x, y), holes = 8)
   expect_equal(ind,
 
-               c(1L, 8L, 12L, 9L, 8L, 1L, 7L, 6L, 5L, 5L, 4L, 3L, 2L, 1L, 12L,
-                 9L, 1L, 7L, 5L, 3L, 2L, 2L, 12L, 11L, 10L, 9L, 7L, 5L, 2L, 11L,10L, 7L, 5L, 5L, 11L, 10L))
+               c(1L, 8L, 12L, 9L, 8L, 1L, 9L, 1L, 7L, 9L, 7L, 6L, 5L, 4L, 3L,
+                 5L, 3L, 2L, 2L, 1L, 12L, 2L, 12L, 11L, 2L, 11L, 10L, 10L, 9L,
+                 6L, 10L, 6L, 5L, 10L, 5L, 2L))
 })
 
 test_that("we can run biggish inputs (and hopefully invoke the hashing logic)", {
-  earcut(ant_cont) %>% expect_length(7611) %>% sum() %>% expect_equal(9670500L)
+  earcut(ant_cont) %>% expect_length(7611) %>% sum() %>% expect_equal(9687916L)
 
-  earcut(rbind(ant_cont, ant_circle), holes = 2541) %>% expect_length(7977) %>% sum() %>% expect_equal(10511060L)
+  earcut(rbind(ant_cont, ant_circle), holes = 2541) %>% expect_length(7977) %>% sum() %>% expect_equal(10535156L)
 
 })
 
